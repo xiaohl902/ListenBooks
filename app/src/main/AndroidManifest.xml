@@ -24,6 +24,9 @@
         <!--音频播放页面-->
         <activity android:name=".PlayActivity" />
 
+        <!--听书馆-艺术家-艺术家详情页面-->
+        <activity android:name=".ArtistInfoActivity"/>
+
 
     </application>
 

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp"
+    android:layout_margin="2dp"
+    app:cardUseCompatPadding="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/art_info_img"
+            android:src="@mipmap/ic_launcher"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_margin="10dp"
+            />
+        <TextView
+            android:id="@+id/art_info_title"
+            android:layout_toRightOf="@+id/art_info_img"
+            android:layout_marginLeft="6dp"
+            android:paddingTop="14dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="经典相声"
+            android:textSize="18sp"
+            />
+        <TextView
+            android:id="@+id/art_info_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/art_info_img"
+            android:layout_below="@+id/art_info_title"
+            android:layout_alignLeft="@+id/art_info_title"
+            android:layout_marginTop="10dp"
+            android:text="郭德纲"
+            android:textSize="14sp"
+            />
+
+        <TextView
+            android:id="@+id/art_info_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/art_info_name"
+           android:layout_alignBaseline="@+id/art_info_name"
+            android:text="共"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="4dp"
+            android:textSize="14sp"
+            />
+        <TextView
+            android:id="@+id/art_info_total_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/art_info_total"
+            android:layout_alignBaseline="@+id/art_info_total"
+            android:text="163"
+            android:layout_marginRight="4dp"
+            android:textSize="14sp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/art_info_total_num"
+            android:layout_alignBaseline="@+id/art_info_total_num"
+            android:text="回"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/artist_funs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/handset_hui"
+            android:drawablePadding="5dp"
+            android:text="3000"
+            android:textSize="14sp"
+            android:gravity="center_vertical"
+            android:layout_below="@+id/art_info_name"
+            android:layout_alignLeft="@id/art_info_name"
+            android:layout_alignBottom="@+id/art_info_img"
+             />
+
+
+    </RelativeLayout>
+
+
+
+
+</android.support.v7.widget.CardView>

@@ -24,4 +24,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile project(':kenlibrary')
+    compile 'com.ms-square:expandableTextView:0.1.4'
 }

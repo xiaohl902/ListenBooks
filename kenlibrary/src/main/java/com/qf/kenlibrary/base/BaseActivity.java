@@ -134,6 +134,16 @@ public abstract class BaseActivity extends AppCompatActivity{
     }
 
     /**
+     * 查找页面布局ID所对应的控件对象，不用强制转换
+     * @param resId
+     * @param <T>
+     * @return
+     */
+    protected  <T> T findViewByIds(int resId){
+        return (T) findViewById(resId);
+    }
+
+    /**
      * 获得activity显示的布局ID
      * @return
      */
