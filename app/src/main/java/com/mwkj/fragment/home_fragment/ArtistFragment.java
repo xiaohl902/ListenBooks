@@ -15,6 +15,7 @@ import com.mwkj.activity.ArtistInfoActivity;
 import com.mwkj.activity.R;
 import com.mwkj.adapter.ArtistAdapter;
 import com.mwkj.entity.ArtEntity;
+import com.mwkj.util.Constant;
 import com.qf.kenlibrary.base.BaseFragment;
 import com.qf.kenlibrary.util.DownUtil;
 
@@ -24,15 +25,16 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-//艺术家
+//Fragment--艺术家
 public class ArtistFragment extends BaseFragment implements DownUtil.OnDownListener, ArtistAdapter.OnItemClickListener {
     private List<ArtEntity> da;
 
+    //默认加载第一页数据
     int page = 1;
     private RecyclerView recyclerView;
     private ArtistAdapter artistAdapter;
 
-    //下拉刷新
+    //RecyclerView自带的下拉刷新
     private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
@@ -43,9 +45,9 @@ public class ArtistFragment extends BaseFragment implements DownUtil.OnDownListe
     @Override
     protected void init(View view) {
         recyclerView = (RecyclerView) view.findViewById(R.id.artist_cv);
+        //流式布局,2列排布
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL));
         artistAdapter = new ArtistAdapter(getContext());
-
         recyclerView.setAdapter(artistAdapter);
 
 
@@ -55,18 +57,20 @@ public class ArtistFragment extends BaseFragment implements DownUtil.OnDownListe
 
     @Override
     protected void loadDatas() {
-        String url = "http://www.mow99.com/ArtistIndex?pageSize=10&pageNumber=%d&session=1416551477469795584&SecurityID=mow99_2014_12_30_@~$;&clientVersion=170&OS=1&imei=352284040546495";
-        String downurl = String.format(url,page);
+        //url的字符串拼接
+        String downurl = String.format(Constant.ARTIST,page);
         new DownUtil().setOnDownListener(this).downJSON(downurl);
 
         swipeRefreshLayout = (SwipeRefreshLayout) getActivity().findViewById(R.id.srl);
-        swipeRefreshLayout.setProgressBackgroundColorSchemeColor(Color.RED);
-        swipeRefreshLayout.setColorSchemeColors(Color.BLUE);
+        swipeRefreshLayout.setProgressBackgroundColorSchemeColor(Color.GREEN);//下拉刷新圆圈背景色
+        swipeRefreshLayout.setColorSchemeColors(Color.BLUE);//下拉刷新 转动圆圈颜色
+        //下拉刷新监听
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 Log.d("print", "------>开始刷新，加载数据");
 
+                //页数++，重新加载
                 page++;
                 loadDatas();
 
@@ -115,6 +119,8 @@ public class ArtistFragment extends BaseFragment implements DownUtil.OnDownListe
         if (object != null) {
             da = (List<ArtEntity>) object;
             artistAdapter.setDatas(da);
+
+            //item点击监听
             artistAdapter.setOnItemClickListener(this);
         }
     }
@@ -122,7 +128,9 @@ public class ArtistFragment extends BaseFragment implements DownUtil.OnDownListe
     @Override
     public void onClick(View view, int position) {
         Intent intent = new Intent(getActivity(),ArtistInfoActivity.class);
+        //用intent将艺术家id及头像传送至跳转后页面
         intent.putExtra("artistid",da.get(position).getArtistId());
+        intent.putExtra("artistimg",da.get(position).getArtistImg());
         startActivity(intent);
     }
 }

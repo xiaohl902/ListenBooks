@@ -10,7 +10,8 @@ import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 
 /**
- * Created by lenovo on 2016/10/8.
+ * Created by luckey on 2016/10/8.
+ * glide圆形图片自定义view
  */
 public class GlideCircleTransform extends BitmapTransformation{
     public GlideCircleTransform(Context context) {
