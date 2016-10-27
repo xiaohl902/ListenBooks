@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">ListenBook</string>
+
+    <!--主页-->
+    <string name="head_tab_listening">我在听</string>
+    <string name="head_tab_home">听书馆</string>
+    <string name="head_tab_show">演出</string>
+    <string name="head_tab_community">社区</string>
+
+    <!--听书馆Home页-->
+    <string name="home_head">搜索评书、相声、艺术家</string>
+</resources>
