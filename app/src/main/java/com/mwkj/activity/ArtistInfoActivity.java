@@ -35,7 +35,6 @@ import butterknife.OnClick;
  */
 public class ArtistInfoActivity extends BaseActivity implements DownUtil.OnDownListener {
 
-
     @Bind(R.id.artinfo_tv_name)
     TextView artinfoTvName;
     @Bind(R.id.info_artist_header)
