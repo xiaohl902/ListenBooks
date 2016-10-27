@@ -3,11 +3,13 @@ package com.mwkj.activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.mwkj.fragment.CommunityFragment;
 import com.mwkj.fragment.ListeningFragment;
@@ -19,6 +21,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+//主页面
 public class MainActivity extends BaseActivity {
 
     @Bind(R.id.ac_fl)
@@ -132,5 +135,30 @@ public class MainActivity extends BaseActivity {
                 acTabImg5.setImageResource(R.mipmap.tab_community_on);
                 break;
         }
+    }
+
+
+    /**
+     * 点击返回退出APP
+     */
+    private long end;
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            //按的是返回键
+            //dialog弹出
+//			dialog.show();
+
+            if(System.currentTimeMillis() - end <= 2000){
+                //关闭当前应用
+                this.finish();
+            } else {
+                Toast.makeText(this, "再按一次退出应用", Toast.LENGTH_SHORT).show();
+                end = System.currentTimeMillis();
+            }
+        }
+
+        //表示拦截back事件
+        return true;
     }
 }

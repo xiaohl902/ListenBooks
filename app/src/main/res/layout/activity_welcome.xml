@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--欢迎页面Activity-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <!--欢迎页背景图片-->
+    <ImageView
+        android:id="@+id/ac_welcome_img"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!--跳过-->
+    <Button
+        android:layout_margin="20dp"
+        android:layout_alignParentRight="true"
+        android:id="@+id/ac_welcome_skip"
+        android:background="@color/color_welcome_btn"
+        android:layout_width="wrap_content"
+        android:text="@string/welcome_btn"
+        android:layout_height="wrap_content" />
+</RelativeLayout>
