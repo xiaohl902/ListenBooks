@@ -44,7 +44,7 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     protected void init(View view) {
-
+        homeViewPager.setOffscreenPageLimit(2);
         List<Fragment> datas = new ArrayList<>();
         datas.add(new StorytellingFragment());//评书
         datas.add(new CrosstalkFragment());//相声

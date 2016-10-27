@@ -10,9 +10,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mwkj.fragment.CommunityFragment;
-import com.mwkj.fragment.home_fragment.HomeFragment;
 import com.mwkj.fragment.ListeningFragment;
 import com.mwkj.fragment.ShowFragment;
+import com.mwkj.fragment.home_fragment.HomeFragment;
 import com.qf.kenlibrary.base.BaseActivity;
 
 import butterknife.Bind;
@@ -36,7 +36,7 @@ public class MainActivity extends BaseActivity {
     @Bind(R.id.ac_tab_ll2)
     LinearLayout tab_ll2;
     @Bind(R.id.ac_tab_ll3)
-    LinearLayout tab_ll3;
+    ImageView tab_ll3;
     @Bind(R.id.ac_tab_img4)
     ImageView acTabImg4;
     @Bind(R.id.ac_tab_tv4)
@@ -57,6 +57,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        tab_ll2.performClick();
     }
 
     @Override
@@ -70,12 +71,12 @@ public class MainActivity extends BaseActivity {
             case R.id.ac_tab_ll1:
                 //我在听
                 showFragment(R.id.ac_fl,new ListeningFragment());
-                setTabImg(0);
+                setTabImg(R.id.ac_tab_ll1);
                 break;
             case R.id.ac_tab_ll2:
                 //听书馆
                 showFragment(R.id.ac_fl,new HomeFragment());
-                setTabImg(1);
+                setTabImg(R.id.ac_tab_ll2);
                 break;
             case R.id.ac_tab_ll3:
                 //跳转到音频播放页面
@@ -85,12 +86,12 @@ public class MainActivity extends BaseActivity {
             case R.id.ac_tab_ll4:
                 //演出
                 showFragment(R.id.ac_fl,new ShowFragment());
-                setTabImg(3);
+                setTabImg(R.id.ac_tab_ll4);
                 break;
             case R.id.ac_tab_l5:
                 //社区
                 showFragment(R.id.ac_fl,new CommunityFragment());
-                setTabImg(4);
+                setTabImg(R.id.ac_tab_l5);
                 break;
         }
     }
@@ -99,10 +100,10 @@ public class MainActivity extends BaseActivity {
     /**
      * 设置tab图片
      */
-    private void setTabImg(int index) {
-        LinearLayout tab_ll = (LinearLayout) acTabLl.getChildAt(index);
-        ImageView imageView = (ImageView) tab_ll.getChildAt(0);
-        TextView textView = (TextView) tab_ll.getChildAt(1);
+    private void setTabImg(int id) {
+//        LinearLayout tab_ll = (LinearLayout) acTabLl.getChildAt(index);
+//        ImageView imageView = (ImageView) tab_ll.getChildAt(0);
+//        TextView textView = (TextView) tab_ll.getChildAt(1);
         acTabImg1.setImageResource(R.mipmap.tab_listening);
         acTabImg2.setImageResource(R.mipmap.tab_home);
         acTabImg4.setImageResource(R.mipmap.tab_show);
@@ -112,22 +113,23 @@ public class MainActivity extends BaseActivity {
             acTabTv2.setTextColor(Color.GRAY);
             acTabTv4.setTextColor(Color.GRAY);
             acTabTv5.setTextColor(Color.GRAY);
-        switch (index) {
-            case 0:
-                textView.setTextColor(Color.GREEN);
-                imageView.setImageResource(R.mipmap.tab_listening_on);
+        switch (id) {
+            case R.id.ac_tab_ll1:
+
+                acTabTv1.setTextColor(Color.GREEN);
+                acTabImg1.setImageResource(R.mipmap.tab_listening_on);
                 break;
-            case 1:
-                textView.setTextColor(Color.GREEN);
-                imageView.setImageResource(R.mipmap.tab_home_on);
+            case R.id.ac_tab_ll2:
+                acTabTv2.setTextColor(Color.GREEN);
+                acTabImg2.setImageResource(R.mipmap.tab_home_on);
                 break;
-            case 3:
-                textView.setTextColor(Color.GREEN);
-                imageView.setImageResource(R.mipmap.tab_show_on);
+            case R.id.ac_tab_ll4:
+                acTabTv4.setTextColor(Color.GREEN);
+                acTabImg4.setImageResource(R.mipmap.tab_show_on);
                 break;
-            case 4:
-                textView.setTextColor(Color.GREEN);
-                imageView.setImageResource(R.mipmap.tab_community_on);
+            case R.id.ac_tab_l5:
+                acTabTv5.setTextColor(Color.GREEN);
+                acTabImg5.setImageResource(R.mipmap.tab_community_on);
                 break;
         }
     }

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/bottom_tab"
+             android:layout_gravity="bottom"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content">
+<LinearLayout
+    android:id="@+id/ac_tab_ll"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:gravity="center|center_vertical"
+        android:background="@drawable/tab1"
+        android:orientation="horizontal"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:id="@+id/ac_tab_ll1"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/ac_tab_img1"
+                android:src="@drawable/tab_listening"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/ac_tab_tv1"
+                android:text="我在听"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ac_tab_ll2"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/ac_tab_img2"
+                android:src="@drawable/tab_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/ac_tab_tv2"
+                android:text="听书馆"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:gravity="center|center_vertical"
+        android:background="@drawable/tab2"
+        android:orientation="horizontal"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/ac_tab_ll4"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/ac_tab_img4"
+                android:src="@drawable/tab_show"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/ac_tab_tv4"
+                android:text="演出"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ac_tab_l5"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/ac_tab_img5"
+                android:src="@drawable/tab_community"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/ac_tab_tv5"
+                android:text="社区"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
+    <ImageView
+        android:id="@+id/ac_tab_ll3"
+        android:layout_marginTop="4dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/tab_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</FrameLayout>
