@@ -33,6 +33,10 @@
         <activity android:name=".ArtistInfoActivity"/>
 
 
+        <!--设置页面-->
+        <activity android:name=".SetUpActivity"/>
+
+
     </application>
 
 </manifest>
