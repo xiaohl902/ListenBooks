@@ -56,7 +56,7 @@ public class WelcomeActivity extends BaseActivity {
      */
     @Override
     protected void loadDatas() {
-        DownJSON();//下载JSON
+       // DownJSON();//下载JSON
     }
 
     /**
