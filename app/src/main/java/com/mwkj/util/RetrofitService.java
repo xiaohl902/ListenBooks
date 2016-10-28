@@ -23,4 +23,7 @@ public interface RetrofitService {
     //albumId=%d、pageNumber=%d
     @GET(Constant.ARTIST_WORK_INFO)
     Call<ResponseBody> getWorksEntityByUrl(@Query("albumId") int albumId,@Query("pageNumber") int pageNumber);
+
+    @GET(Constant.STORYTELLING)
+    Call<CrosstalkEntity> getStorytellingEntityByUrl();
 }

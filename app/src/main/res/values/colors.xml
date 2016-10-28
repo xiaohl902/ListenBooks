@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#b2bae6</color>
+    <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
@@ -9,6 +9,10 @@
 
     <!--听书馆Home页-->
     <color name="color_home_head">#a3a3a3</color>
+    <color name="color_graytext">#a7a2a2</color>
+    <color name="color_greentext">#22ab10</color>
+    <color name="color_blacktext">#0e0e0e</color>
+    <color name="color_white">#ffffff</color>
 
     <!--听书馆-艺术家-->
     <color name="color_artworks_chapter">#656161</color>

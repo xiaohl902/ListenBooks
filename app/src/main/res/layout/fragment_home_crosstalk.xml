@@ -4,6 +4,7 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:background="#e9e5e5"
               android:orientation="vertical">
     <com.qf.kenlibrary.widget.PullRefreshScrollView.PullDownScrollView
         android:layout_width="match_parent"
@@ -25,7 +26,12 @@
             android:layout_width="match_parent"
             android:layout_height="160dp"/>
         <include layout="@layout/layout_line"/>
-
+       <com.mwkj.widget.MyListView
+           android:id="@+id/mlv"
+           android:background="#fff"
+           android:layout_width="match_parent"
+           android:dividerHeight="18dp"
+           android:layout_height="wrap_content"/>
         </LinearLayout>
 
     </ScrollView>
