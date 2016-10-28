@@ -91,7 +91,6 @@ public class WorksInfoAdapter extends RecyclerView.Adapter<WorksInfoAdapter.Work
 
     /**
      * byte(字节)根据长度转成kb(千字节)和mb(兆字节)
-     *
      * @param bytes
      * @return
      */
