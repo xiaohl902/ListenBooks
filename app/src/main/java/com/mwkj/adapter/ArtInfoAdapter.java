@@ -29,6 +29,12 @@ public class ArtInfoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     Context context;
     List<ArtistInfoEntity.AlbumsBean> infolist;
 
+    private ArtInfoOnItemClickListener onItemClickListener;
+
+    public void setOnItemClickListener(ArtInfoOnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
     //构造方法
     public ArtInfoAdapter(Context context) {
         this.context = context;
@@ -114,7 +120,7 @@ public class ArtInfoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
 
     //正常item数据源的ViewHolder
-    public class ArtInfoHolder extends RecyclerView.ViewHolder{
+    public class ArtInfoHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView art_info_title,art_info_name,artist_capter,single_work_fans;
 
@@ -129,7 +135,23 @@ public class ArtInfoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             this.artist_img = (ImageView) itemView.findViewById(R.id.art_info_img);
 
+            itemView.setOnClickListener(this); //设置item的点击事件
+
         }
+
+        //item的点击事件的监听
+        @Override
+        public void onClick(View v) {
+            if (onItemClickListener != null){
+                onItemClickListener.onItemClick(v,getAdapterPosition());
+            }
+        }
+    }
+
+
+    //item的点击事件的接口回调
+    public interface ArtInfoOnItemClickListener{
+        void onItemClick(View view, int position);
     }
 
 }

@@ -5,4 +5,9 @@
 
     <!--听书馆Home页-->
     <dimen name="size_home_head_pading">15dp</dimen>
+
+
+    <!--听书馆-艺术家-->
+    <dimen name="artworks_chapter_textsize">14sp</dimen>
+
 </resources>
