@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+<android.support.v7.widget.CardView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp"
+    android:layout_margin="2dp"
+    app:cardUseCompatPadding="true"
+    android:orientation="vertical">
+-->
+
+    <RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <TextView
+            android:padding="8dp"
+            android:id="@+id/work_name_title"
+            android:layout_width="220dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="白眉大侠_024"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:paddingRight="6dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/chapter_size"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="6.10"
+                android:textSize="@dimen/artworks_chapter_textsize"
+                android:textColor="@color/color_artworks_chapter"
+                />
+           <!-- <TextView
+                android:id="@+id/chapter_size_unit"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="MB"
+                android:textSize="@dimen/artworks_chapter_textsize"
+                />-->
+
+            <TextView
+                android:id="@+id/chapter_long_minute"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:text="20"
+                android:textSize="@dimen/artworks_chapter_textsize"
+                />
+           <!-- <TextView
+                android:id="@+id/chapter_long_unit_m"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="分"
+                android:textSize="@dimen/artworks_chapter_textsize"
+                />
+            <TextView
+                android:id="@+id/chapter_long_second"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="2dp"
+                android:text="16"
+                android:textSize="@dimen/artworks_chapter_textsize"
+                />
+            <TextView
+                android:id="@+id/chapter_long_unit_s"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="秒"
+                android:textSize="@dimen/artworks_chapter_textsize"
+                />-->
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+
+
+<!--
+</android.support.v7.widget.CardView>-->

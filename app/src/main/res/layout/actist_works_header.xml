@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--听书馆-艺术家-作品详情-头部布局-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:divider="@drawable/diliver_artistinfo_act"
+    android:orientation="vertical"
+    android:showDividers="middle">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="118dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/info_artist_header"
+                android:layout_width="92dp"
+                android:layout_height="92dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/placeholder" />
+
+            <!--可收缩的textview-->
+            <com.ms.square.android.expandabletextview.ExpandableTextView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/expand_tv_works"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/info_artist_header"
+                expandableTextView:animDuration="200"
+                expandableTextView:maxCollapsedLines="4">
+
+                <TextView
+                    android:id="@id/expandable_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="6dp"
+                    android:text="地点"
+                    android:textColor="#666666"
+                    android:textSize="16sp" />
+
+                <ImageButton
+                    android:id="@id/expand_collapse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:background="@android:color/transparent"
+                    android:padding="10dp" />
+
+            </com.ms.square.android.expandabletextview.ExpandableTextView>
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:padding="10dp"
+        >
+
+        <TextView
+            android:id="@+id/art_list_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="章节列表（共" />
+
+        <TextView
+            android:id="@+id/work_list_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/art_list_tv"
+            android:text="100" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/work_list_num"
+            android:text="章节）" />
+
+
+        <TextView
+            android:id="@+id/art_funs_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/work_funs_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/art_funs_unit"
+            android:drawableLeft="@drawable/handset_hui"
+            android:drawablePadding="6dp"
+            android:text="6" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

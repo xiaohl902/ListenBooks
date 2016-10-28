@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--听书馆-艺术家详情-布局-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:divider="@drawable/diliver_artistinfo_act"
+    android:showDividers="middle"
+    android:orientation="vertical">
+
+    <!--顶部actionbar位置布局-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingTop="16dp"
+        android:layout_height="66dp">
+        <ImageView
+            android:id="@+id/workinfo_back"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/back_nomal"
+            />
+        <TextView
+            android:id="@+id/workinfo_tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:text="郭德纲"
+            android:gravity="center_vertical"
+            android:textColor="#737070"
+            android:textSize="20sp"/>
+        <ImageView
+            android:id="@+id/workinfo_music"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/play_top1"
+            />
+
+    </RelativeLayout>
+
+    <!--插入-艺术家-作品详情-头部布局-->
+    <include layout="@layout/actist_works_header"/>
+
+    <!--自带下拉刷新的RecyclerView-->
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/srl_wrokinfo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/wrok_info_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+
+
+
+</LinearLayout>

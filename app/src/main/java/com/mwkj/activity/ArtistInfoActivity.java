@@ -33,7 +33,7 @@ import butterknife.OnClick;
  * Created by luckey on 2016/10/26.
  * 听书馆-艺术家详情的 activity
  */
-public class ArtistInfoActivity extends BaseActivity implements DownUtil.OnDownListener {
+public class ArtistInfoActivity extends BaseActivity implements DownUtil.OnDownListener, ArtInfoAdapter.ArtInfoOnItemClickListener {
 
     @Bind(R.id.artinfo_tv_name)
     TextView artinfoTvName;
@@ -49,8 +49,8 @@ public class ArtistInfoActivity extends BaseActivity implements DownUtil.OnDownL
     RecyclerView info_rv;
 
 
-    int page = 1; //默认加载第一页数据
-    int artistid = -1; //艺术家id，默认为-1
+    private int page = 1; //默认加载第一页数据
+    private int artistid = -1; //艺术家id，默认为-1
 
     //适配器
     private ArtInfoAdapter infoAdapter;
@@ -63,6 +63,7 @@ public class ArtistInfoActivity extends BaseActivity implements DownUtil.OnDownL
 
     //下拉刷新
     private SwipeRefreshLayout artinfo_swipeRefresh;
+    private ArtistInfoEntity entity;
 
     @Override
     protected int getContentId() {
@@ -148,11 +149,11 @@ public class ArtistInfoActivity extends BaseActivity implements DownUtil.OnDownL
     @Override
     public void downSucc(Object object) {
         if (object != null){
-            ArtistInfoEntity entity = (ArtistInfoEntity) object;
+            entity = (ArtistInfoEntity) object;
             if (entity.getAlbum() != null && !entity.getAlbum().equals("") && !entity.getAlbum().equals("[]")) {
                 albums = entity.getAlbums();
                 infoAdapter.setDatas(albums);
-
+                infoAdapter.setOnItemClickListener(this);
             }
 
 
@@ -165,6 +166,23 @@ public class ArtistInfoActivity extends BaseActivity implements DownUtil.OnDownL
         }
         
         
+    }
+
+    /**
+     * @param view
+     * @param position
+     */
+
+    //item点击事件的接口回调
+    @Override
+    public void onItemClick(View view, int position) {
+        Intent in = new Intent(this,ArtWorksActivity.class);
+        in.putExtra("albumid",entity.getAlbums().get(position).getAlbumId());
+        in.putExtra("worksname",entity.getAlbums().get(position).getAlbumName());
+        in.putExtra("chapternum",entity.getAlbums().get(position).getAlbumChapter());
+        in.putExtra("fansnum",entity.getAlbums().get(position).getPlayNumber());
+        in.putExtra("worksimg",entity.getAlbums().get(position).getAlbumCover());
+        startActivity(in);
     }
 
     @Override
@@ -187,6 +205,7 @@ public class ArtistInfoActivity extends BaseActivity implements DownUtil.OnDownL
                 break;
         }
     }
+
 
 
 }
