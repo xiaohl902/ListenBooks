@@ -42,7 +42,6 @@ public class JudgeFragmentAdapter extends BaseAdapter implements View.OnClickLis
         this.notifyDataSetChanged();
     }
 
-
     @Override
     public int getCount() {
         return data.size();
