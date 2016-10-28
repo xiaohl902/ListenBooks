@@ -37,7 +37,6 @@ public class JudgeFragmentAdapter extends BaseAdapter implements View.OnClickLis
         this.context = context;
         this.data = data;
     }
-
     public void setData(CrosstalkEntity dataEntity) {
         this.dataEntity = dataEntity;
         this.notifyDataSetChanged();
