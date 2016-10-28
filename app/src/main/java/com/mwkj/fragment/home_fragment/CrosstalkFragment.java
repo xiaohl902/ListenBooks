@@ -7,11 +7,14 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.mwkj.activity.R;
+import com.mwkj.adapter.MyAdapter;
 import com.mwkj.entity.CrosstalkEntity;
 import com.mwkj.util.Constant;
 import com.mwkj.util.RetrofitService;
+import com.mwkj.widget.MyListView;
 import com.qf.kenlibrary.base.BaseFragment;
 import com.youth.banner.Banner;
+import com.youth.banner.listener.OnBannerClickListener;
 import com.youth.banner.loader.ImageLoader;
 
 import java.util.ArrayList;
@@ -34,7 +37,10 @@ public class CrosstalkFragment extends BaseFragment {
     private RetrofitService retrofitService;
     List<String> images = new ArrayList<>();
     private CrosstalkEntity body;
-
+    List<List<Object>> datas = new ArrayList<>();
+    @Bind(R.id.mlv)
+    MyListView mlv;
+    private MyAdapter myAdapter;
     @Override
     protected int getContentId() {
 
@@ -51,6 +57,13 @@ public class CrosstalkFragment extends BaseFragment {
         retrofitService = retrofit.create(RetrofitService.class);
         banner.setImageLoader(new GlideImageLoader());
         banner.setDelayTime(4000);
+        banner.setOnBannerClickListener(new OnBannerClickListener() {
+            @Override
+            public void OnBannerClick(int position) {
+
+            }
+        });
+
 
     }
 
@@ -74,7 +87,9 @@ public class CrosstalkFragment extends BaseFragment {
             @Override
             public void onResponse(Call<CrosstalkEntity> call, Response<CrosstalkEntity> response) {
                 body = response.body();
+
                 List<CrosstalkEntity.AdvsBean> advs = body.getAdvs();
+
                 for (CrosstalkEntity.AdvsBean adv : advs) {
                     images.add(adv.getAdvImg());
                 }
@@ -82,7 +97,13 @@ public class CrosstalkFragment extends BaseFragment {
                 banner.setImages(images);
                 //banner设置方法全部调用完毕时最后调用
                 banner.start();
-
+                myAdapter = new MyAdapter(getContext(),body);
+                mlv.setAdapter(myAdapter);
+                List<Integer> datas = new ArrayList<>();
+                for (int i = 0; i < 3; i++) {
+                    datas.add(i);
+                }
+                myAdapter.setDatas(datas);
             }
 
             @Override
@@ -92,7 +113,7 @@ public class CrosstalkFragment extends BaseFragment {
         });
 
     }
-
+    //头部轮播图片加载数据的方法
     public class GlideImageLoader implements ImageLoader {
         @Override
         public void displayImage(Context context, Object path, ImageView imageView) {

@@ -175,6 +175,16 @@ public class CrosstalkEntity {
         private int advLinkType;
         private String advLinkValue;
         private int advLocation;
+        private int type;
+
+        public int getType() {
+            return type;
+        }
+
+        public void setType(int type) {
+            this.type = type;
+        }
+
         /**
          * albumId : 179335
          * albumName : 岳云鹏2016欢乐喜剧人演出
@@ -392,6 +402,16 @@ public class CrosstalkEntity {
         private int contentType;
         private int chapterCount;
         private Object chapeters;
+        private int type;
+
+        public int getType() {
+            return type;
+        }
+
+        public void setType(int type) {
+            this.type = type;
+        }
+
         /**
          * artistId : 157
          * artistName : 马三立
@@ -623,6 +643,16 @@ public class CrosstalkEntity {
         private int contentType;
         private int chapterCount;
         private Object chapeters;
+        private int type;
+
+        public int getType() {
+            return type;
+        }
+
+        public void setType(int type) {
+            this.type = type;
+        }
+
         /**
          * artistId : 157
          * artistName : 马三立

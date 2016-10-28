@@ -6,4 +6,8 @@
 
     <!--听书馆Home页-->
     <color name="color_home_head">#a3a3a3</color>
+    <color name="color_graytext">#a7a2a2</color>
+    <color name="color_greentext">#22ab10</color>
+    <color name="color_blacktext">#0e0e0e</color>
+    <color name="color_white">#ffffff</color>
 </resources>
