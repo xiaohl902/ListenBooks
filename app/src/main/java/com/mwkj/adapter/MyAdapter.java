@@ -86,9 +86,6 @@ public class MyAdapter extends BaseAdapter {
                 }
                 view.setTag(viewHolder);
             }
-
-
-
         return view;
     }
 

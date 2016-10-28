@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="10dp"
+    app:contentPaddingBottom="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.youth.banner.Banner
+            android:id="@+id/storytelling_banner"
+            android:background="@mipmap/ic_launcher"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            app:delay_time="5000"
+            app:indicator_drawable_selected="@drawable/page_indicator_focused"
+            app:indicator_drawable_unselected="@drawable/page_indicator_unfocused"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+
+            <TextView
+                android:id="@+id/jd"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/btn_jingdian"
+                android:gravity="center"
+                android:text="经典"/>
+
+            <TextView
+                android:id="@+id/xy"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/btn_xiayi"
+                android:gravity="center"
+                android:text="侠义"/>
+
+            <TextView
+                android:id="@+id/ga"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/btn_gongan"
+                android:gravity="center"
+                android:text="公安"/>
+
+            <TextView
+                android:id="@+id/ls"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/btn_lishi"
+                android:gravity="center"
+                android:text="历史"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+
+            <TextView
+                android:id="@+id/gl"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/btn_gulong"
+                android:gravity="center"
+                android:text="古龙"/>
+
+            <TextView
+                android:id="@+id/dm"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/btn_dongman"
+                android:gravity="center"
+                android:text="动漫"/>
+
+            <TextView
+                android:id="@+id/yy"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/btn_yueyu"
+                android:gravity="center"
+                android:text="粤语"/>
+
+            <TextView
+                android:id="@+id/qb"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/btn_quanbu"
+                android:gravity="center"
+                android:text="全部"/>
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

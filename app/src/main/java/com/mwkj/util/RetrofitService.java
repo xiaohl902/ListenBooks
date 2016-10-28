@@ -17,4 +17,7 @@ public interface RetrofitService {
 
     @GET(Constant.CROSSTALK)
     Call<CrosstalkEntity> getCrosstalkEntityByUrl();
+
+    @GET(Constant.STORYTELLING)
+    Call<CrosstalkEntity> getStorytellingEntityByUrl();
 }
