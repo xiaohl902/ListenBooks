@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?><!--艺术家-->
+<?xml version="1.0" encoding="utf-8"?>
+<!--Fragment-艺术家的布局-->
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-
+    <!--自带下拉刷新的RecyclerView-->
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/srl"
         android:layout_width="match_parent"

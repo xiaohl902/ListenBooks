@@ -1,5 +1,8 @@
 <resources>
-    <string name="app_name">ListenBook</string>
+    <string name="app_name">魔王听书</string>
+
+    <!--欢迎页-->
+    <string name="welcome_btn">跳过</string>
 
     <!--主页-->
     <string name="head_tab_listening">我在听</string>

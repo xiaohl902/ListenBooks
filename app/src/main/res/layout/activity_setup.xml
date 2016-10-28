@@ -8,45 +8,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
-            android:id="@+id/iv_sz"
+            android:id="@+id/ac_setup_finish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:src="@drawable/nav_set"/>
+            android:src="@drawable/back_select"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:textSize="20sp"
-            android:text="我的听书"/>
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:orientation="vertical"
-        android:layout_marginBottom="10dp"
-        android:background="#74e665">
+            android:textSize="24sp"
+            android:text="设置"/>
         <ImageView
-            android:id="@+id/iv_tx"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_launcher"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#fff"
-            android:layout_gravity="center"
-            android:text="魔用户654564651"/>
-    </LinearLayout>
+            android:padding="10dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/player"/>
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="10dp"
+        android:background="#8888"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
+        android:layout_marginTop="10dp"
         android:background="#8888"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -55,108 +45,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
-                android:id="@+id/iv_ls"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:src="@drawable/list_history"/>
+                android:id="@+id/iv_zh"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/username"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/iv_ls"
+                android:layout_gravity="center"
+                android:layout_toRightOf="@+id/iv_zh"
                 android:padding="10dp"
-                android:text="收听历史"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:padding="10dp"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/list_enter"/>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/iv_xz"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:src="@drawable/list_download"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/iv_xz"
-                android:padding="10dp"
-                android:text="我的下载"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:padding="10dp"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/list_enter"/>
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/iv_sc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:src="@drawable/list_favorite"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/iv_sc"
-                android:padding="10dp"
-                android:text="我的收藏"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:padding="10dp"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/list_enter"/>
-        </RelativeLayout>
-
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="5dp"
-        android:background="#8888"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="5dp"
-        android:background="#8888"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/iv_ds"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:src="@drawable/list_history"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/iv_ds"
-                android:padding="10dp"
-                android:text="定时关闭"/>
+                android:text="账号设置"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -165,7 +65,7 @@
                 android:textSize="12sp"
                 android:textColor="#8888"
                 android:layout_toLeftOf="@+id/iv_jt"
-                android:text="未设置"/>
+                android:text="未登录"/>
 
             <ImageView
                 android:id="@+id/iv_jt"
@@ -181,16 +81,120 @@
             android:layout_height="wrap_content">
             <ImageView
                 android:id="@+id/iv_wt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:src="@drawable/list_download"/>
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/wifi"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/iv_wt"
                 android:padding="10dp"
-                android:text="收听历史"/>
+                android:text="仅限WIFI联网下载"/>
+
+            <com.qf.kenlibrary.util.SettingUp
+                android:id="@+id/swithbutton1"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"/>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_ts"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/push"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_toRightOf="@+id/iv_ts"
+                android:padding="10dp"
+                android:text="推送设置"/>
+
+            <com.qf.kenlibrary.util.SettingUp
+                android:id="@+id/swithbutton2"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"/>
+
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_qc"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/clearcache"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/iv_qc"
+                android:padding="10dp"
+                android:text="清除缓存"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textSize="12sp"
+                android:textColor="#8888"
+                android:layout_toLeftOf="@+id/hc"
+                android:text="0.0Byte(s)"/>
+            <ImageView
+                android:id="@+id/hc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:padding="10dp"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/list_enter"/>
+        </RelativeLayout>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="10dp"
+        android:background="#8888"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="#8888"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_gy"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/about"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_toRightOf="@+id/iv_gy"
+                android:padding="10dp"
+                android:text="关于魔王听书"/>
+
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -200,10 +204,59 @@
                 android:layout_alignParentRight="true"
                 android:src="@drawable/list_enter"/>
         </RelativeLayout>
-        <View
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="10dp"
-            android:background="#88e2dddd"/>
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_gx"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/checkupdate"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/iv_gx"
+                android:padding="10dp"
+                android:text="检查更新"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textSize="12sp"
+                android:textColor="#8888"
+                android:layout_toLeftOf="@+id/hc2"
+                android:text="当前最新版本"/>
+            <ImageView
+                android:id="@+id/hc2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:padding="10dp"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/list_enter"/>
+        </RelativeLayout>
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#8888"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <Button
+            android:id="@+id/tcdl"
+            android:layout_width="200dp"
+            android:layout_height="35dp"
+            android:textColor="#fff"
+            android:layout_centerHorizontal="true"
+            android:background="#8888"
+            android:layout_margin="10dp"
+            android:text="退出登录"/>
+
+    </RelativeLayout>
+
 </LinearLayout>

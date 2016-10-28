@@ -8,68 +8,125 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.mwkj.activity.R;
 import com.mwkj.entity.ArtistInfoEntity;
+import com.mwkj.widget.GlideCircleTransform;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by lenovo on 2016/10/27.
+ * Created by luckey on 2016/10/27.
+ * 听书馆-艺术家详情activity的配套adapter
  */
-public class ArtInfoAdapter extends RecyclerView.Adapter<ArtInfoAdapter.ArtInfoHolder> {
+public class ArtInfoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private Context context;
-    private List<ArtistInfoEntity.AlbumsBean> infolist;
+    //定义RecyclerView item为空的布局类型
+    private static final int VIEW_TYPE = -1;
 
+    Context context;
+    List<ArtistInfoEntity.AlbumsBean> infolist;
+
+    //构造方法
     public ArtInfoAdapter(Context context) {
         this.context = context;
         this.infolist = new ArrayList<>();
     }
 
+    //设置数据方法
     public void setDatas(List<ArtistInfoEntity.AlbumsBean> infolist) {
         this.infolist = infolist;
         this.notifyDataSetChanged();
     }
 
+
+
     @Override
-    public ArtInfoHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View inflate = LayoutInflater.from(context).inflate(R.layout.item_artist_workinfo, parent, false);
-        return new ArtInfoHolder(inflate);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view;
+        LayoutInflater inflater = LayoutInflater.from(context);
+
+        //RecyclerView item为空的适用类型
+        if (VIEW_TYPE == viewType) {
+            view = inflater.inflate(R.layout.empty_textview, parent, false);
+
+            //返回RecyclerView item为空的ViewHolder
+            return new MyEmptyHolder(view);
+        }
+
+        //正常有数据的item布局,以及ViewHolder
+        view = inflater.inflate(R.layout.item_artist_workinfo, parent, false);
+        return new ArtInfoHolder(view);
+
     }
 
     @Override
-    public void onBindViewHolder(ArtInfoHolder holder, int position) {
-        holder.art_info_title.setText(infolist.get(position).getAlbumName());
-        holder.art_info_name.setText(infolist.get(position).getArtist().getArtistName());
-        holder.artist_capter.setText(infolist.get(position).getAlbumChapter()+"");
-        holder.single_work_fans.setText(infolist.get(position).getPlayNumber()+"");
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+
+        //正常有item数据ViewHolder的实例
+        if (holder instanceof ArtInfoHolder) {
+            ((ArtInfoHolder)holder).art_info_title.setText(infolist.get(position).getAlbumName());
+            ((ArtInfoHolder)holder).art_info_name.setText(infolist.get(position).getArtist().getArtistName());
+            ((ArtInfoHolder)holder).artist_capter.setText(infolist.get(position).getAlbumChapter() + "");
+            ((ArtInfoHolder)holder).single_work_fans.setText(infolist.get(position).getPlayNumber() + "");
+
+            Glide.with(context)
+                    .load(infolist.get(position).getAlbumCover())
+                    .crossFade(500)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .placeholder(R.drawable.placeholder)
+                    .transform(new GlideCircleTransform(context))
+                    .thumbnail(0.1f)
+                    .into(((ArtInfoHolder)holder).artist_img);
+        }
     }
+
 
     @Override
     public int getItemCount() {
-        return infolist.size();
+//        return infolist.size() > 0 ? infolist.size() : 1;
+        return infolist.size() <= 0 ? 0 : infolist.size(); //三目运算符判断数据源集合的长度
     }
 
+    public int getItemViewType(int position) {
+        //若数据源集合的长度为0
+        if (infolist.size() <= 0) {
+            return VIEW_TYPE;
+        }
+        //正常数据源list集合返回类型
+        return super.getItemViewType(position);
+    }
+
+
+
+    //数据源集合的长度为0的ViewHolder
+    public class MyEmptyHolder extends RecyclerView.ViewHolder{
+
+        TextView textView;
+
+        public MyEmptyHolder(View itemView) {
+            super(itemView);
+            textView = (TextView) itemView.findViewById(R.id.tv_empty);
+        }
+    }
+
+
+    //正常item数据源的ViewHolder
     public class ArtInfoHolder extends RecyclerView.ViewHolder{
-//        TextView artist_name, tv_work_num,artist_fansnum;
+
         TextView art_info_title,art_info_name,artist_capter,single_work_fans;
-//        ExpandableTextView expandableTextView;
-//        ImageView artist_headimg;
+
         ImageView artist_img;
         public ArtInfoHolder(View itemView) {
             super(itemView);
-//            this.artist_name = (TextView) itemView.findViewById(R.id.artinfo_tv_name);
-//            this.tv_work_num = (TextView) itemView.findViewById(R.id.art_list_num);
-//            this.artist_fansnum = (TextView) itemView.findViewById(R.id.art_funs_num);
-//            this.expandableTextView = (ExpandableTextView) itemView.findViewById(R.id.expand_text_view);
 
             this.art_info_title = (TextView) itemView.findViewById(R.id.art_info_title);
             this.art_info_name = (TextView) itemView.findViewById(R.id.art_info_name);
             this.artist_capter = (TextView) itemView.findViewById(R.id.art_info_total_num);
             this.single_work_fans = (TextView) itemView.findViewById(R.id.artist_funs);
 
-//            this.artist_headimg = (ImageView) itemView.findViewById(R.id.info_artist_header);
             this.artist_img = (ImageView) itemView.findViewById(R.id.art_info_img);
 
         }

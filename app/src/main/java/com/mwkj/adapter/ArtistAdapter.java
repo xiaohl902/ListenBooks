@@ -18,7 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by lenovo on 2016/10/26.
+ * Created by luckey on 2016/10/26.
+ * 听书馆-艺术家fragment的配套adapter
  */
 public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtHolder> {
     private Context context;
@@ -51,6 +52,7 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtHolder>
         holder.works_name.setText(list.get(position).getArtistWork());
         holder.worknum.setText(list.get(position).getWorkNumber()+"");
         holder.playnum.setText(list.get(position).getPlayNumber()+"");
+
         Glide.with(context)
                 .load(list.get(position).getArtistImg())
                 .crossFade(500)

@@ -3,7 +3,8 @@ package com.mwkj.entity;
 import java.util.List;
 
 /**
- * Created by lenovo on 2016/10/26.
+ * Created by luckey on 2016/10/26.
+ * 听书馆-艺术家详情的实体类
  */
 public class ArtistInfoEntity {
 

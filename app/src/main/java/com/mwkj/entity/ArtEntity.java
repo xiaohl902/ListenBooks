@@ -1,7 +1,8 @@
 package com.mwkj.entity;
 
 /**
- * Created by lenovo on 2016/10/26.
+ * Created by luckey on 2016/10/26.
+ * Fragment--艺术家的实体类
  */
 public class ArtEntity {
 
