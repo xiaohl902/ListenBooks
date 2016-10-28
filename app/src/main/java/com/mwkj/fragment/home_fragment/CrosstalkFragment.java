@@ -40,6 +40,7 @@ public class CrosstalkFragment extends BaseFragment {
     List<List<Object>> datas = new ArrayList<>();
     @Bind(R.id.mlv)
     MyListView mlv;
+
     private MyAdapter myAdapter;
     @Override
     protected int getContentId() {

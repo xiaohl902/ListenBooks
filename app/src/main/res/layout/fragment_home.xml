@@ -38,9 +38,9 @@
         android:layout_height="wrap_content"
         app:tabMode="scrollable"
         app:tabTextColor="#8888"
-        app:tabSelectedTextColor="#ca7474"
-        app:tabIndicatorColor="#82f1e7"
-        app:tabIndicatorHeight="1dp"/>
+        app:tabSelectedTextColor="@color/color_greentext"
+        app:tabIndicatorColor="@color/color_greentext"
+        app:tabIndicatorHeight="3dp"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/home_viewPager"

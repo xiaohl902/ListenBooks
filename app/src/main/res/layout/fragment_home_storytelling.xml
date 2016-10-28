@@ -5,7 +5,7 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <ListView
+    <com.qf.kenlibrary.widget.pullRefreshListview.XListView
         android:id="@+id/lv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

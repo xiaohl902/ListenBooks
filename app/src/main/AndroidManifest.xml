@@ -33,7 +33,7 @@
         <!--听书馆-艺术家-艺术家详情页面-->
         <activity android:name=".ArtistInfoActivity"/>
 
-
+        <activity android:name=".BookTypeActivity"/>
         <!--设置页面-->
         <activity android:name=".SetUpActivity"/>
 

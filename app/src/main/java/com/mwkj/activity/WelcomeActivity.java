@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.mwkj.entity.WelcomeEntity;
@@ -47,7 +46,7 @@ public class WelcomeActivity extends BaseActivity {
 
     @Override
     protected void init() {
-        Glide.with(WelcomeActivity.this).load("http://www.mow99.com/img/loading/5.jpg").into(acWelcomeImg);
+      //  Glide.with(WelcomeActivity.this).load("http://www.mow99.com/img/loading/5.jpg").into(acWelcomeImg);
         delayTime();//延迟跳转Activity
     }
 
