@@ -56,6 +56,17 @@ public interface Constant {
     //听书馆  - 全部  热门评书 - 更多
     String ALL="GetAlbumsByContentType?albumType=1&contentType=0&pageSize=8&session=&SecurityID=mow99_2014_12_30_@~$;&clientVersion=170&OS=1&imei=864394010755355";
 
+    //相声-经典
+   String XJINGDIAN="GetAlbumsByContentType?albumType=2&contentType=1&pageSize=8&session=1416561477736299381&SecurityID=mow99_2014_12_30_@~$;&clientVersion=170&OS=1&imei=244001484552444";
+    //相声-传统
+    String XCHANGTONG="GetAlbumsByContentType?albumType=2&contentType=2&pageSize=8&session=1416561477736299381&SecurityID=mow99_2014_12_30_@~$;&clientVersion=170&OS=1&imei=244001484552444";
+
+    //相声-单口
+    String XDANKOU="GetAlbumsByContentType?albumType=2&contentType=3&pageSize=8&session=1416561477736299381&SecurityID=mow99_2014_12_30_@~$;&clientVersion=170&OS=1&imei=244001484552444";
+
+    //相声-全部
+    String XALL="GetAlbumsByContentType?albumType=2&contentType=0&pageSize=8&session=1416561477736299381&SecurityID=mow99_2014_12_30_@~$;&clientVersion=170&OS=1&imei=244001484552444";
+
     //专题
     String ZHUANTI="subjectIndex?pageSize=8&session=1416561477736880843&SecurityID=mow99_2014_12_30_@~$;&clientVersion=170&OS=1&imei=244001484552444";
 
