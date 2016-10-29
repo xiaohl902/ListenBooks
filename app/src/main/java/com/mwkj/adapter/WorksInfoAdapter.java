@@ -5,6 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.mwkj.activity.R;
@@ -12,19 +14,37 @@ import com.mwkj.entity.ArtWorksEntity;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by lenovo on 2016/10/28.
  */
-public class WorksInfoAdapter extends RecyclerView.Adapter<WorksInfoAdapter.WorksHolder> {
+public class WorksInfoAdapter extends RecyclerView.Adapter<WorksInfoAdapter.WorksHolder> implements View.OnClickListener{
 
     private Context context;
     private List<ArtWorksEntity.ChaptersBean> worklist;
+//    private Map<Integer, ArtWorksEntity.ChaptersBean> cacheMap;//缓存当前checkbox的选中状态
+
+    //是否显示单选框,默认false
+    private boolean isshowBox = false;
+    // 存储勾选框状态的map集合
+    private Map<Integer, Boolean> map = new HashMap<>();
+    //接口实例
+    private RecyclerViewOnItemClickListener onItemClickListener;
 
     public WorksInfoAdapter(Context context) {
         this.context = context;
         this.worklist = new ArrayList<>();
+//        this.cacheMap = new HashMap<>();
+        initMap();
+    }
+    //初始化map集合,默认为不选中
+    private void initMap() {
+        for (int i = 0; i < worklist.size(); i++) {
+            map.put(i, false);
+        }
     }
 
     public void setDatas(List<ArtWorksEntity.ChaptersBean> worklist){
@@ -42,17 +62,135 @@ public class WorksInfoAdapter extends RecyclerView.Adapter<WorksInfoAdapter.Work
     @Override
     public WorksHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View inflate = LayoutInflater.from(context).inflate(R.layout.item_worksinfo_rv, parent, false);
-        return new WorksHolder(inflate);
+//        RecyclerView.ViewHolder vh = new RecyclerView.ViewHolder(inflate);
+        WorksHolder wh = new WorksHolder(inflate);
+        inflate.setOnClickListener(this);
+//        inflate.setOnLongClickListener(this);
+        return wh;
+//        return new WorksHolder(inflate);
     }
 
+    //inflate.setOnClickListener(this);
     @Override
-    public void onBindViewHolder(WorksHolder holder, int position) {
+    public void onClick(View v) {
+        if (onItemClickListener != null) {
+            //注意这里使用getTag方法获取数据
+            onItemClickListener.onItemClickListener(v, (Integer) v.getTag());
+        }
+    }
+
+    //设置点击事件
+    public void setRecyclerViewOnItemClickListener(RecyclerViewOnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
+
+    //设置是否显示CheckBox
+    public void setShowBox() {
+        //取反
+        isshowBox = !isshowBox;
+    }
+
+    //点击item选中CheckBox
+    public void setSelectItem(int position) {
+        //对当前状态取反
+        if (map.get(position)) {
+            map.put(position, false);
+        } else {
+            map.put(position, true);
+        }
+        notifyItemChanged(position);
+    }
+
+//    @Override
+//    public boolean onLongClick(View v) {
+//        //不管显示隐藏，清空状态
+//        initMap();
+//        return onItemClickListener != null && onItemClickListener.onItemLongClickListener(v, (Integer) v.getTag());
+//    }
+
+    //返回集合给MainActivity
+    public Map<Integer, Boolean> getMap() {
+        return map;
+    }
+
+    //接口回调设置点击事件
+    public interface RecyclerViewOnItemClickListener {
+        //点击事件
+        void onItemClickListener(View view, int position);
+
+        //长按事件
+//        boolean onItemLongClickListener(View view, int position);
+    }
+
+
+    @Override
+    public void onBindViewHolder(WorksHolder holder, final int position) {
         holder.work_name_title.setText(worklist.get(position).getChapterName());
         //通知公式转换获得文件大小
         holder.work_chapter_size.setText(bytes2mb(worklist.get(position).getChapterSize()));
         holder.work_long_minute.setText(secToTime(worklist.get(position).getChapterLong()));
-//        holder.work_long_second.setText(worklist.get(position).getChapterLong()+"");
+//        holder.checkBox.setOnCheckedChangeListener(this);
+//        holder.checkBox.setTag(position);
+//        holder.checkBox.setChecked(cacheMap.containsKey(position));
+
+        //长按显示/隐藏
+        if (isshowBox) {
+            holder.checkBox.setVisibility(View.VISIBLE);
+        } else {
+            holder.checkBox.setVisibility(View.INVISIBLE);
+        }
+        holder.itemView.setTag(position);
+        holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                map.put(position, isChecked);
+            }
+        });
+        // 设置CheckBox的状态
+        if (map.get(position) == null) {
+            map.put(position, false);
+        }
+        holder.checkBox.setChecked(map.get(position));
     }
+
+
+    //CheckBox的点击监听
+//    @Override
+//    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//        int position = (Integer) buttonView.getTag();
+//        //当checkbox被选中时，把相应的下标和数据缓存进map中
+//        if(isChecked){
+//            cacheMap.put(position, worklist.get(position));
+//
+//        } else {
+//            //如果取消选中，则从map中移除该数据
+//            cacheMap.remove(position);
+//        }
+//    }
+
+    /**
+     * 返回被选中的数据
+     * @return
+     */
+//    public Collection<ArtWorksEntity.ChaptersBean> getCheckedDatas(){
+//        Collection<ArtWorksEntity.ChaptersBean> collection = cacheMap.values();
+//        return collection;
+//    }
+//
+//
+//    public void setAllCheckBox(Boolean bool){
+//        if (bool){
+//            for (int i = 0; i < worklist.size(); i++) {
+//                cacheMap.put(i,worklist.get(i));
+//            }
+//            this.notifyDataSetChanged();
+//        }else {
+//            cacheMap.clear();
+//            this.notifyDataSetChanged();
+//        }
+//
+//    }
+
 
     // int类型秒数,转化为时间 分秒格式
     public static String secToTime(int time) {
@@ -113,14 +251,19 @@ public class WorksInfoAdapter extends RecyclerView.Adapter<WorksInfoAdapter.Work
         return worklist.size();
     }
 
+
+
     public class WorksHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView work_name_title,work_chapter_size,work_long_minute;
+        CheckBox checkBox;
+        private View itemView;
         public WorksHolder(View itemView) {
             super(itemView);
+            this.itemView = itemView;
             this.work_name_title = (TextView) itemView.findViewById(R.id.work_name_title);
             this.work_chapter_size = (TextView) itemView.findViewById(R.id.chapter_size);
             this.work_long_minute = (TextView) itemView.findViewById(R.id.chapter_long_minute);
-//            this.work_long_second = (TextView) itemView.findViewById(R.id.chapter_long_second);
+            this.checkBox = (CheckBox) itemView.findViewById(R.id.work_checkbox);
             itemView.setOnClickListener(this);
         }
 

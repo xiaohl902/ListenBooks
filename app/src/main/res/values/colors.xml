@@ -16,5 +16,7 @@
     <color name="color_additem_decoration">#8b9dac</color>
 
     <!--听书馆-艺术家-->
+    <color name="colortextchecked">#7ec84b</color>
+    <color name="colortextunchecked">#7e7777</color>
     <color name="color_artworks_chapter">#656161</color>
 </resources>

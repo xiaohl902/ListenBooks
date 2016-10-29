@@ -45,8 +45,6 @@ public class ArtistInfoActivity extends BaseActivity implements DownUtil.OnDownL
     TextView artListNum;
     @Bind(R.id.art_funs_num)
     TextView artFunsNum;
-    @Bind(R.id.art_funs_unit)
-    TextView artFunUnit;
     @Bind(R.id.artist_info_rv)
     RecyclerView info_rv;
 
@@ -164,11 +162,11 @@ public class ArtistInfoActivity extends BaseActivity implements DownUtil.OnDownL
             artListNum.setText(entity.getArtist().getWorkNumber()+"");
             int playNumber = entity.getArtist().getPlayNumber();
             if(playNumber/10000 != 0) {
-                artFunsNum.setText((playNumber / 10000) + "");
-                artFunUnit.setVisibility(View.VISIBLE);
+                artFunsNum.setText((playNumber / 10000) + "万");
+//                artFunUnit.setVisibility(View.VISIBLE);
             }else {
                 artFunsNum.setText(playNumber+"");
-                artFunUnit.setVisibility(View.GONE);
+//                artFunUnit.setVisibility(View.GONE);
             }
 //            artFunsNum.setText(entity.getArtist().getPlayNumber()+"");
 

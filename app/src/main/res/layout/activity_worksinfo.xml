@@ -48,7 +48,8 @@
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/srl_wrokinfo"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/wrok_info_rv"
@@ -56,6 +57,152 @@
             android:layout_height="match_parent" />
     </android.support.v4.widget.SwipeRefreshLayout>
 
+   <FrameLayout
+       android:layout_width="match_parent"
+       android:layout_height="50dp">
+       <LinearLayout
+           android:id="@+id/ll_works1"
+           android:layout_width="match_parent"
+           android:divider="@drawable/diliver_work_rg"
+           android:showDividers="middle"
+           android:layout_height="50dp"
+           android:orientation="horizontal">
+
+           <!-- 下载 -->
+           <TextView
+               android:id="@+id/tv_work_download"
+               android:layout_width="0dp"
+               android:layout_height="match_parent"
+               android:layout_weight="1"
+               android:paddingLeft="46dp"
+               android:paddingRight="46dp"
+               android:drawableLeft="@drawable/selector_work_download"
+               android:gravity="center"
+               android:text="下载"
+               android:textColor="@drawable/selector_rb_textcolor"
+               />
+
+           <!-- 收藏 -->
+           <TextView
+               android:id="@+id/tv_work_collection"
+               android:layout_width="0dp"
+               android:layout_height="match_parent"
+               android:layout_weight="1"
+               android:drawableLeft="@drawable/selector_work_collection"
+               android:gravity="center"
+               android:paddingLeft="46dp"
+               android:paddingRight="46dp"
+               android:text="收藏"
+               android:textColor="@drawable/selector_rb_textcolor"
+               />
+
+       </LinearLayout>
+       <LinearLayout
+           android:id="@+id/ll_works2"
+           android:layout_width="match_parent"
+           android:divider="@drawable/diliver_work_rg"
+           android:showDividers="middle"
+           android:layout_height="50dp"
+           android:visibility="gone"
+           android:orientation="horizontal">
+
+           <!-- 全选 -->
+           <TextView
+               android:id="@+id/check_all"
+               android:layout_width="0dp"
+               android:layout_height="match_parent"
+               android:layout_weight="1"
+               android:gravity="center"
+               android:text="全选"
+               />
+
+           <!-- 下载 -->
+           <TextView
+               android:id="@+id/tv_ll2_download2"
+               android:layout_width="0dp"
+               android:layout_height="match_parent"
+               android:layout_weight="1"
+               android:gravity="center"
+               android:text="下载"
+
+               />
+
+       </LinearLayout>
+
+       <LinearLayout
+           android:id="@+id/ll_works3"
+           android:layout_width="match_parent"
+           android:divider="@drawable/diliver_work_rg"
+           android:showDividers="middle"
+           android:layout_height="50dp"
+           android:visibility="gone"
+           android:orientation="horizontal">
+
+           <!-- 全不选 -->
+           <TextView
+               android:id="@+id/uncheck_all"
+               android:layout_width="0dp"
+               android:layout_height="match_parent"
+               android:layout_weight="1"
+               android:gravity="center"
+               android:text="全不选"
+               />
+
+           <!-- 下载 -->
+           <TextView
+               android:id="@+id/tv_ll2_download3"
+               android:layout_width="0dp"
+               android:layout_height="match_parent"
+               android:layout_weight="1"
+               android:gravity="center"
+               android:text="下载"
+
+               />
+
+       </LinearLayout>
+
+   </FrameLayout>
+
+
+    <!-- <RadioGroup
+        android:id="@+id/rg_works"
+        android:layout_width="match_parent"
+        android:divider="@drawable/diliver_work_rg"
+        android:showDividers="middle"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+
+    <RadioButton
+        android:id="@+id/rb_work_download"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:button="@null"
+        android:paddingLeft="46dp"
+        android:paddingRight="46dp"
+        android:drawableLeft="@drawable/selector_work_download"
+        android:gravity="center"
+        android:text="下载"
+        android:textColor="@drawable/selector_rb_textcolor"
+        />
+
+
+    <RadioButton
+        android:id="@+id/rb_work_collection"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:button="@null"
+        android:drawableLeft="@drawable/selector_work_collection"
+        android:gravity="center"
+        android:paddingLeft="46dp"
+        android:paddingRight="46dp"
+        android:text="收藏"
+        android:textColor="@drawable/selector_rb_textcolor"
+        />
+
+</RadioGroup>-->
 
 
 

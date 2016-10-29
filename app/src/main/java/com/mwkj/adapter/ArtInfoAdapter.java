@@ -77,14 +77,11 @@ public class ArtInfoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ((ArtInfoHolder)holder).art_info_name.setText(infolist.get(position).getArtist().getArtistName());
             ((ArtInfoHolder)holder).artist_capter.setText(infolist.get(position).getAlbumChapter() + "");
             int playNumber = infolist.get(position).getPlayNumber();
-            if(playNumber/10000!=0) {
-                ((ArtInfoHolder)holder).single_work_fans.setText((playNumber / 10000) + "");
-                ((ArtInfoHolder)holder).single_fans_unit.setVisibility(View.VISIBLE);
+            if(playNumber/10000 != 0) {
+                ((ArtInfoHolder)holder).single_work_fans.setText((playNumber/10000) + "万");
             }else {
                 ((ArtInfoHolder)holder).single_work_fans.setText(playNumber+"");
-                ((ArtInfoHolder)holder).single_fans_unit.setVisibility(View.GONE);
             }
-//            ((ArtInfoHolder)holder).single_work_fans.setText(infolist.get(position).getPlayNumber() + "");
 
             Glide.with(context)
                     .load(infolist.get(position).getAlbumCover())
@@ -130,7 +127,7 @@ public class ArtInfoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     //正常item数据源的ViewHolder
     public class ArtInfoHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView art_info_title,art_info_name,artist_capter,single_work_fans,single_fans_unit;
+        TextView art_info_title,art_info_name,artist_capter,single_work_fans;//
 
         ImageView artist_img;
         public ArtInfoHolder(View itemView) {
@@ -139,8 +136,7 @@ public class ArtInfoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             this.art_info_title = (TextView) itemView.findViewById(R.id.art_info_title);
             this.art_info_name = (TextView) itemView.findViewById(R.id.art_info_name);
             this.artist_capter = (TextView) itemView.findViewById(R.id.art_info_total_num);
-            this.single_work_fans = (TextView) itemView.findViewById(R.id.artist_funs);
-            this.single_fans_unit = (TextView) itemView.findViewById(R.id.artist_funs_unit);
+            this.single_work_fans = (TextView) itemView.findViewById(R.id.artist_funs_num);
             this.artist_img = (ImageView) itemView.findViewById(R.id.art_info_img);
 
             itemView.setOnClickListener(this); //设置item的点击事件
