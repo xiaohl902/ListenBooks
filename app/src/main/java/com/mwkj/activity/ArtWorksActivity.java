@@ -88,7 +88,16 @@ public class ArtWorksActivity extends BaseActivity implements WorksInfoAdapter.O
 
         workinfoTvName.setText(worksname);//设置作品名
         artListNum.setText(chapternum+"");//设置章节数
-        artFunsNum.setText(fansnum+"");//设置播放数
+
+        //设置播放数
+        if (fansnum != -1){
+            if(fansnum/10000!= 0) {
+                artFunsNum.setText((fansnum / 10000) + "万");
+            }else {
+                artFunsNum.setText(fansnum + "");
+            }
+        }
+
 
         //下载作品相应图片
         Glide.with(this)
@@ -111,7 +120,7 @@ public class ArtWorksActivity extends BaseActivity implements WorksInfoAdapter.O
 
         wrokInfoRv.addItemDecoration(new RecycleViewDivider(this,
                 LinearLayoutManager.HORIZONTAL,
-                4, getResources().getColor(R.color.colorPrimary)));
+                4, getResources().getColor(R.color.color_additem_decoration)));
 
         srlWrokinfo.setProgressBackgroundColorSchemeColor(Color.GREEN);
         srlWrokinfo.setColorSchemeColors(Color.BLUE);

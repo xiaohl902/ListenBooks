@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.mwkj.activity.ArtistInfoActivity;
+import com.mwkj.activity.ArtWorksActivity;
 import com.mwkj.activity.BookTypeActivity;
 import com.mwkj.activity.R;
 import com.mwkj.entity.CrosstalkEntity;
@@ -109,8 +109,13 @@ public class JudgeFragmentAdapter extends BaseAdapter implements View.OnClickLis
                         //                        Log.d("log", "OnBannerClick: " + position);
                         //                        Log.d("log", "OnBannerClick: " +advs1.get(position-1).getAlbum()+"---");
                         if (advs1.get(position - 1).getAlbum() != null) {
-                            Intent intent = new Intent(context, ArtistInfoActivity.class);
+                            Intent intent = new Intent(context, ArtWorksActivity.class);
                             intent.putExtra("albumid", advs1.get(position - 1).getAlbum().getAlbumId());
+                            intent.putExtra("worksname",advs1.get(position - 1).getAlbum().getAlbumName());
+                            intent.putExtra("chapternum",advs1.get(position - 1).getAlbum().getAlbumChapter());
+                            intent.putExtra("fansnum",advs1.get(position - 1).getAlbum().getPlayNumber());
+//                            intent.putExtra("worksimg",advs1.get(position - 1).getAlbum().getAlbumCover());
+                            intent.putExtra("worksimg","http://www.mow99.com/img/album/src_200023.jpg");
                             context.startActivity(intent);
                         }
                     }

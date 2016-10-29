@@ -13,6 +13,7 @@
     <color name="color_greentext">#22ab10</color>
     <color name="color_blacktext">#0e0e0e</color>
     <color name="color_white">#ffffff</color>
+    <color name="color_additem_decoration">#8b9dac</color>
 
     <!--听书馆-艺术家-->
     <color name="color_artworks_chapter">#656161</color>

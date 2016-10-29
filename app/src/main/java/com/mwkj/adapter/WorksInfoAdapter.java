@@ -54,7 +54,7 @@ public class WorksInfoAdapter extends RecyclerView.Adapter<WorksInfoAdapter.Work
 //        holder.work_long_second.setText(worklist.get(position).getChapterLong()+"");
     }
 
-
+    // int类型秒数,转化为时间 分秒格式
     public static String secToTime(int time) {
         String timeStr = null;
         int hour = 0;
@@ -70,7 +70,7 @@ public class WorksInfoAdapter extends RecyclerView.Adapter<WorksInfoAdapter.Work
             } else {
                 hour = minute / 60;
                 if (hour > 99)
-                    return "99:59:59";
+                    return "99时59分59秒";
                 minute = minute % 60;
                 second = time - hour * 3600 - minute * 60;
                 timeStr = unitFormat(hour) + "时" + unitFormat(minute) + "分" + unitFormat(second)+"秒";
