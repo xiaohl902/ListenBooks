@@ -46,7 +46,6 @@ public class HomeFragment extends BaseFragment {
         return rootView;
     }
 
-
     @Override
     protected void init(View view) {
         homeViewPager.setOffscreenPageLimit(2);
