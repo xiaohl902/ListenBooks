@@ -59,19 +59,12 @@
                 android:id="@+id/playnum"
                 android:drawableLeft="@drawable/handset_hui"
                 android:drawablePadding="5dp"
-                android:layout_alignParentRight="true"
+                android:layout_marginRight="6dp"
+               android:layout_alignParentRight="true"
                 android:text="0"
                 android:textSize="16sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-          <!--  <TextView
-                android:id="@+id/playnum_unit"
-                android:layout_marginRight="6dp"
-                android:layout_toRightOf="@+id/playnum"
-                android:text="万"
-                android:textSize="16sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />-->
 
         </RelativeLayout>
     </LinearLayout>

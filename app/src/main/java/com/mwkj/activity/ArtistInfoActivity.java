@@ -45,6 +45,8 @@ public class ArtistInfoActivity extends BaseActivity implements DownUtil.OnDownL
     TextView artListNum;
     @Bind(R.id.art_funs_num)
     TextView artFunsNum;
+    @Bind(R.id.art_funs_unit)
+    TextView artFunUnit;
     @Bind(R.id.artist_info_rv)
     RecyclerView info_rv;
 
@@ -160,7 +162,15 @@ public class ArtistInfoActivity extends BaseActivity implements DownUtil.OnDownL
             artinfoTvName.setText(entity.getArtist().getArtistName());
             expandTextView.setText(entity.getArtist().getArtistResume(),mCollapsedStatus,0);
             artListNum.setText(entity.getArtist().getWorkNumber()+"");
-            artFunsNum.setText(entity.getArtist().getPlayNumber()+"");
+            int playNumber = entity.getArtist().getPlayNumber();
+            if(playNumber/10000 != 0) {
+                artFunsNum.setText((playNumber / 10000) + "");
+                artFunUnit.setVisibility(View.VISIBLE);
+            }else {
+                artFunsNum.setText(playNumber+"");
+                artFunUnit.setVisibility(View.GONE);
+            }
+//            artFunsNum.setText(entity.getArtist().getPlayNumber()+"");
 
 
         }
@@ -181,6 +191,7 @@ public class ArtistInfoActivity extends BaseActivity implements DownUtil.OnDownL
         in.putExtra("worksname",entity.getAlbums().get(position).getAlbumName());
         in.putExtra("chapternum",entity.getAlbums().get(position).getAlbumChapter());
         in.putExtra("fansnum",entity.getAlbums().get(position).getPlayNumber());
+
         in.putExtra("worksimg",entity.getAlbums().get(position).getAlbumCover());
         startActivity(in);
     }

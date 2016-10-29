@@ -51,7 +51,13 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtHolder>
         holder.artist_name.setText(list.get(position).getArtistName());
         holder.works_name.setText(list.get(position).getArtistWork());
         holder.worknum.setText(list.get(position).getWorkNumber()+"");
-        holder.playnum.setText(list.get(position).getPlayNumber()+"");
+        int playNumber = list.get(position).getPlayNumber();
+        if(playNumber/10000!=0) {
+            holder.playnum.setText((playNumber / 10000) + "万");
+        }else {
+            holder.playnum.setText(playNumber+"");
+        }
+//        holder.playnum.setText(list.get(position).getPlayNumber()+"");
 
         Glide.with(context)
                 .load(list.get(position).getArtistImg())

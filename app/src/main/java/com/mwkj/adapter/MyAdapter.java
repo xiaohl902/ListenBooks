@@ -95,8 +95,8 @@ public class MyAdapter extends BaseAdapter {
     }
 
     @Override
-    public int getViewTypeCount() {
-        return 3;
+        public int getViewTypeCount() {
+            return 3;
     }
 
     class ViewHolder {

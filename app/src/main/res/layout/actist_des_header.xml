@@ -90,7 +90,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="" />
+            android:text="万" />
 
         <TextView
             android:id="@+id/art_funs_num"
@@ -100,6 +100,13 @@
             android:drawableLeft="@drawable/handset_hui"
             android:drawablePadding="6dp"
             android:text="6" />
+      <!--  <TextView
+            android:id="@+id/art_funs_num_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/art_funs_num"
+            android:paddingBottom="6dp"
+            android:text="万"/>-->
 
     </RelativeLayout>
 

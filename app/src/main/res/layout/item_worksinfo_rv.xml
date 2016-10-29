@@ -19,7 +19,7 @@
         <TextView
             android:padding="8dp"
             android:id="@+id/work_name_title"
-            android:layout_width="220dp"
+            android:layout_width="180dp"
             android:ellipsize="end"
             android:singleLine="true"
             android:layout_height="match_parent"
