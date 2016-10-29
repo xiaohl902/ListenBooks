@@ -61,6 +61,7 @@ public class SpecialAdapter extends BaseAdapter {
             holder.name = (TextView) convertview.findViewById(R.id.name);
             holder.chapterCount = (TextView) convertview.findViewById(R.id.count);
             holder.playNumber = (TextView) convertview.findViewById(R.id.playNumber);
+            holder.wan = (TextView) convertview.findViewById(R.id.wan);
             convertview.setTag(holder);
         }
         Glide.with(context).load(datas.get(i).getAlbumCover())
@@ -69,13 +70,20 @@ public class SpecialAdapter extends BaseAdapter {
         holder.albumName.setText(datas.get(i).getAlbumName());
         holder.name.setText(datas.get(i).getArtist().getArtistName());
         holder.chapterCount.setText(datas.get(i).getChapterCount()+"");
-        holder.playNumber.setText(datas.get(i).getPlayNumber()+"");
+        int playNumber = datas.get(i).getPlayNumber();
+        if(playNumber/10000!=0){
+            playNumber = playNumber/10000;
+            holder.wan.setVisibility(View.VISIBLE);
+        }else {
+            holder.wan.setVisibility(View.GONE);
+        }
+        holder.playNumber.setText(playNumber+"");
 
         return convertview;
     }
 
     class ViewHolder{
         ImageView iv1;
-        TextView albumName,name,chapterCount,playNumber;
+        TextView albumName,name,chapterCount,playNumber,wan;
     }
 }

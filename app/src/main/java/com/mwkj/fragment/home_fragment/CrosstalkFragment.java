@@ -1,11 +1,13 @@
 package com.mwkj.fragment.home_fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.mwkj.activity.BookTypeActivity;
 import com.mwkj.activity.R;
 import com.mwkj.adapter.MyAdapter;
 import com.mwkj.entity.CrosstalkEntity;
@@ -70,8 +72,11 @@ public class CrosstalkFragment extends BaseFragment {
 
     @OnClick({R.id.jd, R.id.ct, R.id.dk, R.id.qb})
     public void btnClick(View v){
+        Intent intent = new Intent(getContext(), BookTypeActivity.class);
         switch (v.getId()){
             case R.id.jd:
+                intent.putExtra("title","经典");
+                //intent.putExtra("url", );
                 break;
             case R.id.ct:
                 break;
