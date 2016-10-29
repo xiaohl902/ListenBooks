@@ -30,10 +30,11 @@ public interface RetrofitService {
     //评书
     @GET(Constant.STORYTELLING)
     Call<CrosstalkEntity> getStorytellingEntityByUrl();
-    //评书-经典
 
+    //评书-经典
     @GET
     Call<BookEntity> downLoad(@Url String str, @Query("pageNumber") Integer pageNumber);
+
         //听书馆-专题
     @GET(Constant.ZHUANTI)
     Call<SpecialEntity> downSpecialEntity(@Query("pageNumber") Integer pageNumber);
