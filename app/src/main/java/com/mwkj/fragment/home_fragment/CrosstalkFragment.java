@@ -1,11 +1,14 @@
 package com.mwkj.fragment.home_fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.mwkj.activity.ArtWorksActivity;
+import com.mwkj.activity.BookTypeActivity;
 import com.mwkj.activity.R;
 import com.mwkj.adapter.MyAdapter;
 import com.mwkj.entity.CrosstalkEntity;
@@ -61,7 +64,15 @@ public class CrosstalkFragment extends BaseFragment {
         banner.setOnBannerClickListener(new OnBannerClickListener() {
             @Override
             public void OnBannerClick(int position) {
-
+                List<CrosstalkEntity.AdvsBean> advs = body.getAdvs();
+                Intent intent = new Intent(getContext(), ArtWorksActivity.class);
+                intent.putExtra("albumid", advs.get(position - 1).getAlbum().getAlbumId());
+                intent.putExtra("worksname",advs.get(position - 1).getAlbum().getAlbumName());
+                intent.putExtra("chapternum",advs.get(position - 1).getAlbum().getAlbumChapter());
+                intent.putExtra("fansnum",advs.get(position - 1).getAlbum().getPlayNumber());
+                //                            intent.putExtra("worksimg",advs1.get(position - 1).getAlbum().getAlbumCover());
+                intent.putExtra("worksimg",advs.get(position-1).getAdvImg());
+                getContext().startActivity(intent);
             }
         });
 
@@ -70,16 +81,26 @@ public class CrosstalkFragment extends BaseFragment {
 
     @OnClick({R.id.jd, R.id.ct, R.id.dk, R.id.qb})
     public void btnClick(View v){
+        Intent intent = new Intent(getContext(), BookTypeActivity.class);
         switch (v.getId()){
             case R.id.jd:
+                intent.putExtra("title","经典");
+                intent.putExtra("url",Constant.XJINGDIAN );
                 break;
             case R.id.ct:
+                intent.putExtra("title","传统");
+                intent.putExtra("url",Constant.XCHANGTONG );
                 break;
             case R.id.dk:
+                intent.putExtra("title","单口");
+                intent.putExtra("url",Constant.XDANKOU );
                 break;
             case R.id.qb:
+                intent.putExtra("title","全部");
+                intent.putExtra("url",Constant.XALL );
                 break;
         }
+        getContext().startActivity(intent);
     }
     @Override
     protected void loadDatas() {

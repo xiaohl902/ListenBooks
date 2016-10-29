@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.mwkj.activity.ArtWorksActivity;
+import com.mwkj.activity.ArtistInfoActivity;
 import com.mwkj.activity.BookTypeActivity;
 import com.mwkj.activity.R;
 import com.mwkj.entity.CrosstalkEntity;
@@ -81,6 +83,7 @@ public class JudgeFragmentAdapter extends BaseAdapter implements View.OnClickLis
                 case 1:
                     view = LayoutInflater.from(context).inflate(R.layout.item_hot, null);
                     holder.hotGridView = (NoScrollGridView) view.findViewById(R.id.hotGridView);
+                    holder.more = (TextView) view.findViewById(R.id.more);
                     holder.hotAdapter = new HotAdapter(context);
                     holder.title = (TextView) view.findViewById(R.id.title);
                     break;
@@ -88,11 +91,13 @@ public class JudgeFragmentAdapter extends BaseAdapter implements View.OnClickLis
                     view = LayoutInflater.from(context).inflate(R.layout.item_specialty, null);
                     holder.myListView = (MyListView) view.findViewById(R.id.specialLv);
                     holder.specialAdapter = new SpecialAdapter(context);
+                    holder.more = (TextView) view.findViewById(R.id.s_more);
                     break;
                 case 3:
                     view = LayoutInflater.from(context).inflate(R.layout.item_artist, null);
                     holder.noScrollGridView = (NoScrollGridView) view.findViewById(R.id.artistGridView);
                     holder.inArtistAdapter = new InArtistAdapter(context);
+                   holder.turn = (TextView) view.findViewById(R.id.more);
                     break;
             }
             view.setTag(holder);
@@ -145,14 +150,78 @@ public class JudgeFragmentAdapter extends BaseAdapter implements View.OnClickLis
                 holder.title.setText("热门评书");
                 holder.hotGridView.setAdapter(holder.hotAdapter);
                 holder.hotAdapter.setDatas(dataEntity.getHot());
+
+                holder.more.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(context, BookTypeActivity.class);
+                        intent.putExtra("title","全部");
+                        intent.putExtra("url", Constant.ALL);
+                        context.startActivity(intent);
+                    }
+                });
+                holder.hotGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                       Intent intent = new Intent(context,ArtWorksActivity.class);
+                        intent.putExtra("albumid", dataEntity.getHot().get(i).getAlbumId());
+                        intent.putExtra("worksname",dataEntity.getHot().get(i).getAlbumName());
+                        intent.putExtra("chapternum",dataEntity.getHot().get(i).getAlbumChapter());
+                        intent.putExtra("fansnum",dataEntity.getHot().get(i).getPlayNumber());
+                                                    intent.putExtra("worksimg",dataEntity.getHot().get(i).getAlbumCover());
+//                        intent.putExtra("worksimg","http://www.mow99.com/img/album/src_200023.jpg");
+                        context.startActivity(intent);
+                    }
+                });
                 break;
             case 2:
                 holder.myListView.setAdapter(holder.specialAdapter);
                 holder.specialAdapter.setDatas(dataEntity.getSpecialty());
+                holder.myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        Intent intent = new Intent(context,ArtWorksActivity.class);
+                        intent.putExtra("albumid", dataEntity.getSpecialty().get(i).getAlbumId());
+                        intent.putExtra("worksname",dataEntity.getSpecialty().get(i).getAlbumName());
+                        intent.putExtra("chapternum",dataEntity.getSpecialty().get(i).getAlbumChapter());
+                        intent.putExtra("fansnum",dataEntity.getSpecialty().get(i).getPlayNumber());
+                        intent.putExtra("worksimg",dataEntity.getSpecialty().get(i).getAlbumCover());
+                        // intent.putExtra("worksimg","http://www.mow99.com/img/album/src_200023.jpg");
+                        context.startActivity(intent);
+                    }
+                });
+
+                holder.more.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(context, BookTypeActivity.class);
+                        intent.putExtra("title","全部");
+                        intent.putExtra("url", Constant.ALL);
+                        context.startActivity(intent);
+                    }
+                });
                 break;
             case 3:
                 holder.noScrollGridView.setAdapter(holder.inArtistAdapter);
                 holder.inArtistAdapter.setDatas(dataEntity.getArtist());
+                holder.noScrollGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        Intent intent = new Intent(context,ArtistInfoActivity.class);
+                        //用intent将艺术家id及头像传送至跳转后页面
+                        intent.putExtra("artistid",dataEntity.getArtist().get(i).getArtistId());
+                        intent.putExtra("artistimg",dataEntity.getArtist().get(i).getArtistImg());
+                        context.startActivity(intent);
+                    }
+                });
+                holder.turn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent();
+                        intent.setAction("action.qf.intent.turn");
+                        context.sendBroadcast(intent);
+                    }
+                });
                 break;
         }
 
@@ -216,6 +285,7 @@ public class JudgeFragmentAdapter extends BaseAdapter implements View.OnClickLis
 
         //第二部分（热门书评）
         TextView title;
+        TextView more;
         NoScrollGridView hotGridView;
         HotAdapter hotAdapter;
 
@@ -226,6 +296,7 @@ public class JudgeFragmentAdapter extends BaseAdapter implements View.OnClickLis
         //第四部分（艺术家）
         NoScrollGridView noScrollGridView;
         InArtistAdapter inArtistAdapter;
+        TextView  turn;
     }
 
     public class GlideImageLoader implements ImageLoader {
