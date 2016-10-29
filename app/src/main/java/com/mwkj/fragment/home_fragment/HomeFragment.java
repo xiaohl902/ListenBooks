@@ -1,10 +1,15 @@
 package com.mwkj.fragment.home_fragment;
 
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +32,7 @@ public class HomeFragment extends BaseFragment {
     ViewPager homeViewPager;
 
     private HomeAdapter adapter ;
-
+    private BroadcastReceiver broadcastReceiver;
     @Override
     protected int getContentId() {
         return R.layout.fragment_home;
@@ -63,11 +68,28 @@ public class HomeFragment extends BaseFragment {
 
         //TabLayout加载viewpager
         tabLayout.setupWithViewPager(homeViewPager);
+
+        //接收广播
+        broadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Log.d("log", "onReceive: " +"收到广播");
+                tabLayout.getTabAt(2).select();
+            }
+        };
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("action.qf.intent.turn");//自定义的action
+
+        getContext().registerReceiver(broadcastReceiver, intentFilter);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+        if(broadcastReceiver != null){
+            getContext().unregisterReceiver(broadcastReceiver);
+        }
     }
 }
