@@ -28,6 +28,8 @@
             android:layout_toRightOf="@+id/art_info_img"
             android:layout_marginLeft="6dp"
             android:paddingTop="14dp"
+            android:singleLine="true"
+            android:ellipsize="end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="经典相声"
@@ -76,12 +78,12 @@
             android:textSize="14sp"/>
 
         <TextView
-            android:id="@+id/artist_funs"
+            android:id="@+id/artist_funs_num"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:drawableLeft="@drawable/handset_hui"
             android:drawablePadding="4dp"
-            android:text="3000"
+            android:text="0"
             android:textSize="14sp"
             android:gravity="center_vertical"
             android:paddingTop="8dp"
@@ -89,21 +91,21 @@
             android:layout_alignLeft="@id/art_info_name"
             android:layout_alignBottom="@+id/art_info_img"
              />
-        <TextView
-            android:id="@+id/artist_funs_unit"
-            android:layout_toRightOf="@+id/artist_funs"
-            android:gravity="center_vertical"
-            android:text="万"
-            android:paddingBottom="4dp"
-            android:textSize="14sp"
-            android:layout_alignBottom="@+id/artist_funs"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+
 
 
     </RelativeLayout>
 
+    <!--<TextView
+               android:id="@+id/artist_funs_unit"
+               android:layout_toRightOf="@+id/artist_funs"
+               android:gravity="center_vertical"
+               android:text="万"
+               android:paddingBottom="4dp"
+               android:textSize="14sp"
+               android:layout_alignBottom="@+id/artist_funs"
+               android:layout_width="wrap_content"
+               android:layout_height="match_parent" />-->
 
 
-
-</android.support.v7.widget.CardView>
+   </android.support.v7.widget.CardView>

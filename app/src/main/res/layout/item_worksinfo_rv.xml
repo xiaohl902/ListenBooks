@@ -1,32 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-<android.support.v7.widget.CardView
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="2dp"
-    android:layout_margin="2dp"
-    app:cardUseCompatPadding="true"
-    android:orientation="vertical">
--->
 
     <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
         android:layout_height="60dp">
-        <TextView
+
+    <CheckBox
+        android:id="@+id/work_checkbox"
+        android:layout_width="30dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="6dp"
+        android:gravity="center"
+        android:layout_alignParentLeft="true"
+        android:visibility="visible"
+        />
+    <!--android:background="@drawable/btn_check_selector"-->
+    <!-- android:visibility="gone"-->
+    <!--android:checked="true"-->
+    <!--android:button="@null"-->
+
+    <TextView
             android:padding="8dp"
             android:id="@+id/work_name_title"
-            android:layout_width="180dp"
+            android:layout_toRightOf="@+id/work_checkbox"
+            android:layout_width="160dp"
             android:ellipsize="end"
             android:singleLine="true"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="白眉大侠_024"
             android:textStyle="bold"
-            android:textSize="16sp"
+            android:textSize="14sp"
             />
         <LinearLayout
             android:layout_width="wrap_content"

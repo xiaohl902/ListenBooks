@@ -86,21 +86,21 @@
             android:text="章节）" />
 
 
-        <TextView
+        <!--<TextView
             android:id="@+id/art_funs_unit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="" />
+            android:text="" />-->
 
         <TextView
             android:id="@+id/work_funs_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/art_funs_unit"
             android:drawableLeft="@drawable/handset_hui"
+            android:layout_alignParentRight="true"
             android:drawablePadding="6dp"
-            android:text="6" />
+            android:text="0" />
 
     </RelativeLayout>
 

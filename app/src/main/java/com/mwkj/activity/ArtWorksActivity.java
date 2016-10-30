@@ -9,7 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -25,6 +27,7 @@ import com.qf.kenlibrary.base.BaseActivity;
 import com.qf.kenlibrary.util.DownUtil;
 
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -41,12 +44,30 @@ public class ArtWorksActivity extends BaseActivity implements WorksInfoAdapter.O
     ImageView infoArtistHeader;
     @Bind(R.id.expand_tv_works)
     ExpandableTextView expandableText;
-//    @Bind(R.id.work_list_num)
+    //    @Bind(R.id.work_list_num)
 //    TextView artListNum;
     @Bind(R.id.work_funs_num)
     TextView artFunsNum;
     @Bind(R.id.wrok_info_rv)
     RecyclerView wrokInfoRv;
+    @Bind(R.id.tv_work_download)
+    TextView tvWorkDownload;
+    @Bind(R.id.tv_work_collection)
+    TextView tvWorkCollection;
+    @Bind(R.id.ll_works1)
+    LinearLayout llWorks1;
+    @Bind(R.id.check_all)
+    TextView checkAll;
+    @Bind(R.id.tv_ll2_download2)
+    TextView tvLl2Download2;
+    @Bind(R.id.ll_works2)
+    LinearLayout llWorks2;
+    @Bind(R.id.uncheck_all)
+    TextView uncheckAll;
+    @Bind(R.id.tv_ll2_download3)
+    TextView tvLl2Download3;
+    @Bind(R.id.ll_works3)
+    LinearLayout llWorks3;
 //    @Bind(R.id.srl_wrokinfo)
 //    SwipeRefreshLayout srlWrokinfo;
 
@@ -56,7 +77,10 @@ public class ArtWorksActivity extends BaseActivity implements WorksInfoAdapter.O
 
     private TextView artListNum;
 
+    //适配器
     private WorksInfoAdapter worksInfoAdapter;
+
+    CheckBox work_checkbox;
 
     private int page = 1; //默认加载第一页数据
 
@@ -66,6 +90,7 @@ public class ArtWorksActivity extends BaseActivity implements WorksInfoAdapter.O
     //下拉刷新
     private SwipeRefreshLayout srlWrokinfo;
     private ArtWorksEntity workentity; //实体类
+    private List<ArtWorksEntity.ChaptersBean> chapters;
 
     @Override
     protected int getContentId() {
@@ -80,22 +105,25 @@ public class ArtWorksActivity extends BaseActivity implements WorksInfoAdapter.O
         fansnum = in.getIntExtra("fansnum", -1);
         worksname = in.getStringExtra("worksname");
         worksimg = in.getStringExtra("worksimg");
-        Log.d("print", "init: albumid "+albumid + "chapternum "+chapternum+"fansnum "+fansnum+ "worksname"+worksname+"worksimg "+worksimg);
+        Log.d("print", "init: albumid " + albumid + "chapternum " + chapternum + "fansnum " + fansnum + "worksname" + worksname + "worksimg " + worksimg);
 
+        work_checkbox = findViewByIds(R.id.work_checkbox);
 
         srlWrokinfo = findViewByIds(R.id.srl_wrokinfo);
         artListNum = findViewByIds(R.id.work_list_num);
 
         workinfoTvName.setText(worksname);//设置作品名
-        artListNum.setText(chapternum+"");//设置章节数
+        artListNum.setText(chapternum + "");//设置章节数
 
         //设置播放数
-        if (fansnum != -1){
-            if(fansnum/10000!= 0) {
+        if (fansnum != -1) {
+            if (fansnum / 10000 != 0) {
                 artFunsNum.setText((fansnum / 10000) + "万");
-            }else {
+            } else {
                 artFunsNum.setText(fansnum + "");
             }
+        } else {
+            artFunsNum.setText(fansnum + "0");
         }
 
 
@@ -133,7 +161,7 @@ public class ArtWorksActivity extends BaseActivity implements WorksInfoAdapter.O
                 page++;
                 loadDatas();
 
-                new Thread(){
+                new Thread() {
                     @Override
                     public void run() {
                         try {
@@ -160,29 +188,55 @@ public class ArtWorksActivity extends BaseActivity implements WorksInfoAdapter.O
 
     @Override
     protected void loadDatas() {
-        String downurl = String.format(Constant.ARTIST_WORK_INFO,albumid,page);
-        Log.d("print", "loadDatas: downurl= "+downurl);
+        String downurl = String.format(Constant.ARTIST_WORK_INFO, albumid, page);
+        Log.d("print", "loadDatas: downurl= " + downurl);
         new DownUtil().setOnDownListener(this).downJSON(downurl);
 
     }
 
     @Override
     public Object paresJson(String json) {
-        if (json != null){
-            return new Gson().fromJson(json,ArtWorksEntity.class);
+        if (json != null) {
+            return new Gson().fromJson(json, ArtWorksEntity.class);
         }
         return null;
     }
 
     @Override
     public void downSucc(Object object) {
-        if (object != null){
+        if (object != null) {
             workentity = (ArtWorksEntity) object;
-            List<ArtWorksEntity.ChaptersBean> chapters = workentity.getChapters();
+            chapters = workentity.getChapters();
             worksInfoAdapter.setDatas(chapters);
-            worksInfoAdapter.setOnWorksItemClickListener(this);
+//            worksInfoAdapter.setOnWorksItemClickListener(this);
+            worksInfoAdapter.setRecyclerViewOnItemClickListener(new WorksInfoAdapter.RecyclerViewOnItemClickListener() {
+                @Override
+                public void onItemClickListener(View view, int position) {
+                    //点击事件
+                    //设置选中的项
+                    worksInfoAdapter.setSelectItem(position);
+                }
 
-            expandableText.setText(workentity.getAlbum().getAlbumDesc(),mCollapsedStatus,0);
+//                @Override
+//                public boolean onItemLongClickListener(View view, int position) {
+//                    //长按事件
+////                    worksInfoAdapter.setShowBox();
+//                    //设置选中的项
+////                    worksInfoAdapter.setSelectItem(position);
+////                    worksInfoAdapter.notifyDataSetChanged();
+//                    return true;
+//                }
+            });
+
+            //获取你选中的item
+            Map<Integer, Boolean> map = worksInfoAdapter.getMap();
+            for (int i = 0; i < map.size(); i++) {
+                if (map.get(i)) {
+                    Log.d("TAG", "你选了第：" + i + "项");
+                }
+            }
+
+            expandableText.setText(workentity.getAlbum().getAlbumDesc(), mCollapsedStatus, 0);
 
         }
     }
@@ -194,7 +248,7 @@ public class ArtWorksActivity extends BaseActivity implements WorksInfoAdapter.O
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.workinfo_back, R.id.workinfo_music})
+    @OnClick({R.id.workinfo_back, R.id.workinfo_music, R.id.tv_work_download, R.id.tv_work_collection, R.id.check_all, R.id.tv_ll2_download2,R.id.uncheck_all, R.id.tv_ll2_download3})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.workinfo_back:
@@ -203,13 +257,51 @@ public class ArtWorksActivity extends BaseActivity implements WorksInfoAdapter.O
             case R.id.workinfo_music:
                 finish();
                 break;
+            case R.id.tv_work_download:
+                llWorks1.setVisibility(View.GONE);
+                llWorks2.setVisibility(View.VISIBLE);
+                worksInfoAdapter.setShowBox();
+                worksInfoAdapter.notifyDataSetChanged();
+                break;
+            case R.id.tv_work_collection:
+                break;
+            case R.id.check_all:
+                //全选功能
+                Map<Integer, Boolean> mapall = worksInfoAdapter.getMap();
+                for (int i = 0; i < chapters.size(); i++) {
+                    mapall.put(i, true);
+                    worksInfoAdapter.notifyDataSetChanged();
+                }
+                llWorks2.setVisibility(View.GONE);
+                llWorks3.setVisibility(View.VISIBLE);
+                break;
+            case R.id.tv_ll2_download2:
+                //获取选中内容
+                Map<Integer, Boolean> map = worksInfoAdapter.getMap();
+                for (int i = 0; i < map.size(); i++) {
+                    if (map.get(i)) {
+                        Log.d("TAG", "你选了第：" + i + "项");
+                    }
+                }
+                break;
+            //取消全选
+            case R.id.uncheck_all:
+                Map<Integer, Boolean> m = worksInfoAdapter.getMap();
+                for (int i = 0; i < m.size(); i++) {
+                    m.put(i, false);
+                    worksInfoAdapter.notifyDataSetChanged();
+                }
+                llWorks2.setVisibility(View.VISIBLE);
+                llWorks3.setVisibility(View.GONE);
+                break;
+            case R.id.tv_ll2_download3:
+                break;
         }
     }
 
     @Override
     public void worksitemclick(View view, int position) {
-        startActivity(new Intent(this,PlayActivity.class));
+        startActivity(new Intent(this, PlayActivity.class));
     }
-
 
 }
