@@ -398,7 +398,7 @@ public class ArtWorksEntity {
 
     public static class ArtistBean {
         private int artistId;
-        private Object artistName;
+        private String artistName;
         private Object artistTitle;
         private Object artistWork;
         private Object artistResume;
@@ -415,11 +415,11 @@ public class ArtWorksEntity {
             this.artistId = artistId;
         }
 
-        public Object getArtistName() {
+        public String getArtistName() {
             return artistName;
         }
 
-        public void setArtistName(Object artistName) {
+        public void setArtistName(String artistName) {
             this.artistName = artistName;
         }
 
