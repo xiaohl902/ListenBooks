@@ -20,6 +20,7 @@ import java.io.IOException;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.jpush.android.api.JPushInterface;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -46,8 +47,21 @@ public class WelcomeActivity extends BaseActivity {
 
     @Override
     protected void init() {
+        JPushInterface.onResume(getApplicationContext());//开启极光推送
       //  Glide.with(WelcomeActivity.this).load("http://www.mow99.com/img/loading/5.jpg").into(acWelcomeImg);
         delayTime();//延迟跳转Activity
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        JPushInterface.onResume(this);//极光推送相关、建议添加以评估推送效果
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        JPushInterface.onPause(this);//极光推送相关、建议添加以评估推送效果
     }
 
     /**

@@ -25,4 +25,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile project(':kenlibrary')
     compile 'com.ms-square:expandableTextView:0.1.4'
+    //极光推送相关
+    compile files('libs/jpush-android-2.2.0.jar')
 }
