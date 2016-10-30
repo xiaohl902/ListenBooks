@@ -40,7 +40,8 @@
         <activity android:name=".BookTypeActivity"/>
         <!--设置页面-->
         <activity android:name=".SetUpActivity"/>
-
+        <!--专题详情-->
+        <activity android:name=".SpecialDetailsActivity"/>
 
     </application>
 

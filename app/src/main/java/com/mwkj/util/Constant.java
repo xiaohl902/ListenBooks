@@ -67,9 +67,11 @@ public interface Constant {
     //相声-全部
     String XALL="GetAlbumsByContentType?albumType=2&contentType=0&pageSize=8&session=1416561477736299381&SecurityID=mow99_2014_12_30_@~$;&clientVersion=170&OS=1&imei=244001484552444";
 
-    //专题
+    //听书馆-专题
     String ZHUANTI="subjectIndex?pageSize=8&session=1416561477736880843&SecurityID=mow99_2014_12_30_@~$;&clientVersion=170&OS=1&imei=244001484552444";
 
+    //听书馆-专题-详情
+    String ZHUANTI_DETAILS="subjectDetail?pageSize=8&pageNumber=1&session=1416561477808705473&SecurityID=mow99_2014_12_30_@~$;&clientVersion=170&OS=1&imei=244001484552444";
 }
 
 

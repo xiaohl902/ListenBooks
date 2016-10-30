@@ -1,5 +1,6 @@
 package com.mwkj.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -244,7 +245,7 @@ public class SpecialEntity {
         }
     }
 
-    public static class SubjectsBean {
+    public static class SubjectsBean implements Serializable{
         private int subjectId;
         private String subjectTitle;
         private String subjectDesc;

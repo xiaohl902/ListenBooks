@@ -1,5 +1,6 @@
 package com.mwkj.fragment.home_fragment;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.widget.AdapterView;
 
 import com.mwkj.AppContext.AppStartContext;
 import com.mwkj.activity.R;
+import com.mwkj.activity.SpecialDetailsActivity;
 import com.mwkj.adapter.ZspecialAdapter;
 import com.mwkj.entity.SpecialEntity;
 import com.qf.kenlibrary.base.BaseFragment;
@@ -111,6 +113,12 @@ public class SpecialFragment extends BaseFragment implements XupListView.IXListV
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        //跳转到详情页
         Log.d("log", "onItemClick: " +i+"----"+l);
+        SpecialEntity.SubjectsBean subjectsBean = specialEntity.getSubjects().get(i - 1);
+        Intent intent = new Intent(getContext(), SpecialDetailsActivity.class);
+        intent.putExtra("head",subjectsBean);
+        intent.putExtra("subjectId",subjectsBean.getSubjectId());
+        getActivity().startActivity(intent);
     }
 }

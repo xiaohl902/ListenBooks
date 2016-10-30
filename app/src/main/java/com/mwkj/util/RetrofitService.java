@@ -2,6 +2,7 @@ package com.mwkj.util;
 
 import com.mwkj.entity.BookEntity;
 import com.mwkj.entity.CrosstalkEntity;
+import com.mwkj.entity.SpecialDetailsEntity;
 import com.mwkj.entity.SpecialEntity;
 
 import okhttp3.ResponseBody;
@@ -38,5 +39,9 @@ public interface RetrofitService {
         //听书馆-专题
     @GET(Constant.ZHUANTI)
     Call<SpecialEntity> downSpecialEntity(@Query("pageNumber") Integer pageNumber);
+
+    //听书馆-专题-详情
+    @GET(Constant.ZHUANTI_DETAILS)
+    Call<SpecialDetailsEntity> getSpecialDetailsEntity(@Query("subjectId")Integer id ,@Query("pageNumber") Integer pageNumber);
 
 }
