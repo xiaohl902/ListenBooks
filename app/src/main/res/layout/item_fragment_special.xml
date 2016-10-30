@@ -1,78 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="14dp"
     app:cardUseCompatPadding="true"
     >
-<RelativeLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content">
-    <ImageView
-        android:scaleType="fitXY"
-        android:id="@+id/bg"
-        android:layout_width="match_parent"
-        android:layout_height="160dp"/>
-    <ImageView
-        android:background="@drawable/backgradient"
-        android:layout_width="match_parent"
-        android:layout_height="160dp"/>
-    <LinearLayout
-        android:layout_margin="10dp"
-       android:orientation="horizontal"
-        android:background="@color/color_greentext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <TextView
-            android:textSize="20sp"
-            android:text="第"
-            android:textColor="#fff"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/num"
-            android:textSize="20sp"
-            android:text="18"
-            android:textColor="#fff"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:textSize="20sp"
-            android:text="期"
-            android:textColor="#fff"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
 
-    </LinearLayout>
-    <LinearLayout
-        android:layout_alignBottom="@+id/bg"
-        android:orientation="horizontal"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <TextView
-        android:textColor="@color/color_white"
-        android:singleLine="true"
-        android:ellipsize="end"
-        android:layout_margin="10dp"
-        android:text="儿童节专题"
-        android:id="@+id/content"
-        android:textSize="18sp"
-        android:layout_weight="1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/viewNum"
-        android:textColor="@color/color_white"
-        android:layout_alignBottom="@+id/bg"
-        android:layout_margin="10dp"
-        android:text="1314"
-        android:textSize="16sp"
-        android:drawableLeft="@drawable/view_theme"
-        android:layout_alignParentRight="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    </LinearLayout>
-</RelativeLayout>
+
+        <ImageView
+            android:id="@+id/bg"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:scaleType="fitXY"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:background="@drawable/backgradient"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/color_greentext"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="第"
+                android:textColor="#fff"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="18"
+                android:textColor="#fff"
+                android:textSize="20sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="期"
+                android:textColor="#fff"
+                android:textSize="20sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/bg"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="儿童节专题"
+                android:textColor="@color/color_white"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/viewNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/bg"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"
+                android:drawableLeft="@drawable/view_theme"
+                android:text="1314"
+                android:textColor="@color/color_white"
+                android:textSize="16sp"/>
+        </LinearLayout>
+    </RelativeLayout>
 </android.support.v7.widget.CardView>
