@@ -126,7 +126,6 @@ public class ArtWorksActivity extends BaseActivity implements DownUtil.OnDownLis
             artFunsNum.setText(fansnum + "0");
         }
 
-
         //下载作品相应图片
         Glide.with(this)
                 .load(worksimg)
