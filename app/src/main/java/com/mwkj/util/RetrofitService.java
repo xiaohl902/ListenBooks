@@ -2,6 +2,7 @@ package com.mwkj.util;
 
 import com.mwkj.entity.BookEntity;
 import com.mwkj.entity.CrosstalkEntity;
+import com.mwkj.entity.ShowEntity;
 import com.mwkj.entity.SpecialDetailsEntity;
 import com.mwkj.entity.SpecialEntity;
 
@@ -44,4 +45,7 @@ public interface RetrofitService {
     @GET(Constant.ZHUANTI_DETAILS)
     Call<SpecialDetailsEntity> getSpecialDetailsEntity(@Query("subjectId")Integer id ,@Query("pageNumber") Integer pageNumber);
 
+    //演出&pageNumber=1
+    @GET(Constant.SHOW)
+    Call<ShowEntity> getShowEnityByUrl(@Query("pageNumber") Integer id,@Query("showDate") String year,@Query("cityName") String cityName);
 }

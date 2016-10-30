@@ -27,7 +27,7 @@ public interface Constant {
     String ARTIST_WORK_INFO = "http://www.mow99.com/GetChapters?albumId=%d&pageSize=30&pageNumber=%d&session=1416551477618041415&SecurityID=mow99_2014_12_30_@~$;&clientVersion=170&OS=1&imei=352284040546495";
 
     //演出
-    String SHOW = "ShowIndex?cityName=&showDate=&pageSize=8&pageNumber=1&session=1416101477572317117&SecurityID=mow99_2014_12_30_@~$;&clientVersion=170&OS=1&imei=864394010755355";
+    String SHOW = "ShowIndex?pageSize=8&session=1416101477572317117&SecurityID=mow99_2014_12_30_@~$;&clientVersion=170&OS=1&imei=864394010755355";
 
     //社区
     String  COMMUNITY= "FourmIndex?pageSize=100&pageNumber=1&session=1416101477572317117&SecurityID=mow99_2014_12_30_@~$;&clientVersion=170&OS=1&imei=864394010755355";
@@ -72,6 +72,8 @@ public interface Constant {
 
     //听书馆-专题-详情
     String ZHUANTI_DETAILS="subjectDetail?pageSize=8&pageNumber=1&session=1416561477808705473&SecurityID=mow99_2014_12_30_@~$;&clientVersion=170&OS=1&imei=244001484552444";
+
+
 }
 
 
