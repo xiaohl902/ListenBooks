@@ -65,7 +65,6 @@ public class WorksInfoAdapter extends RecyclerView.Adapter<WorksInfoAdapter.Work
 //        RecyclerView.ViewHolder vh = new RecyclerView.ViewHolder(inflate);
         WorksHolder wh = new WorksHolder(inflate);
         inflate.setOnClickListener(this);
-//        inflate.setOnLongClickListener(this);
         return wh;
 //        return new WorksHolder(inflate);
     }
