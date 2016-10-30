@@ -3,6 +3,11 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="color_white">#ffffff</color><!--白色-->
+    <color name="color_gray">#888</color><!--灰色-->
+    <color name="color_black">#000</color>
+
+
 
     <!--欢迎页-->
     <color name="color_welcome_btn">#66ccc0cc</color>><!--按钮背景颜色-->
@@ -12,7 +17,7 @@
     <color name="color_graytext">#a7a2a2</color>
     <color name="color_greentext">#22ab10</color>
     <color name="color_blacktext">#0e0e0e</color>
-    <color name="color_white">#ffffff</color>
+
     <color name="color_additem_decoration">#8b9dac</color>
 
     <!--听书馆-艺术家-->
