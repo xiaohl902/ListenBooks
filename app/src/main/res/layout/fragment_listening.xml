@@ -7,121 +7,160 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <ImageView
             android:id="@+id/iv_sz"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:src="@drawable/nav_set"/>
+            android:src="@drawable/nav_set" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:textSize="20sp"
-            android:text="我的听书"/>
+            android:text="我的听书"
+            android:textSize="20sp" />
     </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:orientation="vertical"
+        android:layout_height="130dp"
         android:layout_marginBottom="10dp"
-        android:background="#74e665">
-        <ImageView
-            android:id="@+id/iv_tx"
+        android:background="#74e665"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ac_listen_user"
+            android:orientation="vertical"
+            android:gravity="center"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_launcher"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#fff"
-            android:layout_gravity="center"
-            android:text="魔用户654564651"/>
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ac_listen_userimg"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:layout_margin="6dp"
+                android:src="@drawable/touxiang" />
+
+            <TextView
+                android:padding="3dp"
+                android:id="@+id/ac_listen_userName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/listen_userName"
+                android:textColor="#fff" />
+        </LinearLayout>
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#8888"/>
+        android:background="#8888" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+        <!--收听历史-->
         <RelativeLayout
+            android:gravity="center_vertical"
+            android:layout_margin="5dp"
+            android:id="@+id/ac_listen_rl1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <ImageView
                 android:id="@+id/iv_ls"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:src="@drawable/list_history"/>
+                android:src="@drawable/list_history" />
+
             <TextView
+                android:textStyle="bold"
+                android:textSize="@dimen/size_listen_tesize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/iv_ls"
                 android:padding="10dp"
-                android:text="收听历史"/>
+                android:text="@string/listen_history" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:layout_gravity="right"
                 android:padding="10dp"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/list_enter"/>
+                android:src="@drawable/list_enter" />
         </RelativeLayout>
+        <!--我的下载-->
         <RelativeLayout
+            android:gravity="center_vertical"
+            android:layout_margin="5dp"
+            android:id="@+id/ac_listen_rl2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <ImageView
                 android:id="@+id/iv_xz"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:src="@drawable/list_download"/>
+                android:src="@drawable/list_download" />
+
             <TextView
+                android:textStyle="bold"
+                android:textSize="@dimen/size_listen_tesize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/iv_xz"
                 android:padding="10dp"
-                android:text="我的下载"/>
+                android:text="@string/listen_download" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:layout_gravity="right"
                 android:padding="10dp"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/list_enter"/>
+                android:src="@drawable/list_enter" />
         </RelativeLayout>
+        <!--我的收藏-->
         <RelativeLayout
+            android:gravity="center_vertical"
+            android:layout_margin="5dp"
+            android:id="@+id/ac_listen_rl3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <ImageView
                 android:id="@+id/iv_sc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:src="@drawable/list_favorite"/>
+                android:src="@drawable/list_favorite" />
+
             <TextView
+                android:textStyle="bold"
+                android:textSize="@dimen/size_listen_tesize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/iv_sc"
                 android:padding="10dp"
-                android:text="我的收藏"/>
+                android:text="@string/listen_collection" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:layout_gravity="right"
                 android:padding="10dp"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/list_enter"/>
+                android:src="@drawable/list_enter" />
         </RelativeLayout>
 
     </LinearLayout>
@@ -130,80 +169,99 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginBottom="5dp"
-        android:background="#8888"/>
+        android:background="#8888" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="5dp"
-        android:background="#8888"/>
+        android:background="#8888" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+        <!--定时关闭-->
         <RelativeLayout
+            android:gravity="center_vertical"
+            android:layout_margin="5dp"
+            android:id="@+id/ac_listen_rl4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <ImageView
                 android:id="@+id/iv_ds"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:src="@drawable/list_history"/>
+                android:src="@drawable/list_history" />
+
             <TextView
+                android:textStyle="bold"
+                android:textSize="@dimen/size_listen_tesize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/iv_ds"
                 android:padding="10dp"
-                android:text="定时关闭"/>
+                android:text="@string/listen_timeclose" />
 
             <TextView
+                android:id="@+id/ac_listen_timer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:textSize="12sp"
-                android:textColor="#8888"
                 android:layout_toLeftOf="@+id/iv_jt"
-                android:text="未设置"/>
+                android:padding="10dp"
+                android:text="@string/listen_time"
+                android:textColor="#8888"
+                android:textSize="12sp" />
 
             <ImageView
                 android:id="@+id/iv_jt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:layout_gravity="right"
                 android:padding="10dp"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/list_enter"/>
+                android:src="@drawable/list_enter" />
         </RelativeLayout>
+
+        <!--听听历史-->
         <RelativeLayout
+            android:gravity="center_vertical"
+            android:layout_margin="5dp"
+            android:id="@+id/ac_listen_rl5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <ImageView
                 android:id="@+id/iv_wt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:src="@drawable/list_download"/>
+                android:src="@drawable/list_download" />
+
             <TextView
+                android:textStyle="bold"
+                android:textSize="@dimen/size_listen_tesize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/iv_wt"
                 android:padding="10dp"
-                android:text="收听历史"/>
+                android:text="@string/listen_feedback" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:layout_gravity="right"
                 android:padding="10dp"
-                android:layout_alignParentRight="true"
-                android:src="@drawable/list_enter"/>
+                android:src="@drawable/list_enter" />
         </RelativeLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginBottom="10dp"
-            android:background="#88e2dddd"/>
+            android:background="#88e2dddd" />
     </LinearLayout>
 </LinearLayout>

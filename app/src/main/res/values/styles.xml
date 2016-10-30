@@ -8,4 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- dialog的样式 -->
+    <style name="dialog_style">
+        <item name="android:windowBackground">@color/color_white</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">false</item><!--半透明-->
+        <item name="android:windowCloseOnTouchOutside">true</item>
+    </style>
+
 </resources>
