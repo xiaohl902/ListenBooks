@@ -37,7 +37,7 @@ import butterknife.OnClick;
  * Created by luckey on 2016/10/28.
  * 听书馆-艺术家-艺术家详情-作品集合的activity
  */
-public class ArtWorksActivity extends BaseActivity implements WorksInfoAdapter.OnWorksItemClickListener, DownUtil.OnDownListener {
+public class ArtWorksActivity extends BaseActivity implements DownUtil.OnDownListener {
     @Bind(R.id.workinfo_tv_name)
     TextView workinfoTvName;
     @Bind(R.id.info_artist_header)
@@ -105,7 +105,7 @@ public class ArtWorksActivity extends BaseActivity implements WorksInfoAdapter.O
         fansnum = in.getIntExtra("fansnum", -1);
         worksname = in.getStringExtra("worksname");
         worksimg = in.getStringExtra("worksimg");
-        Log.d("print", "init: albumid " + albumid + "chapternum " + chapternum + "fansnum " + fansnum + "worksname" + worksname + "worksimg " + worksimg);
+//        Log.d("print", "init: albumid " + albumid + "chapternum " + chapternum + "fansnum " + fansnum + "worksname" + worksname + "worksimg " + worksimg);
 
         work_checkbox = findViewByIds(R.id.work_checkbox);
 
@@ -189,7 +189,7 @@ public class ArtWorksActivity extends BaseActivity implements WorksInfoAdapter.O
     @Override
     protected void loadDatas() {
         String downurl = String.format(Constant.ARTIST_WORK_INFO, albumid, page);
-        Log.d("print", "loadDatas: downurl= " + downurl);
+//        Log.d("print", "loadDatas: downurl= " + downurl);
         new DownUtil().setOnDownListener(this).downJSON(downurl);
 
     }
@@ -208,33 +208,25 @@ public class ArtWorksActivity extends BaseActivity implements WorksInfoAdapter.O
             workentity = (ArtWorksEntity) object;
             chapters = workentity.getChapters();
             worksInfoAdapter.setDatas(chapters);
-//            worksInfoAdapter.setOnWorksItemClickListener(this);
             worksInfoAdapter.setRecyclerViewOnItemClickListener(new WorksInfoAdapter.RecyclerViewOnItemClickListener() {
                 @Override
                 public void onItemClickListener(View view, int position) {
                     //点击事件
-                    //设置选中的项
-                    worksInfoAdapter.setSelectItem(position);
+                    startActivity(new Intent(ArtWorksActivity.this, PlayActivity.class));
+
                 }
 
-//                @Override
-//                public boolean onItemLongClickListener(View view, int position) {
-//                    //长按事件
-////                    worksInfoAdapter.setShowBox();
-//                    //设置选中的项
-////                    worksInfoAdapter.setSelectItem(position);
-////                    worksInfoAdapter.notifyDataSetChanged();
-//                    return true;
-//                }
+                @Override
+                public boolean onItemLongClickListener(View view, int position) {
+                    //设置选中的项
+                    worksInfoAdapter.setShowBox();
+                    worksInfoAdapter.setSelectItem(position);
+                    worksInfoAdapter.notifyDataSetChanged();
+                    return true;
+                }
+
             });
 
-            //获取你选中的item
-            Map<Integer, Boolean> map = worksInfoAdapter.getMap();
-            for (int i = 0; i < map.size(); i++) {
-                if (map.get(i)) {
-                    Log.d("TAG", "你选了第：" + i + "项");
-                }
-            }
 
             expandableText.setText(workentity.getAlbum().getAlbumDesc(), mCollapsedStatus, 0);
 
@@ -283,6 +275,7 @@ public class ArtWorksActivity extends BaseActivity implements WorksInfoAdapter.O
                         Log.d("TAG", "你选了第：" + i + "项");
                     }
                 }
+
                 break;
             //取消全选
             case R.id.uncheck_all:
@@ -299,9 +292,5 @@ public class ArtWorksActivity extends BaseActivity implements WorksInfoAdapter.O
         }
     }
 
-    @Override
-    public void worksitemclick(View view, int position) {
-        startActivity(new Intent(this, PlayActivity.class));
-    }
 
 }

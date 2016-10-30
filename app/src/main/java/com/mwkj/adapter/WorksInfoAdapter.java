@@ -21,7 +21,7 @@ import java.util.Map;
 /**
  * Created by lenovo on 2016/10/28.
  */
-public class WorksInfoAdapter extends RecyclerView.Adapter<WorksInfoAdapter.WorksHolder> implements View.OnClickListener{
+public class WorksInfoAdapter extends RecyclerView.Adapter<WorksInfoAdapter.WorksHolder> implements View.OnClickListener, View.OnLongClickListener {
 
     private Context context;
     private List<ArtWorksEntity.ChaptersBean> worklist;
@@ -33,6 +33,10 @@ public class WorksInfoAdapter extends RecyclerView.Adapter<WorksInfoAdapter.Work
     private Map<Integer, Boolean> map = new HashMap<>();
     //接口实例
     private RecyclerViewOnItemClickListener onItemClickListener;
+    //设置点击事件
+    public void setRecyclerViewOnItemClickListener(RecyclerViewOnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
 
     public WorksInfoAdapter(Context context) {
         this.context = context;
@@ -53,23 +57,21 @@ public class WorksInfoAdapter extends RecyclerView.Adapter<WorksInfoAdapter.Work
 
     }
 
-    private OnWorksItemClickListener onWorksItemClickListener;
-
-    public void setOnWorksItemClickListener(OnWorksItemClickListener onWorksItemClickListener) {
-        this.onWorksItemClickListener = onWorksItemClickListener;
-    }
+//    private OnWorksItemClickListener onWorksItemClickListener;
+//
+//    public void setOnWorksItemClickListener(OnWorksItemClickListener onWorksItemClickListener) {
+//        this.onWorksItemClickListener = onWorksItemClickListener;
+//    }
 
     @Override
     public WorksHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View inflate = LayoutInflater.from(context).inflate(R.layout.item_worksinfo_rv, parent, false);
-//        RecyclerView.ViewHolder vh = new RecyclerView.ViewHolder(inflate);
         WorksHolder wh = new WorksHolder(inflate);
         inflate.setOnClickListener(this);
+        inflate.setOnLongClickListener(this);
         return wh;
-//        return new WorksHolder(inflate);
     }
 
-    //inflate.setOnClickListener(this);
     @Override
     public void onClick(View v) {
         if (onItemClickListener != null) {
@@ -78,10 +80,7 @@ public class WorksInfoAdapter extends RecyclerView.Adapter<WorksInfoAdapter.Work
         }
     }
 
-    //设置点击事件
-    public void setRecyclerViewOnItemClickListener(RecyclerViewOnItemClickListener onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
-    }
+
 
     //设置是否显示CheckBox
     public void setShowBox() {
@@ -100,17 +99,18 @@ public class WorksInfoAdapter extends RecyclerView.Adapter<WorksInfoAdapter.Work
         notifyItemChanged(position);
     }
 
-//    @Override
-//    public boolean onLongClick(View v) {
-//        //不管显示隐藏，清空状态
-//        initMap();
-//        return onItemClickListener != null && onItemClickListener.onItemLongClickListener(v, (Integer) v.getTag());
-//    }
+    @Override
+    public boolean onLongClick(View v) {
+        //不管显示隐藏，清空状态
+        initMap();
+        return onItemClickListener != null && onItemClickListener.onItemLongClickListener(v, (Integer) v.getTag());
+    }
 
     //返回集合给MainActivity
     public Map<Integer, Boolean> getMap() {
         return map;
     }
+
 
     //接口回调设置点击事件
     public interface RecyclerViewOnItemClickListener {
@@ -118,7 +118,7 @@ public class WorksInfoAdapter extends RecyclerView.Adapter<WorksInfoAdapter.Work
         void onItemClickListener(View view, int position);
 
         //长按事件
-//        boolean onItemLongClickListener(View view, int position);
+        boolean onItemLongClickListener(View view, int position);
     }
 
 
@@ -128,11 +128,8 @@ public class WorksInfoAdapter extends RecyclerView.Adapter<WorksInfoAdapter.Work
         //通知公式转换获得文件大小
         holder.work_chapter_size.setText(bytes2mb(worklist.get(position).getChapterSize()));
         holder.work_long_minute.setText(secToTime(worklist.get(position).getChapterLong()));
-//        holder.checkBox.setOnCheckedChangeListener(this);
-//        holder.checkBox.setTag(position);
-//        holder.checkBox.setChecked(cacheMap.containsKey(position));
 
-        //长按显示/隐藏
+        //点击显示/隐藏方法
         if (isshowBox) {
             holder.checkBox.setVisibility(View.VISIBLE);
         } else {
@@ -152,43 +149,6 @@ public class WorksInfoAdapter extends RecyclerView.Adapter<WorksInfoAdapter.Work
         holder.checkBox.setChecked(map.get(position));
     }
 
-
-    //CheckBox的点击监听
-//    @Override
-//    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//        int position = (Integer) buttonView.getTag();
-//        //当checkbox被选中时，把相应的下标和数据缓存进map中
-//        if(isChecked){
-//            cacheMap.put(position, worklist.get(position));
-//
-//        } else {
-//            //如果取消选中，则从map中移除该数据
-//            cacheMap.remove(position);
-//        }
-//    }
-
-    /**
-     * 返回被选中的数据
-     * @return
-     */
-//    public Collection<ArtWorksEntity.ChaptersBean> getCheckedDatas(){
-//        Collection<ArtWorksEntity.ChaptersBean> collection = cacheMap.values();
-//        return collection;
-//    }
-//
-//
-//    public void setAllCheckBox(Boolean bool){
-//        if (bool){
-//            for (int i = 0; i < worklist.size(); i++) {
-//                cacheMap.put(i,worklist.get(i));
-//            }
-//            this.notifyDataSetChanged();
-//        }else {
-//            cacheMap.clear();
-//            this.notifyDataSetChanged();
-//        }
-//
-//    }
 
 
     // int类型秒数,转化为时间 分秒格式
@@ -252,7 +212,7 @@ public class WorksInfoAdapter extends RecyclerView.Adapter<WorksInfoAdapter.Work
 
 
 
-    public class WorksHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class WorksHolder extends RecyclerView.ViewHolder{
         TextView work_name_title,work_chapter_size,work_long_minute;
         CheckBox checkBox;
         private View itemView;
@@ -263,18 +223,18 @@ public class WorksInfoAdapter extends RecyclerView.Adapter<WorksInfoAdapter.Work
             this.work_chapter_size = (TextView) itemView.findViewById(R.id.chapter_size);
             this.work_long_minute = (TextView) itemView.findViewById(R.id.chapter_long_minute);
             this.checkBox = (CheckBox) itemView.findViewById(R.id.work_checkbox);
-            itemView.setOnClickListener(this);
+//            itemView.setOnClickListener(this);
         }
 
-        @Override
-        public void onClick(View v) {
-            if (onWorksItemClickListener != null){
-                onWorksItemClickListener.worksitemclick(v,getAdapterPosition());
-            }
-        }
+//        @Override
+//        public void onClick(View v) {
+//            if (onWorksItemClickListener != null){
+//                onWorksItemClickListener.worksitemclick(v,getAdapterPosition());
+//            }
+//        }
     }
 
-    public interface OnWorksItemClickListener{
-        void worksitemclick(View view, int position);
-    }
+//    public interface OnWorksItemClickListener{
+//        void worksitemclick(View view, int position);
+//    }
 }
