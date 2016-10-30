@@ -181,7 +181,6 @@ public class ArtWorksActivity extends BaseActivity implements DownUtil.OnDownLis
                 }.start();
             }
         });
-
     }
 
     @Override
