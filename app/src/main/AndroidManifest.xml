@@ -40,6 +40,15 @@
         <activity android:name=".BookTypeActivity"/>
         <!--设置页面-->
         <activity android:name=".SetUpActivity"/>
+
+        <!--账号设置页面Activity-->
+        <activity android:name=".UserSetActivity"/>
+
+        <!--设置页面，关于魔王听书的Activity-->
+        <activity android:name=".SetAboutActivity"/>
+
+        <!--设置页面，dialog查看大图的Activity-->
+        <activity android:name=".BigImgActivity"/>
         <!--专题详情-->
         <activity android:name=".SpecialDetailsActivity"/>
 

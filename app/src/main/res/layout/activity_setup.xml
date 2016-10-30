@@ -18,8 +18,11 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:textSize="24sp"
-            android:text="设置"/>
+            android:text="@string/setup_set"/>
+
+        <!--跳转到音乐播放页面-->
         <ImageView
+            android:id="@+id/ac_play"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -41,7 +44,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <!--账号设置-->
         <RelativeLayout
+            android:id="@+id/ac_accountSet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
@@ -51,12 +57,14 @@
                 android:layout_margin="10dp"
                 android:src="@drawable/username"/>
             <TextView
+                android:textStyle="bold"
+                android:textSize="@dimen/size_listen_tesize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_toRightOf="@+id/iv_zh"
                 android:padding="10dp"
-                android:text="账号设置"/>
+                android:text="@string/setup_accountSet"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -65,7 +73,7 @@
                 android:textSize="12sp"
                 android:textColor="#8888"
                 android:layout_toLeftOf="@+id/iv_jt"
-                android:text="未登录"/>
+                android:text="@string/setup_notLoggedIn"/>
 
             <ImageView
                 android:id="@+id/iv_jt"
@@ -86,11 +94,13 @@
                 android:layout_margin="10dp"
                 android:src="@drawable/wifi"/>
             <TextView
+                android:textStyle="bold"
+                android:textSize="@dimen/size_listen_tesize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/iv_wt"
                 android:padding="10dp"
-                android:text="仅限WIFI联网下载"/>
+                android:text="@string/setup_networking"/>
 
             <com.qf.kenlibrary.util.SettingUp
                 android:id="@+id/swithbutton1"
@@ -111,12 +121,14 @@
                 android:layout_margin="10dp"
                 android:src="@drawable/push"/>
             <TextView
+                android:textStyle="bold"
+                android:textSize="@dimen/size_listen_tesize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_toRightOf="@+id/iv_ts"
                 android:padding="10dp"
-                android:text="推送设置"/>
+                android:text="@string/setup_push"/>
 
             <com.qf.kenlibrary.util.SettingUp
                 android:id="@+id/swithbutton2"
@@ -128,7 +140,10 @@
 
 
         </RelativeLayout>
+
+        <!--清除缓存-->
         <RelativeLayout
+            android:id="@+id/ac_eliminate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
@@ -138,11 +153,13 @@
                 android:layout_margin="10dp"
                 android:src="@drawable/clearcache"/>
             <TextView
+                android:textStyle="bold"
+                android:textSize="@dimen/size_listen_tesize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/iv_qc"
                 android:padding="10dp"
-                android:text="清除缓存"/>
+                android:text="@string/setup_eliminate"/>
 
 
             <TextView
@@ -152,7 +169,7 @@
                 android:textSize="12sp"
                 android:textColor="#8888"
                 android:layout_toLeftOf="@+id/hc"
-                android:text="0.0Byte(s)"/>
+                android:text="@string/setup_byte"/>
             <ImageView
                 android:id="@+id/hc"
                 android:layout_width="wrap_content"
@@ -178,7 +195,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <!--关于魔王听书-->
         <RelativeLayout
+            android:id="@+id/ac_about"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
@@ -188,12 +208,14 @@
                 android:layout_margin="10dp"
                 android:src="@drawable/about"/>
             <TextView
+                android:textStyle="bold"
+                android:textSize="@dimen/size_listen_tesize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_toRightOf="@+id/iv_gy"
                 android:padding="10dp"
-                android:text="关于魔王听书"/>
+                android:text="@string/setup_about"/>
 
 
             <ImageView
@@ -204,7 +226,11 @@
                 android:layout_alignParentRight="true"
                 android:src="@drawable/list_enter"/>
         </RelativeLayout>
+
+
+        <!--检查更新-->
         <RelativeLayout
+            android:id="@+id/ac_update"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
@@ -214,11 +240,13 @@
                 android:layout_margin="10dp"
                 android:src="@drawable/checkupdate"/>
             <TextView
+                android:textStyle="bold"
+                android:textSize="@dimen/size_listen_tesize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/iv_gx"
                 android:padding="10dp"
-                android:text="检查更新"/>
+                android:text="@string/setup_update"/>
 
 
             <TextView
@@ -228,7 +256,7 @@
                 android:textSize="12sp"
                 android:textColor="#8888"
                 android:layout_toLeftOf="@+id/hc2"
-                android:text="当前最新版本"/>
+                android:text="@string/setup_CurrentlyTheLatest"/>
             <ImageView
                 android:id="@+id/hc2"
                 android:layout_width="wrap_content"
@@ -248,14 +276,14 @@
         android:layout_height="wrap_content"
         >
         <Button
-            android:id="@+id/tcdl"
+            android:id="@+id/ac_btn_log"
             android:layout_width="200dp"
             android:layout_height="35dp"
             android:textColor="#fff"
             android:layout_centerHorizontal="true"
             android:background="#8888"
             android:layout_margin="10dp"
-            android:text="退出登录"/>
+            android:text="@string/setup_login"/>
 
     </RelativeLayout>
 

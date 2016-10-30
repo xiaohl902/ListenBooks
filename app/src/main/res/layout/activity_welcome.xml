@@ -8,6 +8,7 @@
 
     <!--欢迎页背景图片-->
     <ImageView
+        android:scaleType="fitXY"
         android:id="@+id/ac_welcome_img"
         android:background="@drawable/new_loading"
         android:layout_width="match_parent"

@@ -6,6 +6,11 @@
     <!--听书馆Home页-->
     <dimen name="size_home_head_pading">15dp</dimen>
 
+    <!--我在听Listening页-->
+    <dimen name="size_listen_tesize">17dp</dimen>
+    <dimen name="listen_dialog_padding">16dp</dimen>
+
+
 
     <!--听书馆-艺术家-->
     <dimen name="artworks_chapter_textsize">14sp</dimen>

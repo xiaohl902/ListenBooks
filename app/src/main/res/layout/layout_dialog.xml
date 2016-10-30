@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?><!--我在听页面设置头像的DiaLog-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog_ll"
+    android:layout_width="match_parent"
+    android:layout_height="270dp"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#000"
+        android:gravity="center"
+        android:padding="@dimen/listen_dialog_padding"
+        android:text="@string/listen_addImg"
+        android:textColor="@color/color_white" />
+
+
+    <!--分隔线-->
+    <include layout="@layout/layout_split_line" />
+
+    <!--现在去拍照-->
+    <TextView
+        android:clickable="true"
+        android:id="@+id/dia_photograph"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="@dimen/listen_dialog_padding"
+        android:text="@string/listen_photograph" />
+
+    <!--分隔线-->
+    <include layout="@layout/layout_split_line" />
+
+    <!--手机里选择-->
+    <TextView
+        android:id="@+id/dia_choice"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="@dimen/listen_dialog_padding"
+        android:text="@string/listen_MobilePhoneSelection" />
+
+    <!--分割线-->
+    <include layout="@layout/layout_split_line" />
+
+    <!--查看大图-->
+    <TextView
+        android:id="@+id/dia_bigPicture"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="@dimen/listen_dialog_padding"
+        android:text="@string/listen_ViewLarger" />
+
+    <!--分割线-->
+    <include layout="@layout/layout_split_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#807d80"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <!--返回-->
+        <Button
+            android:id="@+id/ac_finish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="@dimen/listen_dialog_padding"
+            android:text="@string/listen_Return" />
+    </LinearLayout>
+
+</LinearLayout>

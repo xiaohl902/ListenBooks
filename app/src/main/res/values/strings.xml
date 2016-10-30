@@ -10,10 +10,40 @@
     <string name="head_tab_show">演出</string>
     <string name="head_tab_community">社区</string>
 
+    <!--我在听页面-->
+    <string name="listen_userName">登录</string>
+    <string name="listen_history">收听历史</string>
+    <string name="listen_download">我的下载</string>
+    <string name="listen_collection">我的收藏</string>
+    <string name="listen_timeclose">定时关闭</string>
+    <string name="listen_time">未设置</string>
+    <string name="listen_feedback">问题反馈</string>
+    <string name="listen_addImg">添加照片</string><!--自定义DiaLog相关-->
+    <string name="listen_photograph">现在去拍照</string>
+    <string name="listen_MobilePhoneSelection">手机里选择</string>
+    <string name="listen_ViewLarger">查看大图</string>
+    <string name="listen_Return">返回</string>
+
     <!--听书馆Home页-->
     <string name="home_head">搜索评书、相声、艺术家</string>
     <string name="hot_crosstalk">热门相声</string>
     <string name="more_msg">更多>></string>
     <string name="specialty">特色专辑</string>
     <string name="artist">艺术家</string>
+
+
+    <!--设置页面acivity_setup-->
+    <string name="setup_set">设置</string>
+    <string name="setup_accountSet">账号设置</string>
+    <string name="setup_notLoggedIn">未登录</string>
+    <string name="setup_networking">仅限WIFI联网下载</string>
+    <string name="setup_push">推送设置</string>
+    <string name="setup_eliminate">清除缓存</string>
+    <string name="setup_byte">0.0Byte(s)</string>
+    <string name="setup_about">关于魔王听书</string>
+    <string name="setup_update">检查更新</string>
+    <string name="setup_CurrentlyTheLatest">当前最新版本</string>
+    <string name="setup_login">退出登录</string>
+
+
 </resources>
