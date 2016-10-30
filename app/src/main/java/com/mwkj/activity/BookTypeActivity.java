@@ -92,7 +92,6 @@ public class BookTypeActivity extends BaseActivity implements AdapterView.OnItem
                 }
             }
         };
-
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("action.qf.intent.beginPlay");//自定义的action
         intentFilter.addAction("action.qf.intent.stopPlay");
