@@ -32,6 +32,7 @@ public class HomeFragment extends BaseFragment {
     ViewPager homeViewPager;
 
     private HomeAdapter adapter ;
+    //接收跳转广播
     private BroadcastReceiver broadcastReceiver;
     @Override
     protected int getContentId() {

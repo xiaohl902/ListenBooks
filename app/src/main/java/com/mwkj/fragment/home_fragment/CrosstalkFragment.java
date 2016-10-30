@@ -40,7 +40,6 @@ public class CrosstalkFragment extends BaseFragment {
     private RetrofitService retrofitService;
     List<String> images = new ArrayList<>();
     private CrosstalkEntity body;
-    List<List<Object>> datas = new ArrayList<>();
     @Bind(R.id.mlv)
     MyListView mlv;
 

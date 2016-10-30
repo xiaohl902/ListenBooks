@@ -100,7 +100,9 @@ public class XFooterView extends LinearLayout {
 //                if (mState == STATE_LOADING) {
 //                    mHintImage.clearAnimation();
 //                }
+             //   mHintView.setText(R.string.footer_hint_load_normal);
                 mHintView.setText(R.string.footer_hint_load_normal);
+
                 break;
 
             case STATE_READY:
@@ -144,7 +146,8 @@ public class XFooterView extends LinearLayout {
      * normal status
      */
     public void normal() {
-        mHintView.setVisibility(View.VISIBLE);
+       mHintView.setVisibility(View.VISIBLE);
+
         mProgressBar.setVisibility(View.GONE);
     }
 

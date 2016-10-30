@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">KenLibrary</string>
-    <string name="footer_hint_load_normal">Load more</string>
-    <string name="footer_hint_load_ready">Release to load more</string>
+    <string name="footer_hint_load_normal">加载更多</string>
+    <string name="footer_hint_load_ready">放开以加载更多</string>
     <string name="header_hint_refresh_normal">下拉刷新...</string>
     <string name="header_hint_refresh_ready">放开以刷新...</string>
     <string name="header_hint_refresh_loading">正在载入&#8230;</string>

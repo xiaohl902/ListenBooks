@@ -37,6 +37,11 @@ public abstract class AbsBaseAdapter<T> extends BaseAdapter {
         this.notifyDataSetChanged();
     }
 
+    public void addDatas(List<T> datas){
+        this.datas.addAll(datas);
+        this.notifyDataSetChanged();
+    }
+
     @Override
     public int getCount() {
         return datas.size();
