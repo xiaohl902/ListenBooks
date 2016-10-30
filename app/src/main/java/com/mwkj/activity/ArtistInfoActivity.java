@@ -107,6 +107,7 @@ public class ArtistInfoActivity extends BaseActivity implements DownUtil.OnDownL
                 Log.d("print", "------>开始刷新，加载数据");
 
                 //页数++，重新加载
+
                 page++;
                 loadDatas();
 

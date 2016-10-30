@@ -73,7 +73,7 @@ public class ArtWorksActivity extends BaseActivity implements DownUtil.OnDownLis
 
     private int albumid = -1;//作品id,默认-1
     private int chapternum, fansnum;//作品章节数、播放次数
-    private String worksname, worksimg;//作品名称、图片url
+    private String worksname, worksimg;//作者名称、图片url
 
     private TextView artListNum;
 
@@ -203,13 +203,29 @@ public class ArtWorksActivity extends BaseActivity implements DownUtil.OnDownLis
     public void downSucc(Object object) {
         if (object != null) {
             workentity = (ArtWorksEntity) object;
+            final String artistName = workentity.getArtist().getArtistName();
             chapters = workentity.getChapters();
             worksInfoAdapter.setDatas(chapters);
             worksInfoAdapter.setRecyclerViewOnItemClickListener(new WorksInfoAdapter.RecyclerViewOnItemClickListener() {
                 @Override
                 public void onItemClickListener(View view, int position) {
                     //点击事件
-                    startActivity(new Intent(ArtWorksActivity.this, PlayActivity.class));
+                    Intent intent = new Intent(ArtWorksActivity.this, PlayActivity.class);
+                    intent.putExtra("playtitle",chapters.get(position).getChapterName());
+                    intent.putExtra("playartist",artistName);
+
+                    String chapterurl = chapters.get(position).getChapterLocation();
+                    String preurl = chapterurl.substring(0,chapterurl.lastIndexOf("/")+1);
+                    String laststring = chapterurl.substring(chapterurl.lastIndexOf("/")+1);
+//                    String urlnum = laststring.split(".")[0];
+                    String pointmp3 = laststring.substring(laststring.indexOf("."));
+                    String urlnum = laststring.substring(0,laststring.indexOf("."));
+
+//                    Log.d("print", "onItemClickListener: preurl "+preurl + " pointmp3 "+pointmp3 + " laststring "+laststring +" urlnum "+urlnum);
+                    intent.putExtra("urlpart1",preurl);
+                    intent.putExtra("urlpart2",urlnum);
+                    intent.putExtra("urlpart3",pointmp3);
+                    startActivity(intent);
 
                 }
 
