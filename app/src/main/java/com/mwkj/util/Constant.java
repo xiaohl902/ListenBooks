@@ -76,7 +76,8 @@ public interface Constant {
     //听书馆-专题-详情
     String ZHUANTI_DETAILS="subjectDetail?pageSize=8&pageNumber=1&session=1416561477808705473&SecurityID=mow99_2014_12_30_@~$;&clientVersion=170&OS=1&imei=244001484552444";
 
-
+    //搜索
+    String SEARCH = "MOWSearch?pageSize=8&session=1416561477894413992&SecurityID=mow99_2014_12_30_@~$;&clientVersion=170&OS=1&imei=244001484552444";
 }
 
 

@@ -79,6 +79,8 @@
         <activity android:name=".BigImgActivity"/>
         <!--专题详情-->
         <activity android:name=".SpecialDetailsActivity"/>
+        <!--搜索-->
+        <activity android:name=".SearchActivity"/>
 
         <!--社区-那些事儿-->
         <activity android:name=".ComSomethingActivity"/>
