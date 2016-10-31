@@ -80,6 +80,9 @@
         <!--专题详情-->
         <activity android:name=".SpecialDetailsActivity"/>
 
+        <!--社区-那些事儿-->
+        <activity android:name=".ComSomethingActivity"/>
+
 
 
 
