@@ -5,7 +5,6 @@
               android:orientation="vertical">
 
     <RelativeLayout
-        android:id="@id/actionbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:gravity="center_vertical">
@@ -36,5 +35,9 @@
             android:text="演出"
             android:textSize="22sp"/>
     </RelativeLayout>
+    <com.qf.kenlibrary.widget.pullRefreshListview.XupListView
+        android:id="@id/mListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

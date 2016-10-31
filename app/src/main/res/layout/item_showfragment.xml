@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="12sp"
+    app:cardPreventCornerOverlap="true"
+    >
+<LinearLayout
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+<ImageView
+    android:padding="8dp"
+    android:id="@+id/iv"
+    android:layout_width="100dp"
+    android:background="@drawable/ic_launcher"
+    android:layout_height="150dp"/>
+    <LinearLayout
+        android:padding="10dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+        <TextView
+
+            android:id="@+id/title"
+            android:text="标题"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lines="2"
+            android:textSize="20sp"
+            android:ellipsize="end"
+            android:textColor="@color/color_blacktext"
+            />
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</LinearLayout>
+</android.support.v7.widget.CardView>
