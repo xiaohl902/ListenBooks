@@ -24,4 +24,11 @@
     <color name="colortextchecked">#7ec84b</color>
     <color name="colortextunchecked">#7e7777</color>
     <color name="color_artworks_chapter">#656161</color>
+
+    <color name="shape_background_blue">#2d97d6</color>
+    <color name="shape_background_green">#68e73e</color>
+    <color name="shape_background_litgreen">#93d635</color>
+    <color name="shape_background_orange">#e97f48</color>
+    <color name="shape_background_deepblue">#6637f1</color>
+
 </resources>

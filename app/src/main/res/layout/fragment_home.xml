@@ -7,6 +7,7 @@
     android:orientation="vertical">
     
     <LinearLayout
+        android:id="@+id/search"
         android:gravity="center_vertical"
         android:padding="10dp"
         android:layout_width="match_parent"

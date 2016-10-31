@@ -79,8 +79,8 @@
         <activity android:name=".BigImgActivity"/>
         <!--专题详情-->
         <activity android:name=".SpecialDetailsActivity"/>
-
-
+        <!--搜索-->
+        <activity android:name=".SearchActivity"/>
 
 
         <!-- Required SDK 核心功能-->
