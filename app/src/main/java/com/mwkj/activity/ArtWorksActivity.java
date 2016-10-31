@@ -226,6 +226,7 @@ public class ArtWorksActivity extends BaseActivity implements DownUtil.OnDownLis
                     intent.putExtra("urlpart3",pointmp3);*/
                     startActivity(intent);
 
+
                 }
 
                 @Override
