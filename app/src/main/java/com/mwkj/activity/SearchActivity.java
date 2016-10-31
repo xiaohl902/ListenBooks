@@ -222,7 +222,6 @@ public class SearchActivity extends BaseActivity implements XEditText.DrawableLe
                 arrayAdapter.notifyDataSetChanged();
                 id = -1;
             } else {
-
                 //                Toast.makeText(SearchActivity.this, "已搜索过该数据", Toast.LENGTH_SHORT).show();
             }
             //            String encode = URLEncoder.encode(str);
