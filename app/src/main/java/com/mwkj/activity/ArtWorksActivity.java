@@ -82,7 +82,7 @@ public class ArtWorksActivity extends BaseActivity implements DownUtil.OnDownLis
 
     CheckBox work_checkbox;
 
-    private int page = 1; //默认加载第一页数据
+    private int pageSize = 20; //默认加载20条数据
 
     //配合可折叠textview使用
     SparseBooleanArray mCollapsedStatus = new SparseBooleanArray();
@@ -157,7 +157,7 @@ public class ArtWorksActivity extends BaseActivity implements DownUtil.OnDownLis
                 Log.d("print", "------>开始刷新，加载数据");
 
                 //页数++，重新加载
-                page++;
+                pageSize += 20;
                 loadDatas();
 
                 new Thread() {
@@ -185,7 +185,7 @@ public class ArtWorksActivity extends BaseActivity implements DownUtil.OnDownLis
 
     @Override
     protected void loadDatas() {
-        String downurl = String.format(Constant.ARTIST_WORK_INFO, albumid, page);
+        String downurl = String.format(Constant.ARTIST_WORK_INFO, albumid, pageSize);
 //        Log.d("print", "loadDatas: downurl= " + downurl);
         new DownUtil().setOnDownListener(this).downJSON(downurl);
 
@@ -213,18 +213,17 @@ public class ArtWorksActivity extends BaseActivity implements DownUtil.OnDownLis
                     Intent intent = new Intent(ArtWorksActivity.this, PlayActivity.class);
                     intent.putExtra("playtitle",chapters.get(position).getChapterName());
                     intent.putExtra("playartist",artistName);
+//                    intent.putExtra("playurl",chapters.get(position).getChapterLocation());
 
-                    String chapterurl = chapters.get(position).getChapterLocation();
+                  /*  String chapterurl = chapters.get(position).getChapterLocation();
                     String preurl = chapterurl.substring(0,chapterurl.lastIndexOf("/")+1);
                     String laststring = chapterurl.substring(chapterurl.lastIndexOf("/")+1);
-//                    String urlnum = laststring.split(".")[0];
                     String pointmp3 = laststring.substring(laststring.indexOf("."));
                     String urlnum = laststring.substring(0,laststring.indexOf("."));
-
-//                    Log.d("print", "onItemClickListener: preurl "+preurl + " pointmp3 "+pointmp3 + " laststring "+laststring +" urlnum "+urlnum);
+//                  Log.d("print", "onItemClickListener: preurl "+preurl + " pointmp3 "+pointmp3 + " laststring "+laststring +" urlnum "+urlnum);
                     intent.putExtra("urlpart1",preurl);
                     intent.putExtra("urlpart2",urlnum);
-                    intent.putExtra("urlpart3",pointmp3);
+                    intent.putExtra("urlpart3",pointmp3);*/
                     startActivity(intent);
 
                 }

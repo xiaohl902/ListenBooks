@@ -30,7 +30,7 @@ public class ArtistFragment extends BaseFragment implements DownUtil.OnDownListe
     private List<ArtEntity> da;
 
     //默认加载第一页数据
-    int page = 1;
+    int pageSize = 10;
     private RecyclerView recyclerView;
     private ArtistAdapter artistAdapter;
 
@@ -58,12 +58,14 @@ public class ArtistFragment extends BaseFragment implements DownUtil.OnDownListe
     @Override
     protected void loadDatas() {
         //url的字符串拼接
-        String downurl = String.format(Constant.ARTIST,page);
+        String downurl = String.format(Constant.ARTIST,pageSize);
         new DownUtil().setOnDownListener(this).downJSON(downurl);
 
         swipeRefreshLayout = (SwipeRefreshLayout) getActivity().findViewById(R.id.srl);
-        swipeRefreshLayout.setProgressBackgroundColorSchemeColor(Color.GREEN);//下拉刷新圆圈背景色
-        swipeRefreshLayout.setColorSchemeColors(Color.BLUE);//下拉刷新 转动圆圈颜色
+        swipeRefreshLayout.setProgressBackgroundColorSchemeColor(Color.WHITE);//下拉刷新圆圈背景色
+        swipeRefreshLayout.setColorSchemeColors(Color.parseColor("#50a913"));//下拉刷新 转动圆圈颜色(主题色)
+//        swipeRefreshLayout.setProgressBackgroundColorSchemeColor(Color.GREEN);
+//        swipeRefreshLayout.setColorSchemeColors(Color.BLUE);
         //下拉刷新监听
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -71,7 +73,7 @@ public class ArtistFragment extends BaseFragment implements DownUtil.OnDownListe
                 Log.d("print", "------>开始刷新，加载数据");
 
                 //页数++，重新加载
-                page++;
+                pageSize += 10;
                 loadDatas();
 
                 new Thread(){

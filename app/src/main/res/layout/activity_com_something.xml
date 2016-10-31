@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?><!--听书馆-艺术家详情-布局-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:divider="@drawable/diliver_artistinfo_act"
+    android:orientation="vertical"
+    android:showDividers="middle">
+
+    <!--顶部actionbar位置布局-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:paddingTop="16dp">
+
+        <ImageView
+            android:id="@+id/workinfo_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:src="@drawable/back_nomal" />
+
+        <TextView
+            android:id="@+id/workinfo_tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_vertical"
+            android:text="评书相声那些事儿"
+            android:textColor="#737070"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/workinfo_music"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:src="@drawable/play_top1" />
+
+    </RelativeLayout>
+
+
+    <com.qf.kenlibrary.widget.pullRefreshListview.XupListView
+        android:id="@+id/com_something_lv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:padding="10dp"
+        android:background="@null"
+        android:gravity="center"
+        android:orientation="horizontal"
+        >
+        <RadioButton
+            android:id="@+id/search_trip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="80dp"
+            android:paddingRight="80dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:background="@drawable/community_rb_shape"
+            android:text="我也写两句"
+            android:textColor="#ccc"
+            android:button="@null"
+            android:drawableLeft="@drawable/topic_post_icon"
+            android:drawablePadding="5dp"
+            />
+
+    </RadioGroup>
+
+
+
+
+</LinearLayout>

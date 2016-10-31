@@ -16,17 +16,20 @@
             android:id="@+id/workinfo_back"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
+
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/back_nomal"
             />
         <TextView
             android:id="@+id/workinfo_tv_name"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
+            android:singleLine="true"
+            android:ellipsize="end"
             android:text="郭德纲"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:textColor="#737070"
             android:textSize="20sp"/>
         <ImageView
