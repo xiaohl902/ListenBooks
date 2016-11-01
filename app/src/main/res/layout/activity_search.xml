@@ -105,6 +105,7 @@
         android:layout_height="wrap_content"/>
     </LinearLayout>
     <ListView
+        android:background="#eda981"
         android:visibility="gone"
         android:id="@+id/downListView"
         android:layout_width="match_parent"
