@@ -9,7 +9,7 @@ import com.qf.kenlibrary.base.AbsBaseAdapter;
 /**
  * Created by ${WU} on 2016/10/31.
  */
-public class ShowAdapter extends AbsBaseAdapter<ShowEntity> {
+public class ShowAdapter extends AbsBaseAdapter<ShowEntity.ShowsBean> {
 
 
     public ShowAdapter(Context context) {
@@ -17,7 +17,11 @@ public class ShowAdapter extends AbsBaseAdapter<ShowEntity> {
     }
 
     @Override
-    public void bindView(ViewHolder viewHolder, ShowEntity data) {
-
+    public void bindView(ViewHolder viewHolder, ShowEntity.ShowsBean data) {
+        viewHolder.setImageView(R.id.iv,data.getShowCover())
+                .setTextView(R.id.title,data.getShowTitle())
+                .setTextView(R.id.time,data.getShowTime())
+                .setTextView(R.id.address,data.getShowVenue())
+                .setTextView(R.id.price,data.getShowTicketPrice());
     }
 }

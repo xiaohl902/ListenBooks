@@ -84,9 +84,10 @@
 
         <!--社区-那些事儿-->
         <activity android:name=".ComSomethingActivity"/>
-
-
-
+        <!--演出详情-->
+        <activity android:name=".ShowDetailsActivity"/>
+        <!--买票的webView-->
+        <activity android:name=".WebViewActivity"/>
 
         <!-- Required SDK 核心功能-->
         <!-- option since 2.0.5 可配置PushService，DaemonService,PushReceiver,AlarmReceiver的android:process参数 将JPush相关组件设置为一个独立进程 -->

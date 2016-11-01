@@ -2,12 +2,14 @@ package com.mwkj.activity;
 
 import android.app.ProgressDialog;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -35,7 +37,7 @@ import retrofit2.Response;
 /**
  * Created by ${WU} on 2016/10/31.
  */
-public class SearchActivity extends BaseActivity implements XEditText.DrawableLeftListener, TagFlowLayout.OnTagClickListener {
+public class SearchActivity extends BaseActivity implements XEditText.DrawableLeftListener, TagFlowLayout.OnTagClickListener, AdapterView.OnItemClickListener {
     @Bind(R.id.et)
     XEditText et;
     @Bind(R.id.line)
@@ -80,6 +82,8 @@ public class SearchActivity extends BaseActivity implements XEditText.DrawableLe
         bookAdapter = new BookEntityAdapter(SearchActivity.this);
         downListView.setAdapter(bookAdapter);
         myListView.setAdapter(arrayAdapter);
+        myListView.setOnItemClickListener(this);
+        downListView.setOnItemClickListener(this);
         initDatas();
         //-----------
         et.setDrawableLeftListener(this);
@@ -106,70 +110,8 @@ public class SearchActivity extends BaseActivity implements XEditText.DrawableLe
     @Override
     public void onDrawableLeftClick(View view) {
         //发现按钮的监听事件
-        dialog.show();
         String str = et.getText().toString();
-        if (!TextUtils.isEmpty(str)) {
-            boolean flag = false;
-            Cursor cursor = sqLiteDatabase.query("search", new String[]{"name"}, null, null, null, null, null);
-            if (cursor.getCount() == 0) {
-                flag = true;
-            } else {
-                while (cursor.moveToNext()) {
-                    if (cursor.getString(cursor.getColumnIndex("name")).equals(
-                            str)) {
-                        flag = false;
-                        break;
-                    } else {
-                        flag = true;
-                    }
-                }
-            }
-            if (flag) {
-                id = saveWord(str);
-            }
-
-            //保存进数据库
-            if (id > 0) {
-                //更新适配器
-                arrayAdapter.add(str);
-                arrayAdapter.notifyDataSetChanged();
-                id = -1;
-            } else {
-
-//                Toast.makeText(SearchActivity.this, "已搜索过该数据", Toast.LENGTH_SHORT).show();
-            }
-//            String encode = URLEncoder.encode(str);
-//            Log.d("log", "onDrawableLeftClick: " +encode);
-            //开始搜索
-            Call<BookEntity> call = AppStartContext.utils.getBookEntityBySearch(pageNumber,str);
-            call.enqueue(new Callback<BookEntity>() {
-                @Override
-                public void onResponse(Call<BookEntity> call, Response<BookEntity> response) {
-                    BookEntity bookEntity = response.body();
-                    int pageCount = bookEntity.getPage().getPageCount();
-                    Log.d("log", "onResponse: " +pageCount);
-                    if(pageCount!=0){
-                        line.setVisibility(View.GONE);
-                        downListView.setVisibility(View.VISIBLE);
-                        bookAdapter.setDatas(bookEntity.getAlbums());
-                    }else {
-//                        downListView.setVisibility(View.GONE);
-//                        line.setVisibility(View.VISIBLE);
-                        Toast.makeText(SearchActivity.this, "没有匹配的数据!", Toast.LENGTH_SHORT).show();
-                    }
-                    dialog.dismiss();
-                }
-
-                @Override
-                public void onFailure(Call<BookEntity> call, Throwable t) {
-
-                }
-            });
-
-        } else {
-            Toast.makeText(SearchActivity.this, "请输入搜索词", Toast.LENGTH_SHORT).show();
-            dialog.dismiss();
-        }
+       beginSearch(str);
     }
 
     @OnClick({R.id.cancel, R.id.clean})
@@ -179,9 +121,9 @@ public class SearchActivity extends BaseActivity implements XEditText.DrawableLe
                 finish();
                 break;
             case R.id.clean:    //清除数据库
-                Log.d("log", "onClick: " +"清除");
+                Log.d("log", "onClick: " + "清除");
                 sqLiteDatabase.delete("search", "_id > ?", new String[]{"-1"});
-               arrayAdapter.clear();
+                arrayAdapter.clear();
                 break;
 
         }
@@ -191,71 +133,10 @@ public class SearchActivity extends BaseActivity implements XEditText.DrawableLe
     @Override
     public boolean onTagClick(View view, int position, FlowLayout parent) {
 
-//        Toast.makeText(this, arr[position], Toast.LENGTH_SHORT).show();
+        //        Toast.makeText(this, arr[position], Toast.LENGTH_SHORT).show();
         //view.setVisibility(View.GONE);
-        dialog.show();
         String str = arr[position];
-        if (!TextUtils.isEmpty(str)) {
-            boolean flag = false;
-            Cursor cursor = sqLiteDatabase.query("search", new String[]{"name"}, null, null, null, null, null);
-            if (cursor.getCount() == 0) {
-                flag = true;
-            } else {
-                while (cursor.moveToNext()) {
-                    if (cursor.getString(cursor.getColumnIndex("name")).equals(
-                            str)) {
-                        flag = false;
-                        break;
-                    } else {
-                        flag = true;
-                    }
-                }
-            }
-            if (flag) {
-                id = saveWord(str);
-            }
-
-            //保存进数据库
-            if (id > 0) {
-                //更新适配器
-                arrayAdapter.add(str);
-                arrayAdapter.notifyDataSetChanged();
-                id = -1;
-            } else {
-                //                Toast.makeText(SearchActivity.this, "已搜索过该数据", Toast.LENGTH_SHORT).show();
-            }
-            //            String encode = URLEncoder.encode(str);
-            //            Log.d("log", "onDrawableLeftClick: " +encode);
-            //开始搜索
-            Call<BookEntity> call = AppStartContext.utils.getBookEntityBySearch(pageNumber,str);
-            call.enqueue(new Callback<BookEntity>() {
-                @Override
-                public void onResponse(Call<BookEntity> call, Response<BookEntity> response) {
-                    BookEntity bookEntity = response.body();
-                    int pageCount = bookEntity.getPage().getPageCount();
-                    Log.d("log", "onResponse: " +pageCount);
-                    if(pageCount!=0){
-                        line.setVisibility(View.GONE);
-                        downListView.setVisibility(View.VISIBLE);
-                        bookAdapter.setDatas(bookEntity.getAlbums());
-                    }else {
-                        //                        downListView.setVisibility(View.GONE);
-                        //                        line.setVisibility(View.VISIBLE);
-                        Toast.makeText(SearchActivity.this, "没有匹配的数据!", Toast.LENGTH_SHORT).show();
-                    }
-                    dialog.dismiss();
-                }
-
-                @Override
-                public void onFailure(Call<BookEntity> call, Throwable t) {
-
-                }
-            });
-
-        } else {
-            Toast.makeText(SearchActivity.this, "请输入搜索词", Toast.LENGTH_SHORT).show();
-            dialog.dismiss();
-        }
+        beginSearch(str);
 
         return true;
     }
@@ -281,5 +162,87 @@ public class SearchActivity extends BaseActivity implements XEditText.DrawableLe
         }
         arrayAdapter.notifyDataSetChanged();
         cursor.close();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        if (adapterView == myListView) {
+            beginSearch(arrayAdapter.getItem(i));
+        } else {
+            Intent intent = new Intent(this, ArtWorksActivity.class);
+            BookEntity.AlbumsBean data = (BookEntity.AlbumsBean) bookAdapter.getItem(i);
+            intent.putExtra("albumid", data.getAlbumId());
+            intent.putExtra("worksname", data.getAlbumName());
+            intent.putExtra("chapternum", data.getAlbumChapter());
+            intent.putExtra("fansnum", data.getPlayNumber());
+            intent.putExtra("worksimg", data.getAlbumCover());
+            //                        intent.putExtra("worksimg","http://www.mow99.com/img/album/src_200023.jpg");
+            startActivity(intent);
+        }
+
+    }
+    //搜索的方法
+    public void beginSearch(String str){
+        dialog.show();
+        if (!TextUtils.isEmpty(str)) {
+            boolean flag = false;
+            Cursor cursor = sqLiteDatabase.query("search", new String[]{"name"}, null, null, null, null, null);
+            if (cursor.getCount() == 0) {
+                flag = true;
+            } else {
+                while (cursor.moveToNext()) {
+                    if (cursor.getString(cursor.getColumnIndex("name")).equals(
+                            str)) {
+                        flag = false;
+                        break;
+                    } else {
+                        flag = true;
+                    }
+                }
+            }
+            if (flag) {
+                id = saveWord(str);
+            }
+            //保存进数据库
+            if (id > 0) {
+                //更新适配器
+                arrayAdapter.add(str);
+                arrayAdapter.notifyDataSetChanged();
+                id = -1;
+            } else {
+                //                Toast.makeText(SearchActivity.this, "已搜索过该数据", Toast.LENGTH_SHORT).show();
+            }
+            //            String encode = URLEncoder.encode(str);
+            //            Log.d("log", "onDrawableLeftClick: " +encode);
+            //开始搜索
+            Call<BookEntity> call = AppStartContext.utils.getBookEntityBySearch(pageNumber, str);
+            call.enqueue(new Callback<BookEntity>() {
+                @Override
+                public void onResponse(Call<BookEntity> call, Response<BookEntity> response) {
+                    BookEntity bookEntity = response.body();
+                    int pageCount = bookEntity.getPage().getPageCount();
+                    Log.d("log", "onResponse: " + pageCount);
+                    if (pageCount != 0) {
+                        line.setVisibility(View.GONE);
+                        downListView.setVisibility(View.VISIBLE);
+                        bookAdapter.setDatas(bookEntity.getAlbums());
+                    } else {
+                        //                        downListView.setVisibility(View.GONE);
+                        //                        line.setVisibility(View.VISIBLE);
+                        Toast.makeText(SearchActivity.this, "没有匹配的数据!", Toast.LENGTH_SHORT).show();
+                    }
+                    dialog.dismiss();
+                }
+
+                @Override
+                public void onFailure(Call<BookEntity> call, Throwable t) {
+
+                }
+            });
+
+        } else {
+            Toast.makeText(SearchActivity.this, "请输入搜索词", Toast.LENGTH_SHORT).show();
+            dialog.dismiss();
+        }
     }
 }
