@@ -1,102 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-    <RelativeLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-        android:layout_height="60dp">
+    android:layout_height="60dp"
+    android:background="#ebe7b3">
 
     <CheckBox
         android:id="@+id/work_checkbox"
         android:layout_width="30dp"
         android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
         android:layout_marginLeft="6dp"
         android:gravity="center"
-        android:layout_alignParentLeft="true"
-        android:visibility="gone"
-        />
+        android:visibility="gone" />
     <!--android:background="@drawable/btn_check_selector"-->
     <!-- android:visibility="gone"-->
     <!--android:checked="true"-->
     <!--android:button="@null"-->
 
     <TextView
-            android:padding="8dp"
-            android:id="@+id/work_name_title"
-            android:layout_toRightOf="@+id/work_checkbox"
-            android:layout_width="160dp"
-            android:ellipsize="end"
-            android:singleLine="true"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:text="白眉大侠_024"
-            android:textStyle="bold"
-            android:textSize="14sp"
-            />
-        <LinearLayout
+        android:id="@+id/work_name_title"
+        android:layout_width="160dp"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/work_checkbox"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:padding="8dp"
+        android:singleLine="true"
+        android:text="白眉大侠_024"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:orientation="horizontal"
+        android:paddingRight="6dp">
+
+        <TextView
+            android:id="@+id/chapter_size"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:paddingRight="6dp"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/chapter_size"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="6.10"
-                android:textSize="@dimen/artworks_chapter_textsize"
-                android:textColor="@color/color_artworks_chapter"
-                />
-           <!-- <TextView
-                android:id="@+id/chapter_size_unit"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="MB"
-                android:textSize="@dimen/artworks_chapter_textsize"
-                />-->
+            android:gravity="center_vertical"
+            android:text="6.10"
+            android:textColor="@color/color_artworks_chapter"
+            android:textSize="@dimen/artworks_chapter_textsize" />
+        <!-- <TextView
+             android:id="@+id/chapter_size_unit"
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent"
+             android:gravity="center_vertical"
+             android:text="MB"
+             android:textSize="@dimen/artworks_chapter_textsize"
+             />-->
 
-            <TextView
-                android:id="@+id/chapter_long_minute"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:layout_marginLeft="10dp"
-                android:text="20"
-                android:textSize="@dimen/artworks_chapter_textsize"
-                />
-           <!-- <TextView
-                android:id="@+id/chapter_long_unit_m"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="分"
-                android:textSize="@dimen/artworks_chapter_textsize"
-                />
-            <TextView
-                android:id="@+id/chapter_long_second"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:layout_marginLeft="2dp"
-                android:text="16"
-                android:textSize="@dimen/artworks_chapter_textsize"
-                />
-            <TextView
-                android:id="@+id/chapter_long_unit_s"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="秒"
-                android:textSize="@dimen/artworks_chapter_textsize"
-                />-->
-        </LinearLayout>
+        <TextView
+            android:id="@+id/chapter_long_minute"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:text="20"
+            android:textSize="@dimen/artworks_chapter_textsize" />
+        <!-- <TextView
+             android:id="@+id/chapter_long_unit_m"
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent"
+             android:gravity="center_vertical"
+             android:text="分"
+             android:textSize="@dimen/artworks_chapter_textsize"
+             />
+         <TextView
+             android:id="@+id/chapter_long_second"
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent"
+             android:gravity="center_vertical"
+             android:layout_marginLeft="2dp"
+             android:text="16"
+             android:textSize="@dimen/artworks_chapter_textsize"
+             />
+         <TextView
+             android:id="@+id/chapter_long_unit_s"
+             android:layout_width="wrap_content"
+             android:layout_height="match_parent"
+             android:gravity="center_vertical"
+             android:text="秒"
+             android:textSize="@dimen/artworks_chapter_textsize"
+             />-->
+    </LinearLayout>
 
 
-    </RelativeLayout>
+</RelativeLayout>
 
 
-
-
-<!--
-</android.support.v7.widget.CardView>-->
+    <!--
+    </android.support.v7.widget.CardView>-->

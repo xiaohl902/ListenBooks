@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:zhy="http://schemas.android.com/apk/res-auto"
+
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <LinearLayout
+        android:background="#dcd7d7"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.mwkj.widget.XEditText
+            android:id="@+id/et"
+           android:layout_margin="10dp"
+            android:drawableLeft="@mipmap/btn_search"
+            android:layout_width="wrap_content"
+            android:padding="10dp"
+            android:drawablePadding="10dp"
+            android:singleLine="true"
+            android:layout_weight="1"
+            android:hint="搜索评书、相声、艺术家"
+            android:textColorHint="@color/color_graytext"
+            android:background="@drawable/edittext_search"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/cancel"
+            android:padding="10dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:text="取消"
+            android:textSize="18sp"
+            android:textColor="@color/color_greentext"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/line"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <View
+                android:layout_margin="10dp"
+                android:layout_width="4dp"
+                android:background="@color/color_greentext"
+                android:layout_height="20dp"/>
+            <TextView
+                android:text="搜索热词"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <com.zhy.view.flowlayout.TagFlowLayout
+            android:id="@+id/flowLayout"
+            zhy:max_select="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:padding="20dp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_graytext"
+            />
+        <LinearLayout
+
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <View
+                android:layout_margin="10dp"
+                android:layout_width="4dp"
+                android:background="@color/color_greentext"
+                android:layout_height="20dp"/>
+            <TextView
+                android:text="搜索记录"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/clean"
+                android:clickable="true"
+                android:textColor="@color/color_greentext"
+                android:gravity="center_vertical"
+                android:layout_marginRight="20dp"
+                android:text="清除记录>>"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
+    <ListView
+        android:id="@+id/myListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <ListView
+        android:background="#eda981"
+        android:visibility="gone"
+        android:id="@+id/downListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

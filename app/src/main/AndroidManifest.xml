@@ -95,9 +95,17 @@
         <activity android:name=".BigImgActivity"/>
         <!--专题详情-->
         <activity android:name=".SpecialDetailsActivity"/>
+        <!--搜索-->
+        <activity android:name=".SearchActivity"/>
         <!--设置界面跳转到登陆界面-->
         <activity android:name=".LandActivity"/>
 
+        <!--社区-那些事儿-->
+        <activity android:name=".ComSomethingActivity"/>
+        <!--演出详情-->
+        <activity android:name=".ShowDetailsActivity"/>
+        <!--买票的webView-->
+        <activity android:name=".WebViewActivity"/>
         <!--短信所需要的Activity-->
         <activity
             android:name="com.mob.tools.MobUIShell"

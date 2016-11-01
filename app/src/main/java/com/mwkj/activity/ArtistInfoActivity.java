@@ -49,7 +49,7 @@ public class ArtistInfoActivity extends BaseActivity implements DownUtil.OnDownL
     RecyclerView info_rv;
 
 
-    private int page = 1; //默认加载第一页数据
+    private int pagesize = 8; //默认加载第一页数据
     private int artistid = -1; //艺术家id，默认为-1
 
     //适配器
@@ -94,13 +94,13 @@ public class ArtistInfoActivity extends BaseActivity implements DownUtil.OnDownL
 
     @Override
     protected void loadDatas() {
-        String downurl = String.format(Constant.ARTIST_INFO,artistid,page);
+        String downurl = String.format(Constant.ARTIST_INFO,artistid,pagesize);
 //        Log.d("print", "loadDatas: downurl= "+downurl);
         new DownUtil().setOnDownListener(this).downJSON(downurl);
 
         artinfo_swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.srl_artinfo);
-        artinfo_swipeRefresh.setProgressBackgroundColorSchemeColor(Color.GREEN);
-        artinfo_swipeRefresh.setColorSchemeColors(Color.BLUE);
+        artinfo_swipeRefresh.setProgressBackgroundColorSchemeColor(Color.WHITE);
+        artinfo_swipeRefresh.setColorSchemeColors(Color.parseColor("#50a913"));
         artinfo_swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -108,7 +108,7 @@ public class ArtistInfoActivity extends BaseActivity implements DownUtil.OnDownL
 
                 //页数++，重新加载
 
-                page++;
+                pagesize += 8;
                 loadDatas();
 
                 new Thread(){

@@ -1,6 +1,7 @@
 package com.mwkj.util;
 
 import com.mwkj.entity.BookEntity;
+import com.mwkj.entity.CommunityTopicEntity;
 import com.mwkj.entity.CrosstalkEntity;
 import com.mwkj.entity.ShowEntity;
 import com.mwkj.entity.SpecialDetailsEntity;
@@ -47,5 +48,12 @@ public interface RetrofitService {
 
     //演出&pageNumber=1
     @GET(Constant.SHOW)
-    Call<ShowEntity> getShowEnityByUrl(@Query("pageNumber") Integer id,@Query("showDate") String year,@Query("cityName") String cityName);
+    Call<ShowEntity> getShowEnityByUrl(@Query("pageNumber") Integer pageNumber, @Query("showDate") String year, @Query("cityName") String cityName);
+    //搜索
+    @GET(Constant.SEARCH)
+    Call<BookEntity> getBookEntityBySearch(@Query("pageNumber") Integer pageNumber,@Query("query") String query);
+
+    //社区-那些事儿
+    @GET(Constant.COMMUNITY_SOMETHING)
+    Call<CommunityTopicEntity> getsomething(@Query("fourmId")Integer fourmId,@Query("pageSize") Integer pageSize);
 }

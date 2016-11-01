@@ -17,20 +17,23 @@ public interface Constant {
     //专题
    String SPECIAL =  "subjectIndex?pageSize=8&pageNumber=1&session=1416101477468719685&SecurityID=mow99_2014_12_30_@~$;&clientVersion=170&OS=1&imei=864394010755355";
 
-    //艺术家 pageNumber=%d
-  String ARTIST = "http://www.mow99.com/ArtistIndex?pageSize=10&pageNumber=%d&session=1416101477468719685&SecurityID=mow99_2014_12_30_@~$;&clientVersion=170&OS=1&imei=864394010755355";
+    //艺术家 pageSize=10
+  String ARTIST = "http://www.mow99.com/ArtistIndex?pageSize=%d&pageNumber=1&session=1416101477468719685&SecurityID=mow99_2014_12_30_@~$;&clientVersion=170&OS=1&imei=864394010755355";
 
-    //艺术家-艺术家详情 artistId=%d  pageNumber=%d
-    String ARTIST_INFO = "http://www.mow99.com/GetAlbumsByArtist?albumType=0&artistId=%d&pageSize=8&pageNumber=%d&session=1416551477485726424&SecurityID=mow99_2014_12_30_@~$;&clientVersion=170&OS=1&imei=352284040546495";
+    //艺术家-艺术家详情 artistId=%d  pageSize=8
+    String ARTIST_INFO = "http://www.mow99.com/GetAlbumsByArtist?albumType=0&artistId=%d&pageSize=%d&pageNumber=1&session=1416551477485726424&SecurityID=mow99_2014_12_30_@~$;&clientVersion=170&OS=1&imei=352284040546495";
 
-    //艺术家-艺术家-作品详情 albumId=%d、pageNumber=%d
-    String ARTIST_WORK_INFO = "http://www.mow99.com/GetChapters?albumId=%d&pageSize=30&pageNumber=%d&session=1416551477618041415&SecurityID=mow99_2014_12_30_@~$;&clientVersion=170&OS=1&imei=352284040546495";
+    //艺术家-艺术家-作品详情 albumId=%d、pageSize=30
+    String ARTIST_WORK_INFO = "http://www.mow99.com/GetChapters?albumId=%d&pageSize=%d&pageNumber=1&session=1416551477618041415&SecurityID=mow99_2014_12_30_@~$;&clientVersion=170&OS=1&imei=352284040546495";
 
     //演出
     String SHOW = "ShowIndex?pageSize=8&session=1416101477572317117&SecurityID=mow99_2014_12_30_@~$;&clientVersion=170&OS=1&imei=864394010755355";
 
     //社区
     String  COMMUNITY= "FourmIndex?pageSize=100&pageNumber=1&session=1416101477572317117&SecurityID=mow99_2014_12_30_@~$;&clientVersion=170&OS=1&imei=864394010755355";
+
+    //社区-那些事儿、问题反馈   fourmId=1&    pageSize=30
+    String COMMUNITY_SOMETHING = "TopicList?query=&pageNumber=1&session=&SecurityID=mow99_2014_12_30_@~$;&clientVersion=170&OS=1&imei=352284040546495";
 
     //听书馆 - 经典
     String JINGDIAN="GetAlbumsByContentType?albumType=1&contentType=1&pageSize=8&session=1416101477572317117&SecurityID=mow99_2014_12_30_@~$;&clientVersion=170&OS=1&imei=864394010755355";
@@ -73,7 +76,8 @@ public interface Constant {
     //听书馆-专题-详情
     String ZHUANTI_DETAILS="subjectDetail?pageSize=8&pageNumber=1&session=1416561477808705473&SecurityID=mow99_2014_12_30_@~$;&clientVersion=170&OS=1&imei=244001484552444";
 
-
+    //搜索
+    String SEARCH = "MOWSearch?pageSize=8&session=1416561477894413992&SecurityID=mow99_2014_12_30_@~$;&clientVersion=170&OS=1&imei=244001484552444";
 }
 
 

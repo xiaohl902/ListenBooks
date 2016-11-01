@@ -13,30 +13,51 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
 <ImageView
-    android:padding="8dp"
+
     android:id="@+id/iv"
-    android:layout_width="100dp"
+    android:scaleType="fitXY"
+    android:layout_width="120dp"
     android:background="@drawable/ic_launcher"
     android:layout_height="150dp"/>
     <LinearLayout
-        android:padding="10dp"
+        android:padding="8dp"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:orientation="vertical"
         android:layout_height="match_parent">
         <TextView
-
             android:id="@+id/title"
             android:text="标题"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:lines="2"
-            android:textSize="20sp"
+            android:maxLines="2"
+            android:textSize="18sp"
             android:ellipsize="end"
             android:textColor="@color/color_blacktext"
             />
-        <TextView
 
+        <TextView
+            android:padding="2dp"
+            android:text="2016.03.19-2017.01.14"
+            android:drawableLeft="@drawable/time"
+            android:drawablePadding="4dp"
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+            <TextView
+                android:padding="2dp"
+            android:text="徐汇影剧场 - 上海"
+            android:drawableLeft="@drawable/address"
+            android:drawablePadding="4dp"
+            android:id="@+id/address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:padding="2dp"
+            android:text="50-80元"
+            android:drawablePadding="4dp"
+            android:id="@+id/price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 

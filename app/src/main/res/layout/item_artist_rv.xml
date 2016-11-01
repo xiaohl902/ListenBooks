@@ -7,6 +7,7 @@
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp"
     android:layout_margin="2dp"
+    app:cardBackgroundColor="#eceab1"
     app:cardUseCompatPadding="true"
     android:orientation="vertical">
 
@@ -19,6 +20,7 @@
             android:id="@+id/art_iv"
             android:src="@mipmap/ic_launcher"
             android:layout_width="match_parent"
+            android:padding="8dp"
             android:layout_height="160dp"
             />
         <TextView

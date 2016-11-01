@@ -2,12 +2,117 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:divider="@drawable/diliver_artistinfo_act"
+    android:showDividers="middle|end"
     android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingBottom="10dp"
+        android:gravity="center"
+        android:layout_height="50dp">
+        <TextView
+            android:id="@+id/community_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:textSize="20sp"
+            android:layout_centerVertical="true"
+            android:text="社区" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:paddingTop="16dp"
+            android:layout_toRightOf="@+id/community_title"
+            android:src="@drawable/zhankai"/>
+    </RelativeLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="社区" />
+    <RelativeLayout
+        android:id="@+id/rl1_community"
+        android:layout_width="match_parent"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/community_img1"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:padding="20dp"
+            android:src="@drawable/icon_1"/>
+        <TextView
+            android:id="@+id/community_tv1_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="评书相声那些事儿"
+            android:layout_toRightOf="@+id/community_img1"
+            android:paddingTop="10dp"
+            android:textSize="18sp"
+            />
+        <TextView
+            android:id="@+id/community_tv1_summary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="听后感、新段子、八卦、吐槽就这了"
+            android:layout_toRightOf="@+id/community_img1"
+            android:layout_below="@+id/community_tv1_title"
+            android:paddingTop="6dp"
+            android:textSize="12sp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="帖子18个"
+            android:layout_toRightOf="@+id/community_img1"
+            android:layout_below="@+id/community_tv1_summary"
+            android:paddingTop="6dp"
+            android:textSize="12sp"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl2_community"
+        android:layout_width="match_parent"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/community_img2"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:padding="20dp"
+            android:src="@drawable/icon_2"/>
+        <TextView
+            android:id="@+id/community_tv2_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="问题反馈"
+            android:layout_toRightOf="@+id/community_img2"
+            android:paddingTop="10dp"
+            android:textSize="18sp"
+            />
+        <TextView
+            android:id="@+id/community_tv2_summary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="提需求、反馈魔王问题、大家一起做魔王听书"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:layout_toRightOf="@+id/community_img2"
+            android:layout_below="@+id/community_tv2_title"
+            android:paddingTop="6dp"
+            android:textSize="12sp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="帖子33个"
+            android:layout_toRightOf="@+id/community_img2"
+            android:layout_below="@+id/community_tv2_summary"
+            android:paddingTop="6dp"
+            android:textSize="12sp"
+            />
+    </RelativeLayout>
+
+
 
 </LinearLayout>

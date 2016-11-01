@@ -4,7 +4,7 @@ package com.mwkj.entity;
  * Created by luckey on 2016/10/26.
  * Fragment--艺术家的实体类
  */
-public class ArtEntity {
+public class ArtEntity{
 
     /**
      * artistId : 231

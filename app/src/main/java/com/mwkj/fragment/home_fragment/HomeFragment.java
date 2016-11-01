@@ -13,8 +13,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import com.mwkj.activity.R;
+import com.mwkj.activity.SearchActivity;
 import com.mwkj.adapter.HomeAdapter;
 import com.qf.kenlibrary.base.BaseFragment;
 
@@ -30,8 +33,10 @@ public class HomeFragment extends BaseFragment {
     TabLayout tabLayout;
     @Bind(R.id.home_viewPager)
     ViewPager homeViewPager;
-
+    @Bind(R.id.search)
+    LinearLayout search;
     private HomeAdapter adapter ;
+
     //接收跳转广播
     private BroadcastReceiver broadcastReceiver;
     @Override
@@ -82,6 +87,14 @@ public class HomeFragment extends BaseFragment {
         intentFilter.addAction("action.qf.intent.turn");//自定义的action
 
         getContext().registerReceiver(broadcastReceiver, intentFilter);
+
+        //跳转到搜索activity
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), SearchActivity.class));
+            }
+        });
     }
 
     @Override
