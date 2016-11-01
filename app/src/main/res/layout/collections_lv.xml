@@ -1,19 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#d8f0f0"
+    android:orientation="vertical">
+    <!--顶部actionbar位置布局-->
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="收藏页"
-        android:textColor="#fff"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:background="#0a0ad9"/>
+        android:layout_height="66dp"
+        android:paddingTop="16dp">
+
+        <ImageView
+            android:id="@+id/collect_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:src="@drawable/back_nomal" />
+
+        <TextView
+            android:id="@+id/collect_tv_name"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="浏览记录"
+            android:textColor="#737070"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/collect_music"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:src="@drawable/play_top1" />
+
+    </RelativeLayout>
 
     <ListView
         android:id="@+id/collect_lv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </LinearLayout>
