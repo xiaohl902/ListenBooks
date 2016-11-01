@@ -46,4 +46,14 @@
     <string name="setup_login">退出登录</string>
 
 
+    <!--设置页面acivity_land-->
+    <string name="setup_land">登陆</string>
+    <string name="setup_hint_username">请输入账号</string>
+    <string name="setup_hint_password">请输入密码</string>
+    <string name="setup_register">注册</string>
+    <string name="setup_lands">登陆</string>
+    <string name="setup_landss">第三方登陆</string>
+    <string name="setup_land_agree">同意魔王听书相关条款</string>
+
+
 </resources>

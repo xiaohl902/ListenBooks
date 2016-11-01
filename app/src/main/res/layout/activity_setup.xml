@@ -5,27 +5,29 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/ac_setup_finish"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:padding="7dp"
             android:src="@drawable/back_select"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:textSize="24sp"
+            android:textSize="17sp"
             android:text="@string/setup_set"/>
 
         <!--跳转到音乐播放页面-->
         <ImageView
             android:id="@+id/ac_play"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="3dp"
             android:layout_alignParentRight="true"
             android:src="@drawable/player"/>
     </RelativeLayout>
