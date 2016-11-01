@@ -2,6 +2,7 @@ package com.mwkj.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -70,11 +71,21 @@ public class ShowDetailsActivity extends BaseActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick(R.id.buyTicket)
-    public void onClick() {
-        Intent intent = new Intent(this, WebViewActivity.class);
-        intent.putExtra("url", bean.getShowBuyUrl());
-        // Log.d("log", "onClick: " +"买票去"+bean.getShowBuyUrl());
-        startActivity(intent);
+    @OnClick({R.id.buyTicket,R.id.back})
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.buyTicket:
+                Intent intent = new Intent(this, WebViewActivity.class);
+                intent.putExtra("url", bean.getShowBuyUrl());
+                // Log.d("log", "onClick: " +"买票去"+bean.getShowBuyUrl());
+                startActivity(intent);
+                break;
+            case R.id.back:
+                finish();
+
+        }
+
     }
+
+
 }

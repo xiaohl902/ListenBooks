@@ -88,7 +88,8 @@
         <activity android:name=".ShowDetailsActivity"/>
         <!--买票的webView-->
         <activity android:name=".WebViewActivity"/>
-
+        <!--播放音乐的服务-->
+        <service android:name="com.mwkj.service.MyService"/>
         <!-- Required SDK 核心功能-->
         <!-- option since 2.0.5 可配置PushService，DaemonService,PushReceiver,AlarmReceiver的android:process参数 将JPush相关组件设置为一个独立进程 -->
         <!-- 如：android:process=":remote" -->

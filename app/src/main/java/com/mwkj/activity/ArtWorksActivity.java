@@ -26,6 +26,7 @@ import com.mwkj.widget.RecycleViewDivider;
 import com.qf.kenlibrary.base.BaseActivity;
 import com.qf.kenlibrary.util.DownUtil;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -91,6 +92,7 @@ public class ArtWorksActivity extends BaseActivity implements DownUtil.OnDownLis
     private SwipeRefreshLayout srlWrokinfo;
     private ArtWorksEntity workentity; //实体类
     private List<ArtWorksEntity.ChaptersBean> chapters;
+    private List<ArtWorksEntity.ChaptersBean> chapters1;
 
     @Override
     protected int getContentId() {
@@ -204,14 +206,20 @@ public class ArtWorksActivity extends BaseActivity implements DownUtil.OnDownLis
         if (object != null) {
             workentity = (ArtWorksEntity) object;
             final String artistName = workentity.getArtist().getArtistName();
-            chapters = workentity.getChapters();
-            worksInfoAdapter.setDatas(chapters);
+            chapters1 = workentity.getChapters();
+
+            this.chapters = workentity.getChapters();
+            worksInfoAdapter.setDatas(this.chapters);
             worksInfoAdapter.setRecyclerViewOnItemClickListener(new WorksInfoAdapter.RecyclerViewOnItemClickListener() {
                 @Override
                 public void onItemClickListener(View view, int position) {
                     //点击事件
                     Intent intent = new Intent(ArtWorksActivity.this, PlayActivity.class);
-                    intent.putExtra("playtitle",chapters.get(position).getChapterName());
+                    intent.putExtra("playtitle", ArtWorksActivity.this.chapters.get(position).getChapterName());
+                    intent.putExtra("position",position-1);
+                    Bundle  bundle = new Bundle();
+                    bundle.putSerializable("chapters", (Serializable) chapters1);
+                    intent.putExtra("bundle",bundle);
                     intent.putExtra("playartist",artistName);
 //                    intent.putExtra("playurl",chapters.get(position).getChapterLocation());
 

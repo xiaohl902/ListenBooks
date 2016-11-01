@@ -3,13 +3,16 @@ package com.mwkj.activity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.mwkj.entity.ArtWorksEntity;
 import com.qf.kenlibrary.base.BaseActivity;
 
 import java.io.IOException;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -34,6 +37,7 @@ public class PlayActivity extends BaseActivity implements MediaPlayer.OnPrepared
     TextView showEndTimeTv;
     @Bind(R.id.view_bottom_seek)
     SeekBar viewBottomSeek;
+    private List<ArtWorksEntity.ChaptersBean> chapters;
 
     @Override
     protected int getContentId() {
@@ -66,6 +70,13 @@ public class PlayActivity extends BaseActivity implements MediaPlayer.OnPrepared
         String urlpart3 = intent.getStringExtra("urlpart3");
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setOnPreparedListener(this);
+
+        //吴进行修改
+        int position = intent.getIntExtra("position",-1);
+        Bundle bundle = intent.getBundleExtra("bundle");
+        chapters = (List<ArtWorksEntity.ChaptersBean>) bundle.getSerializable("chapters");
+        Log.d("log", "init: " +chapters.size());
+
         try {
             mediaPlayer.setDataSource(urlpart1 + urlpart2 + urlpart3);
             mediaPlayer.prepareAsync();

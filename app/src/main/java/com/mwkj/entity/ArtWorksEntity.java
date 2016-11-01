@@ -1,5 +1,6 @@
 package com.mwkj.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -480,7 +481,7 @@ public class ArtWorksEntity {
         }
     }
 
-    public static class ChaptersBean {
+    public static class ChaptersBean implements Serializable{
         private int chapterId;
         private String chapterName;
         private int chapterLong;
