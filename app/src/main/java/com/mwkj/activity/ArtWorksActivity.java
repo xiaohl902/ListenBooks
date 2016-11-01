@@ -213,7 +213,8 @@ public class ArtWorksActivity extends BaseActivity implements DownUtil.OnDownLis
                     Intent intent = new Intent(ArtWorksActivity.this, PlayActivity.class);
                     intent.putExtra("playtitle",chapters.get(position).getChapterName());
                     intent.putExtra("playartist",artistName);
-//                    intent.putExtra("playurl",chapters.get(position).getChapterLocation());
+                    intent.putExtra("playurl",chapters.get(position).getChapterLocation());
+//                    String chapterurl = chapters.get(position).getChapterLocation();
 
                   /*  String chapterurl = chapters.get(position).getChapterLocation();
                     String preurl = chapterurl.substring(0,chapterurl.lastIndexOf("/")+1);
@@ -225,7 +226,6 @@ public class ArtWorksActivity extends BaseActivity implements DownUtil.OnDownLis
                     intent.putExtra("urlpart2",urlnum);
                     intent.putExtra("urlpart3",pointmp3);*/
                     startActivity(intent);
-
 
                 }
 
