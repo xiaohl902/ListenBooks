@@ -33,6 +33,20 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.GET_TASKS" />
 
+    <!--短信验证所需要的权限-->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <!--<uses-permission android:name="android.permission.READ_PHONE_STATE" />-->
+    <!--<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
+    <!--<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />-->
+    <!--<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />-->
+    <!--<uses-permission android:name="android.permission.INTERNET" />-->
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <!--<uses-permission android:name="android.permission.GET_TASKS" />-->
+    <!--<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />-->
+
+
+
     <!-- if you want to load images from a file OR from the internet -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <application
@@ -52,6 +66,8 @@
             </intent-filter>
         </activity>
 
+        <!--播放的服务-->
+        <service android:name="com.mwkj.util.PlayService"/>
         <!--主页面-->
         <activity android:name=".MainActivity"/>
 
@@ -79,7 +95,15 @@
         <activity android:name=".BigImgActivity"/>
         <!--专题详情-->
         <activity android:name=".SpecialDetailsActivity"/>
+        <!--设置界面跳转到登陆界面-->
+        <activity android:name=".LandActivity"/>
 
+        <!--短信所需要的Activity-->
+        <activity
+            android:name="com.mob.tools.MobUIShell"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
 
 
 

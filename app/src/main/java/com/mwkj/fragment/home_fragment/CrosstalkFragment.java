@@ -148,7 +148,6 @@ public class CrosstalkFragment extends BaseFragment {
              Glide：Google推荐的图片加载库，专注于流畅的滚动。
              */
             Glide.with(context).load(path).diskCacheStrategy(DiskCacheStrategy.ALL).into(imageView);
-
         }
     }
 

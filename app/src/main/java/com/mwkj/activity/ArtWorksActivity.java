@@ -215,16 +215,18 @@ public class ArtWorksActivity extends BaseActivity implements DownUtil.OnDownLis
                     intent.putExtra("playartist",artistName);
 
                     String chapterurl = chapters.get(position).getChapterLocation();
-                    String preurl = chapterurl.substring(0,chapterurl.lastIndexOf("/")+1);
-                    String laststring = chapterurl.substring(chapterurl.lastIndexOf("/")+1);
-//                    String urlnum = laststring.split(".")[0];
-                    String pointmp3 = laststring.substring(laststring.indexOf("."));
-                    String urlnum = laststring.substring(0,laststring.indexOf("."));
-
-//                    Log.d("print", "onItemClickListener: preurl "+preurl + " pointmp3 "+pointmp3 + " laststring "+laststring +" urlnum "+urlnum);
-                    intent.putExtra("urlpart1",preurl);
-                    intent.putExtra("urlpart2",urlnum);
-                    intent.putExtra("urlpart3",pointmp3);
+//
+//                    String preurl = chapterurl.substring(0,chapterurl.lastIndexOf("/")+1);
+//                    String laststring = chapterurl.substring(chapterurl.lastIndexOf("/")+1);
+////                    String urlnum = laststring.split(".")[0];
+//                    String pointmp3 = laststring.substring(laststring.indexOf("."));
+//                    String urlnum = laststring.substring(0,laststring.indexOf("."));
+//
+////                    Log.d("print", "onItemClickListener: preurl "+preurl + " pointmp3 "+pointmp3 + " laststring "+laststring +" urlnum "+urlnum);
+//                    intent.putExtra("urlpart1",preurl);
+//                    intent.putExtra("urlpart2",urlnum);
+//                    intent.putExtra("urlpart3",pointmp3);
+                    intent.putExtra("chapterurl",chapterurl);
                     startActivity(intent);
 
                 }

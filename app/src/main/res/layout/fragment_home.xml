@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ru.noties.scrollable.ScrollableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    app:scrollable_autoMaxScrollViewId="@+id/fg_head_ll"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical">
     
     <LinearLayout
+        android:id="@+id/fg_head_ll"
         android:gravity="center_vertical"
         android:padding="10dp"
         android:layout_width="match_parent"
@@ -47,4 +49,4 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-</LinearLayout>
+</ru.noties.scrollable.ScrollableLayout>
