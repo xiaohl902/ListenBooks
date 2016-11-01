@@ -12,8 +12,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,24 +20,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mwkj.activity.BigImgActivity;
+import com.mwkj.activity.CollectionActivity;
 import com.mwkj.activity.LandActivity;
-import com.mwkj.activity.MainActivity;
 import com.mwkj.activity.R;
 import com.mwkj.activity.SetUpActivity;
 import com.mwkj.widget.ListenUserDialog;
 import com.qf.kenlibrary.base.BaseFragment;
 
-import org.json.JSONObject;
-
 import java.io.File;
-import java.util.HashMap;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cn.smssdk.EventHandler;
-import cn.smssdk.SMSSDK;
-import cn.smssdk.gui.RegisterPage;
 
 //我在听
 public class ListeningFragment extends BaseFragment implements ListenUserDialog.OnClickDialogs {
@@ -111,8 +103,9 @@ public class ListeningFragment extends BaseFragment implements ListenUserDialog.
                 Toast.makeText(getActivity(), "我的下载", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.ac_listen_rl3:
-                //我的收藏
-                Toast.makeText(getActivity(), "我的收藏", Toast.LENGTH_SHORT).show();
+                //浏览记录
+                startActivity(new Intent(getActivity(), CollectionActivity.class));
+//                Toast.makeText(getActivity(), "浏览记录", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.ac_listen_rl4:
                 //定时关闭
@@ -276,59 +269,61 @@ public class ListeningFragment extends BaseFragment implements ListenUserDialog.
         final boolean isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
 
         // DocumentProvider
-        if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
-            // ExternalStorageProvider
-            if (isExternalStorageDocument(uri)) {
-                final String docId = DocumentsContract.getDocumentId(uri);
-                final String[] split = docId.split(":");
-                final String type = split[0];
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
+                // ExternalStorageProvider
+                if (isExternalStorageDocument(uri)) {
+                    final String docId = DocumentsContract.getDocumentId(uri);
+                    final String[] split = docId.split(":");
+                    final String type = split[0];
 
-                if ("primary".equalsIgnoreCase(type)) {
-                    return Environment.getExternalStorageDirectory() + "/" + split[1];
+                    if ("primary".equalsIgnoreCase(type)) {
+                        return Environment.getExternalStorageDirectory() + "/" + split[1];
+                    }
+                }
+                // DownloadsProvider
+                else if (isDownloadsDocument(uri)) {
+
+                    final String id = DocumentsContract.getDocumentId(uri);
+                    final Uri contentUri = ContentUris.withAppendedId(
+                            Uri.parse("content://downloads/public_downloads"), Long.valueOf(id));
+
+                    return getDataColumn(context, contentUri, null, null);
+                }
+                // MediaProvider
+                else if (isMediaDocument(uri)) {
+                    final String docId = DocumentsContract.getDocumentId(uri);
+                    final String[] split = docId.split(":");
+                    final String type = split[0];
+
+                    Uri contentUri = null;
+                    if ("image".equals(type)) {
+                        contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+                    } else if ("video".equals(type)) {
+                        contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+                    } else if ("audio".equals(type)) {
+                        contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+                    }
+
+                    final String selection = "_id=?";
+                    final String[] selectionArgs = new String[]{split[1]};
+
+                    return getDataColumn(context, contentUri, selection, selectionArgs);
                 }
             }
-            // DownloadsProvider
-            else if (isDownloadsDocument(uri)) {
+            // MediaStore (and general)
+            else if ("content".equalsIgnoreCase(uri.getScheme())) {
 
-                final String id = DocumentsContract.getDocumentId(uri);
-                final Uri contentUri = ContentUris.withAppendedId(
-                        Uri.parse("content://downloads/public_downloads"), Long.valueOf(id));
+                // Return the remote address
+                if (isGooglePhotosUri(uri))
+                    return uri.getLastPathSegment();
 
-                return getDataColumn(context, contentUri, null, null);
+                return getDataColumn(context, uri, null, null);
             }
-            // MediaProvider
-            else if (isMediaDocument(uri)) {
-                final String docId = DocumentsContract.getDocumentId(uri);
-                final String[] split = docId.split(":");
-                final String type = split[0];
-
-                Uri contentUri = null;
-                if ("image".equals(type)) {
-                    contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-                } else if ("video".equals(type)) {
-                    contentUri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-                } else if ("audio".equals(type)) {
-                    contentUri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-                }
-
-                final String selection = "_id=?";
-                final String[] selectionArgs = new String[]{split[1]};
-
-                return getDataColumn(context, contentUri, selection, selectionArgs);
+            // File
+            else if ("file".equalsIgnoreCase(uri.getScheme())) {
+                return uri.getPath();
             }
-        }
-        // MediaStore (and general)
-        else if ("content".equalsIgnoreCase(uri.getScheme())) {
-
-            // Return the remote address
-            if (isGooglePhotosUri(uri))
-                return uri.getLastPathSegment();
-
-            return getDataColumn(context, uri, null, null);
-        }
-        // File
-        else if ("file".equalsIgnoreCase(uri.getScheme())) {
-            return uri.getPath();
         }
 
         return null;

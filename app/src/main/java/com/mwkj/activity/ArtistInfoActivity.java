@@ -2,6 +2,7 @@ package com.mwkj.activity;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -145,16 +146,40 @@ public class ArtistInfoActivity extends BaseActivity implements DownUtil.OnDownL
     }
 
 
+    /**
+     * long
+     *
+     */
 
-    private long saveDatatoDb(ArtistInfoEntity.AlbumsBean artentity) {
-        ContentValues values = new ContentValues();
-        values.put("albumId", artentity.getAlbumId());
-        values.put("albumName", artentity.getAlbumName());
-        values.put("artistName", artistName);
-        values.put("albumChapter", artentity.getAlbumChapter());
-        values.put("playNumber", artentity.getPlayNumber());
-        values.put("albumCover", artentity.getAlbumCover());
-        return database.insert("works", null, values);
+    private void saveDatatoDb(ArtistInfoEntity.AlbumsBean artentity) {
+        Cursor cursor = database.query("works",new String[]{"_id","albumId"},null,null,null,null,null);
+        boolean flag = false;
+        if (cursor.getCount() == 0) {
+            flag = true;
+        } else {
+            while (cursor.moveToNext()) {
+                if (cursor.getInt(cursor.getColumnIndex("albumId")) == artentity.getAlbumId()) {
+//                    Toast.makeText(ArtistInfoActivity.this, "您已经添加过该浏览记录",
+//                            Toast.LENGTH_LONG).show();
+                    flag = false;
+                    break;
+                } else {
+                    flag = true;
+                }
+            }
+        }
+        if (flag) {
+            ContentValues values = new ContentValues();
+            values.put("albumId", artentity.getAlbumId());
+            values.put("albumName", artentity.getAlbumName());
+            values.put("artistName", artistName);
+            values.put("albumChapter", artentity.getAlbumChapter());
+            values.put("playNumber", artentity.getPlayNumber());
+            values.put("albumCover", artentity.getAlbumCover());
+            database.insert("works", null, values);
+//            Toast.makeText(ArtistInfoActivity.this, "成功添加至浏览记录",
+//                    Toast.LENGTH_SHORT).show();
+        }
     }
 
 

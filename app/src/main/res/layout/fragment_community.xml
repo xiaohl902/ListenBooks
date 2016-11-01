@@ -132,7 +132,7 @@
             android:id="@+id/community_tv3_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="浏览收听历史"
+            android:text="浏览记录"
             android:layout_toRightOf="@+id/community_img3"
             android:paddingTop="16dp"
             android:textSize="18sp"
