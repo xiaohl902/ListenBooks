@@ -8,7 +8,6 @@
     android:orientation="vertical">
     
     <LinearLayout
-        android:id="@+id/fg_head_ll"
         android:id="@+id/search"
         android:gravity="center_vertical"
         android:padding="10dp"
