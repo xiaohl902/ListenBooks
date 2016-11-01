@@ -1,13 +1,19 @@
 package com.mwkj.activity;
 
+import android.app.Service;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.util.Log;
 import android.util.Log;
 import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.mwkj.util.PlayService;
 import com.mwkj.entity.ArtWorksEntity;
 import com.qf.kenlibrary.base.BaseActivity;
 
@@ -61,7 +67,7 @@ public class PlayActivity extends BaseActivity implements MediaPlayer.OnPrepared
      */
     @Override
     protected void init() {
-
+        Log.d("print", "init: 跳转到播放的Activity");
         Intent intent = getIntent();
         showPlayTitle.setText(intent.getStringExtra("playtitle"));
         showPlayArtist.setText(intent.getStringExtra("playartist"));
@@ -80,11 +86,57 @@ public class PlayActivity extends BaseActivity implements MediaPlayer.OnPrepared
         try {
             mediaPlayer.setDataSource(urlpart1 + urlpart2 + urlpart3);
             mediaPlayer.prepareAsync();
+//        String urlpart1 = intent.getStringExtra("urlpart1");
+//        String urlpart2 = intent.getStringExtra("urlpart2");
+//        String urlpart3 = intent.getStringExtra("urlpart3");
+//        Log.d("print", "init: "+urlpart1+"     "+urlpart2+"    "+urlpart3);
+//        mediaPlayer = new MediaPlayer();
+//        mediaPlayer.setOnPreparedListener(this);
+//        try {
+//            mediaPlayer.setDataSource(urlpart1 + urlpart2 + urlpart3);
+//            mediaPlayer.prepareAsync();
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+           String play_url = intent.getStringExtra("chapterurl");
+        Log.d("print", "init: "+play_url);
+//        String play_url = "http://www.mow99.com/store/album/200023/179034915.mp3";//需要播放的URl文件
+        initService(play_url);//初始化服务，开始播放音频文件
     }
+
+
+
+    /**
+     * 初始化服务
+     * @param play_url
+     */
+    private void initService(String play_url) {
+        Intent intent = new Intent(this, PlayService.class);
+        intent.putExtra("play_url",play_url);
+        this.startService(intent);
+        this.bindService(intent, serviceConnection, Service.BIND_AUTO_CREATE);
+    }
+
+
+    //bind服务返回过来的数据
+    private ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            PlayService.MyBind myBind = (PlayService.MyBind) service;
+            PlayService  playService = myBind.getService();
+
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
+    };
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,8 +165,6 @@ public class PlayActivity extends BaseActivity implements MediaPlayer.OnPrepared
                 break;
             case R.id.show_playlist_player:
                 break;
-            case R.id.pre_player:
-                break;
             case R.id.play_player:
                 break;
             case R.id.next_player:
@@ -126,8 +176,9 @@ public class PlayActivity extends BaseActivity implements MediaPlayer.OnPrepared
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mediaPlayer.reset();
-        mediaPlayer.release();
+//        mediaPlayer.reset();
+//        mediaPlayer.release();
+        unbindService(serviceConnection);
     }
 
     @Override

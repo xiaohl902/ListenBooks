@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,16 +22,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mwkj.activity.BigImgActivity;
+import com.mwkj.activity.LandActivity;
+import com.mwkj.activity.MainActivity;
 import com.mwkj.activity.R;
 import com.mwkj.activity.SetUpActivity;
 import com.mwkj.widget.ListenUserDialog;
 import com.qf.kenlibrary.base.BaseFragment;
 
+import org.json.JSONObject;
+
 import java.io.File;
+import java.util.HashMap;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.smssdk.EventHandler;
+import cn.smssdk.SMSSDK;
+import cn.smssdk.gui.RegisterPage;
 
 //我在听
 public class ListeningFragment extends BaseFragment implements ListenUserDialog.OnClickDialogs {
@@ -43,6 +52,7 @@ public class ListeningFragment extends BaseFragment implements ListenUserDialog.
     private ListenUserDialog listenUserDialog;
 
     private Bitmap bitmap = null;
+
 
     @Override
     protected int getContentId() {
@@ -62,7 +72,11 @@ public class ListeningFragment extends BaseFragment implements ListenUserDialog.
         bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.touxiang);
         listenUserDialog = new ListenUserDialog(getActivity(), this);
         listenUserDialog.setOnClickDialogs(this);
+
+
     }
+
+
 
     @Override
     public void onDestroyView() {
@@ -80,11 +94,13 @@ public class ListeningFragment extends BaseFragment implements ListenUserDialog.
                 startActivity(intent);
                 break;
             case R.id.ac_listen_userimg:
+                //用户头像，选择头像的Dialog
                 listenUserDialog.show();
                 break;
             case R.id.ac_listen_userName:
                 //跳转到登录页面，或跳转到设置个人资料页面
-                Toast.makeText(getActivity(), "跳转到登录页面", Toast.LENGTH_SHORT).show();
+                intent = new Intent(getActivity(), LandActivity.class);
+                startActivity(intent);
                 break;
             case R.id.ac_listen_rl1:
                 //听听历史
@@ -216,6 +232,9 @@ public class ListeningFragment extends BaseFragment implements ListenUserDialog.
                 //读取信息读取图片
                 options.inJustDecodeBounds = false;
                 bitmap = BitmapFactory.decodeFile(file.getPath(), options);
+                if(bitmap==null){
+                    bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.touxiang);
+                }
                 acListenUserimg.setImageBitmap(bitmap);
 
                 break;
@@ -228,6 +247,9 @@ public class ListeningFragment extends BaseFragment implements ListenUserDialog.
 
 
                 bitmap = BitmapFactory.decodeFile(file1.getAbsolutePath());
+                if(bitmap==null){
+                    bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.touxiang);
+                }
                 acListenUserimg.setImageBitmap(bitmap);
 
 //                File file2 = new File(Environment.getExternalStorageDirectory(),"aaa.jpg");

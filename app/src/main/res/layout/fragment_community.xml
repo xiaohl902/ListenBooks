@@ -7,9 +7,9 @@
     android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:gravity="center"
-        android:layout_height="60dp">
+        android:layout_height="50dp">
         <TextView
             android:id="@+id/community_title"
             android:layout_width="wrap_content"
@@ -22,14 +22,16 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
+            android:paddingTop="16dp"
             android:layout_toRightOf="@+id/community_title"
-
             android:src="@drawable/zhankai"/>
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/rl1_community"
         android:layout_width="match_parent"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/community_img1"
@@ -53,7 +55,7 @@
             android:text="听后感、新段子、八卦、吐槽就这了"
             android:layout_toRightOf="@+id/community_img1"
             android:layout_below="@+id/community_tv1_title"
-            android:paddingTop="4dp"
+            android:paddingTop="6dp"
             android:textSize="12sp"
             />
         <TextView
@@ -62,7 +64,7 @@
             android:text="帖子18个"
             android:layout_toRightOf="@+id/community_img1"
             android:layout_below="@+id/community_tv1_summary"
-            android:paddingTop="4dp"
+            android:paddingTop="6dp"
             android:textSize="12sp"
             />
     </RelativeLayout>
@@ -70,6 +72,8 @@
     <RelativeLayout
         android:id="@+id/rl2_community"
         android:layout_width="match_parent"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/community_img2"
@@ -95,7 +99,7 @@
             android:ellipsize="end"
             android:layout_toRightOf="@+id/community_img2"
             android:layout_below="@+id/community_tv2_title"
-            android:paddingTop="4dp"
+            android:paddingTop="6dp"
             android:textSize="12sp"
             />
         <TextView
@@ -104,7 +108,7 @@
             android:text="帖子33个"
             android:layout_toRightOf="@+id/community_img2"
             android:layout_below="@+id/community_tv2_summary"
-            android:paddingTop="4dp"
+            android:paddingTop="6dp"
             android:textSize="12sp"
             />
     </RelativeLayout>

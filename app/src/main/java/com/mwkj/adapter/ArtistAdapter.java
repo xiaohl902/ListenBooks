@@ -59,14 +59,26 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.ArtHolder>
         }
 //        holder.playnum.setText(list.get(position).getPlayNumber()+"");
 
-        Glide.with(context)
-                .load(list.get(position).getArtistImg())
-                .crossFade(500)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .placeholder(R.drawable.placeholder)
-                .transform(new GlideCircleTransform(context))
-                .thumbnail(0.1f)
-                .into(holder.art_iv);
+        if (position == 0){
+            Glide.with(context)
+                    .load("http://www.mow99.com/img/artist/29.jpg")
+                    .crossFade(500)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .placeholder(R.drawable.placeholder)
+                    .transform(new GlideCircleTransform(context))
+                    .thumbnail(0.1f)
+                    .into(holder.art_iv);
+        }else {
+            Glide.with(context)
+                    .load(list.get(position).getArtistImg())
+                    .crossFade(500)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .placeholder(R.drawable.placeholder)
+                    .transform(new GlideCircleTransform(context))
+                    .thumbnail(0.1f)
+                    .into(holder.art_iv);
+        }
+
 
     }
 

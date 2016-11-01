@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:divider="@drawable/diliver_artistinfo_act"
     android:showDividers="middle"
+    android:background="#61beeab2"
     android:orientation="vertical">
 
     <!--顶部actionbar位置布局-->
