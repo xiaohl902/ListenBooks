@@ -1,6 +1,8 @@
 package com.mwkj.activity;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -17,6 +19,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.gson.Gson;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 import com.mwkj.adapter.ArtInfoAdapter;
+import com.mwkj.db.ArtistOpenHelper;
 import com.mwkj.entity.ArtistInfoEntity;
 import com.mwkj.util.Constant;
 import com.mwkj.widget.GlideCircleTransform;
@@ -65,6 +68,10 @@ public class ArtistInfoActivity extends BaseActivity implements DownUtil.OnDownL
     private SwipeRefreshLayout artinfo_swipeRefresh;
     private ArtistInfoEntity entity;
 
+    private ArtistOpenHelper helper;
+    private SQLiteDatabase database;
+    private String artistName;
+
     @Override
     protected int getContentId() {
         return R.layout.activity_artistinfo;
@@ -72,6 +79,9 @@ public class ArtistInfoActivity extends BaseActivity implements DownUtil.OnDownL
 
     @Override
     protected void init() {
+
+        helper = new ArtistOpenHelper(this);
+        database = helper.getReadableDatabase();
         Intent intent = getIntent();
         artistid = intent.getIntExtra("artistid", -1);
         String artistimg = intent.getStringExtra("artistimg");
@@ -136,6 +146,19 @@ public class ArtistInfoActivity extends BaseActivity implements DownUtil.OnDownL
 
 
 
+    private long saveDatatoDb(ArtistInfoEntity.AlbumsBean artentity) {
+        ContentValues values = new ContentValues();
+        values.put("albumId", artentity.getAlbumId());
+        values.put("albumName", artentity.getAlbumName());
+        values.put("artistName", artistName);
+        values.put("albumChapter", artentity.getAlbumChapter());
+        values.put("playNumber", artentity.getPlayNumber());
+        values.put("albumCover", artentity.getAlbumCover());
+        return database.insert("works", null, values);
+    }
+
+
+
 
     @Override
     public Object paresJson(String json) {
@@ -144,7 +167,6 @@ public class ArtistInfoActivity extends BaseActivity implements DownUtil.OnDownL
         }
 
         return null;
-
     }
 
     @Override
@@ -157,8 +179,8 @@ public class ArtistInfoActivity extends BaseActivity implements DownUtil.OnDownL
                 infoAdapter.setOnItemClickListener(this);
             }
 
-
-            artinfoTvName.setText(entity.getArtist().getArtistName());
+            artistName = entity.getArtist().getArtistName();
+            artinfoTvName.setText(artistName);
             expandTextView.setText(entity.getArtist().getArtistResume(),mCollapsedStatus,0);
             artListNum.setText(entity.getArtist().getWorkNumber()+"");
             int playNumber = entity.getArtist().getPlayNumber();
@@ -171,10 +193,7 @@ public class ArtistInfoActivity extends BaseActivity implements DownUtil.OnDownL
             }
 //            artFunsNum.setText(entity.getArtist().getPlayNumber()+"");
 
-
         }
-        
-        
     }
 
     /**
@@ -185,12 +204,12 @@ public class ArtistInfoActivity extends BaseActivity implements DownUtil.OnDownL
     //item点击事件的接口回调
     @Override
     public void onItemClick(View view, int position) {
+        saveDatatoDb(albums.get(position));
         Intent in = new Intent(this,ArtWorksActivity.class);
         in.putExtra("albumid",entity.getAlbums().get(position).getAlbumId());
         in.putExtra("worksname",entity.getAlbums().get(position).getAlbumName());
         in.putExtra("chapternum",entity.getAlbums().get(position).getAlbumChapter());
         in.putExtra("fansnum",entity.getAlbums().get(position).getPlayNumber());
-
         in.putExtra("worksimg",entity.getAlbums().get(position).getAlbumCover());
         startActivity(in);
     }
