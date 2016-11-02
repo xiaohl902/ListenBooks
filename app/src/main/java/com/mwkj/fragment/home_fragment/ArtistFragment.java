@@ -103,6 +103,7 @@ public class ArtistFragment extends BaseFragment implements DownUtil.OnDownListe
 //            da.removeAll(da);
             da.addAll(artlist);
             artistAdapter.setDatas(artlist);
+            cursor.close();
         }else {
             //url的字符串拼接
             String downurl = String.format(Constant.ARTIST,pageSize);

@@ -8,6 +8,8 @@ public class ArtistOpenHelper extends SQLiteOpenHelper {
 	private static final int VERSION = 0X001;
 	private static final String SQL_NAME = "artist.db";
 	private static final String CREATE_TABLE_ARTIST = "create table artists(_id integer primary key,artistId,artistName,artistWork,workNumber,playNumber,artistImg)";
+	private static final String CREATE_TABLE_WORKS = "create table works(_id integer primary key,albumId,albumName,artistName,albumChapter,playNumber,albumCover)";
+	/*,artistName*/
 
 
 	public ArtistOpenHelper(Context context) {
@@ -20,7 +22,8 @@ public class ArtistOpenHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
 		db.execSQL(CREATE_TABLE_ARTIST);
-		
+		db.execSQL(CREATE_TABLE_WORKS);
+
 	}
 
 	@Override

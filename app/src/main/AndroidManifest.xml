@@ -115,6 +115,9 @@
 
 
 
+        <!--浏览历史的Activity-->
+        <activity android:name=".CollectionActivity"/>
+
         <!--播放音乐的服务-->
         <service android:name="com.mwkj.service.MyService"/>
         <!-- Required SDK 核心功能-->

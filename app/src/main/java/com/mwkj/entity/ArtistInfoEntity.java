@@ -348,6 +348,16 @@ public class ArtistInfoEntity {
     public static class AlbumsBean {
         private int albumId;
         private String albumName;
+
+        public String getArtistName() {
+            return artistName;
+        }
+
+        public void setArtistName(String artistName) {
+            this.artistName = artistName;
+        }
+
+        private String artistName;;
         private String albumDesc;
         private int albumChapter;
         private int playNumber;

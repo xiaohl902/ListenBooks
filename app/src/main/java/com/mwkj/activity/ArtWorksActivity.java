@@ -160,7 +160,7 @@ public class ArtWorksActivity extends BaseActivity implements DownUtil.OnDownLis
                 Log.d("print", "------>开始刷新，加载数据");
 
                 //页数++，重新加载
-                pageSize+=20;
+                pageSize += 20;
                 loadDatas();
 
                 new Thread() {

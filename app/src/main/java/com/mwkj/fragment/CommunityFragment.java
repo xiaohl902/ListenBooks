@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.mwkj.activity.CollectionActivity;
 import com.mwkj.activity.ComSomethingActivity;
 import com.mwkj.activity.R;
 import com.qf.kenlibrary.base.BaseFragment;
@@ -20,7 +21,7 @@ public class CommunityFragment extends BaseFragment {
         return R.layout.fragment_community;
     }
 
-    @OnClick({R.id.community_img1, R.id.rl1_community, R.id.rl2_community})
+    @OnClick({R.id.community_img1, R.id.rl1_community, R.id.rl2_community,R.id.rl3_community})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.community_img1:
@@ -37,6 +38,10 @@ public class CommunityFragment extends BaseFragment {
                 in.putExtra("fourmId",1);
                 in.putExtra("titlename","问题反馈");
                 startActivity(in);
+                break;
+            case R.id.rl3_community:
+                Intent in3 = new Intent(getActivity(), CollectionActivity.class);
+                startActivity(in3);
                 break;
         }
     }
