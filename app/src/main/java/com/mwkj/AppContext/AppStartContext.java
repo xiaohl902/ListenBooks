@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.mwkj.util.Constant;
 import com.mwkj.util.RetrofitService;
+import com.qf.kenlibrary.util.SharedUtil;
 
 import cn.jpush.android.api.JPushInterface;
 import retrofit2.Retrofit;
@@ -21,7 +22,7 @@ public class AppStartContext extends Application {
         //极光推送相关
         JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
         JPushInterface.init(this);     		// 初始化 JPush
-
+        SharedUtil.init(this);
        utils =  initRetrofit();
     }
 

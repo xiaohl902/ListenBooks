@@ -217,7 +217,7 @@ public class ArtWorksActivity extends BaseActivity implements DownUtil.OnDownLis
                     //点击事件
                     Intent intent = new Intent(ArtWorksActivity.this, PlayActivity.class);
                     intent.putExtra("playtitle", ArtWorksActivity.this.chapters.get(position).getChapterName());
-                    intent.putExtra("position",position-1);
+                    intent.putExtra("position",chapters.get(position).getChapterIdx()-1);
                     Bundle  bundle = new Bundle();
                     bundle.putSerializable("chapters", (Serializable) chapters1);
                     intent.putExtra("bundle",bundle);

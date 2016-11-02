@@ -20,7 +20,6 @@ import com.qf.kenlibrary.base.BaseActivity;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cn.jpush.android.api.JPushInterface;
 
 //主页面
 public class MainActivity extends BaseActivity {
@@ -87,6 +86,7 @@ public class MainActivity extends BaseActivity {
             case R.id.ac_tab_ll3:
                 //跳转到音频播放页面
                 Intent intent = new Intent(this,PlayActivity.class);
+
                 startActivity(intent);
                 break;
             case R.id.ac_tab_ll4:

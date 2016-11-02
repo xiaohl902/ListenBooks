@@ -4,11 +4,15 @@ import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.media.MediaPlayer;
 import android.os.Binder;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
+
+import com.mwkj.entity.ArtWorksEntity;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,12 +29,13 @@ public class MyService extends Service implements MediaPlayer.OnCompletionListen
     private BroadcastReceiver broadcastReceiver;
 
     private int index = -1;//播放的歌曲下标
-    List<String> playUrl = new ArrayList<>();
+    List<String> playList ;
     @Override
     public void onCreate() {
         super.onCreate();
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setOnCompletionListener(this);
+        localBroadcastManager = LocalBroadcastManager.getInstance(this);
         //全局广播
         broadcastReceiver = new BroadcastReceiver() {
             @Override
@@ -59,21 +64,29 @@ public class MyService extends Service implements MediaPlayer.OnCompletionListen
                         mediaPlayer.stop();
                         stopSelf();
                         break;
+                    case "action.qf.intent.touch":
+                        int prgress = intent.getIntExtra("touchProgress", -1);
+                        mediaPlayer.seekTo(prgress);
+                        break;
                 }
             }
         };
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("action.qf.intent.touch");
+        localBroadcastManager.registerReceiver(broadcastReceiver, intentFilter);
     }
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-
+        playList = new ArrayList<>();
+        Bundle bundle = intent.getBundleExtra("playList");
+        List<ArtWorksEntity.ChaptersBean> chapters = (List<ArtWorksEntity.ChaptersBean>) bundle.getSerializable("chapters");
+        for (ArtWorksEntity.ChaptersBean chapter : chapters) {
+            playList.add(chapter.getChapterLocation());
+        }
         return super.onStartCommand(intent, flags, startId);
     }
 
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
 
     @Nullable
     @Override
@@ -91,15 +104,30 @@ public class MyService extends Service implements MediaPlayer.OnCompletionListen
         if(index != position){
             index = position;
             play();
+        }else {
+            mediaPlayer.start();
+            timer();
         }
     }
+    //暂停
+    public void pausePlayer(){
+        mediaPlayer.pause();
+    }
+
     //开始播放歌曲
     public void play(){
         mediaPlayer.reset();//重置播放器
         try {
-            mediaPlayer.setDataSource(playUrl.get(index));
-            mediaPlayer.prepare();//进入就绪状态
-            mediaPlayer.start();
+            mediaPlayer.setDataSource(playList.get(index));
+            mediaPlayer.prepareAsync();
+//            mediaPlayer.prepare();//进入就绪状态
+            mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mediaPlayer) {
+                    mediaPlayer.start();
+                    timer();
+                }
+            });
 
             //更新通知
            /* musicPic = musicList.get(index).getMusicImage();
@@ -109,7 +137,7 @@ public class MyService extends Service implements MediaPlayer.OnCompletionListen
             notificationManager.notify(0x001, notification);*/
 
             //开启定时器
-            timer();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -151,7 +179,7 @@ public class MyService extends Service implements MediaPlayer.OnCompletionListen
             return;
         }
         if(--index == -1){
-            index = playUrl.size() - 1;
+            index = playList.size() - 1;
         }
         play();
 
@@ -162,10 +190,17 @@ public class MyService extends Service implements MediaPlayer.OnCompletionListen
         if(index == -1){
             return;
         }
-        if(++index == playUrl.size()){
+        if(++index == playList.size()){
             index = 0;
         }
         play();
     }
 
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(broadcastReceiver);
+        mediaPlayer.stop();
+    }
 }
