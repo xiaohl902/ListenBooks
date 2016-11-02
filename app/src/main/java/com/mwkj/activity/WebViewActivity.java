@@ -32,9 +32,10 @@ public class WebViewActivity extends BaseActivity {
 
     @Override
     protected void init() {
-        webViewInit();
+
         Intent intent = getIntent();
         String url = intent.getStringExtra("url");
+        webViewInit();
         webView.loadUrl(url);
     }
 

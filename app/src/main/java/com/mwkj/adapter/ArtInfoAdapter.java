@@ -74,7 +74,7 @@ public class ArtInfoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         //正常有item数据ViewHolder的实例
         if (holder instanceof ArtInfoHolder) {
             ((ArtInfoHolder)holder).art_info_title.setText(infolist.get(position).getAlbumName());
-            ((ArtInfoHolder)holder).art_info_name.setText(infolist.get(position).getArtist().getArtistName());
+            ((ArtInfoHolder)holder).art_info_name.setText(infolist.get(position).getArtistName());
             ((ArtInfoHolder)holder).artist_capter.setText(infolist.get(position).getAlbumChapter() + "");
             int playNumber = infolist.get(position).getPlayNumber();
             if(playNumber/10000 != 0) {

@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.mwkj.activity.BigImgActivity;
 import com.mwkj.activity.CollectionActivity;
+import com.mwkj.activity.ComSomethingActivity;
 import com.mwkj.activity.LandActivity;
 import com.mwkj.activity.R;
 import com.mwkj.activity.SetUpActivity;
@@ -96,7 +97,9 @@ public class ListeningFragment extends BaseFragment implements ListenUserDialog.
                 break;
             case R.id.ac_listen_rl1:
                 //听听历史
-                Toast.makeText(getActivity(), "听听历史", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "听听历史", Toast.LENGTH_SHORT).show();
+                //浏览历史记录
+                startActivity(new Intent(getActivity(), CollectionActivity.class));
                 break;
             case R.id.ac_listen_rl2:
                 //我的下载
@@ -113,7 +116,11 @@ public class ListeningFragment extends BaseFragment implements ListenUserDialog.
                 break;
             case R.id.ac_listen_rl5:
                 //问题反馈
-                Toast.makeText(getActivity(), "问题反馈", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "问题反馈", Toast.LENGTH_SHORT).show();
+                Intent in = new Intent(getActivity(), ComSomethingActivity.class);
+                in.putExtra("fourmId",1);
+                in.putExtra("titlename","问题反馈");
+                startActivity(in);
                 break;
         }
     }

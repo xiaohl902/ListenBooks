@@ -105,9 +105,11 @@ public class ArtistInfoActivity extends BaseActivity implements DownUtil.OnDownL
 
     @Override
     protected void loadDatas() {
-        String downurl = String.format(Constant.ARTIST_INFO,artistid,pagesize);
+
+            String downurl = String.format(Constant.ARTIST_INFO,artistid,pagesize);
 //        Log.d("print", "loadDatas: downurl= "+downurl);
-        new DownUtil().setOnDownListener(this).downJSON(downurl);
+            new DownUtil().setOnDownListener(this).downJSON(downurl);
+
 
         artinfo_swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.srl_artinfo);
         artinfo_swipeRefresh.setProgressBackgroundColorSchemeColor(Color.WHITE);
@@ -119,8 +121,8 @@ public class ArtistInfoActivity extends BaseActivity implements DownUtil.OnDownL
 
                 //页数++，重新加载
 
-                pagesize += 8;
-                loadDatas();
+                pagesize += 8; //第一页展示的长度+8
+               loadDatas();
 
                 new Thread(){
                     @Override
@@ -147,7 +149,7 @@ public class ArtistInfoActivity extends BaseActivity implements DownUtil.OnDownL
 
 
     /**
-     * long
+     * long 保存至浏览记录数据库
      *
      */
 
@@ -183,6 +185,39 @@ public class ArtistInfoActivity extends BaseActivity implements DownUtil.OnDownL
     }
 
 
+   /* //保存至list集合大数据库
+    private void saveDatatoDb2(ArtistInfoEntity.AlbumsBean artentity2) {
+        Cursor cursor = database.query("artlists",new String[]{"_id","albumId"},null,null,null,null,null);
+        boolean flag = false;
+        if (cursor.getCount() == 0) {
+            flag = true;
+        } else {
+            while (cursor.moveToNext()) {
+                if (cursor.getInt(cursor.getColumnIndex("albumId")) == artentity2.getAlbumId()) {
+//                    Toast.makeText(ArtistInfoActivity.this, "您已经添加过该浏览记录",
+//                            Toast.LENGTH_LONG).show();
+                    flag = false;
+                    break;
+                } else {
+                    flag = true;
+                }
+            }
+        }
+        if (flag) {
+            ContentValues values = new ContentValues();
+            values.put("albumId", artentity2.getAlbumId());
+            values.put("albumName", artentity2.getAlbumName());
+            values.put("artistName", artistName);
+            values.put("albumChapter", artentity2.getAlbumChapter());
+            values.put("playNumber", artentity2.getPlayNumber());
+            values.put("albumCover", artentity2.getAlbumCover());
+            database.insert("artlists", null, values);
+//            Toast.makeText(ArtistInfoActivity.this, "成功添加至浏览记录",
+//                    Toast.LENGTH_SHORT).show();
+        }
+    }
+*/
+
 
 
     @Override
@@ -198,25 +233,26 @@ public class ArtistInfoActivity extends BaseActivity implements DownUtil.OnDownL
     public void downSucc(Object object) {
         if (object != null){
             entity = (ArtistInfoEntity) object;
-            if (entity.getAlbum() != null && !entity.getAlbum().equals("") && !entity.getAlbum().equals("[]")) {
+            artistName = entity.getArtist().getArtistName();
+            artinfoTvName.setText(artistName);
+            if (entity.getAlbums() != null && !entity.getAlbums().equals("") && !entity.getAlbums().equals("[]")) {
                 albums = entity.getAlbums();
+               /* for (int i = 0; i < entity.getAlbums().size(); i++) {
+                    saveDatatoDb2(entity.getAlbums().get(i));
+                }*/
                 infoAdapter.setDatas(albums);
                 infoAdapter.setOnItemClickListener(this);
             }
 
-            artistName = entity.getArtist().getArtistName();
-            artinfoTvName.setText(artistName);
+
             expandTextView.setText(entity.getArtist().getArtistResume(),mCollapsedStatus,0);
             artListNum.setText(entity.getArtist().getWorkNumber()+"");
             int playNumber = entity.getArtist().getPlayNumber();
             if(playNumber/10000 != 0) {
                 artFunsNum.setText((playNumber / 10000) + "万");
-//                artFunUnit.setVisibility(View.VISIBLE);
             }else {
                 artFunsNum.setText(playNumber+"");
-//                artFunUnit.setVisibility(View.GONE);
             }
-//            artFunsNum.setText(entity.getArtist().getPlayNumber()+"");
 
         }
     }
