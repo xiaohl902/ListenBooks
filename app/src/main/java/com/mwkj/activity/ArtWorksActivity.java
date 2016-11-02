@@ -83,7 +83,7 @@ public class ArtWorksActivity extends BaseActivity implements DownUtil.OnDownLis
 
     CheckBox work_checkbox;
 
-    private int page = 1; //默认加载第一页数据
+    private int pageSize = 20; //默认加载第一页数据
 
     //配合可折叠textview使用
     SparseBooleanArray mCollapsedStatus = new SparseBooleanArray();
@@ -102,6 +102,7 @@ public class ArtWorksActivity extends BaseActivity implements DownUtil.OnDownLis
     @Override
     protected void init() {
         Intent in = getIntent();
+
         albumid = in.getIntExtra("albumid", -1);
         chapternum = in.getIntExtra("chapternum", -1);
         fansnum = in.getIntExtra("fansnum", -1);
@@ -159,7 +160,7 @@ public class ArtWorksActivity extends BaseActivity implements DownUtil.OnDownLis
                 Log.d("print", "------>开始刷新，加载数据");
 
                 //页数++，重新加载
-                page++;
+                pageSize+=20;
                 loadDatas();
 
                 new Thread() {
@@ -187,7 +188,7 @@ public class ArtWorksActivity extends BaseActivity implements DownUtil.OnDownLis
 
     @Override
     protected void loadDatas() {
-        String downurl = String.format(Constant.ARTIST_WORK_INFO, albumid, page);
+        String downurl = String.format(Constant.ARTIST_WORK_INFO, albumid, pageSize);
 //        Log.d("print", "loadDatas: downurl= " + downurl);
         new DownUtil().setOnDownListener(this).downJSON(downurl);
 

@@ -8,16 +8,14 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
-import android.util.Log;
 import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.mwkj.util.PlayService;
 import com.mwkj.entity.ArtWorksEntity;
+import com.mwkj.util.PlayService;
 import com.qf.kenlibrary.base.BaseActivity;
 
-import java.io.IOException;
 import java.util.List;
 
 import butterknife.Bind;
@@ -78,34 +76,32 @@ public class PlayActivity extends BaseActivity implements MediaPlayer.OnPrepared
         mediaPlayer.setOnPreparedListener(this);
 
         //吴进行修改
-        int position = intent.getIntExtra("position",-1);
+        int position = intent.getIntExtra("position", -1);
         Bundle bundle = intent.getBundleExtra("bundle");
         chapters = (List<ArtWorksEntity.ChaptersBean>) bundle.getSerializable("chapters");
-        Log.d("log", "init: " +chapters.size());
+        Log.d("log", "init: " + chapters.size());
 
-        try {
-            mediaPlayer.setDataSource(urlpart1 + urlpart2 + urlpart3);
-            mediaPlayer.prepareAsync();
-//        String urlpart1 = intent.getStringExtra("urlpart1");
-//        String urlpart2 = intent.getStringExtra("urlpart2");
-//        String urlpart3 = intent.getStringExtra("urlpart3");
-//        Log.d("print", "init: "+urlpart1+"     "+urlpart2+"    "+urlpart3);
-//        mediaPlayer = new MediaPlayer();
-//        mediaPlayer.setOnPreparedListener(this);
-//        try {
-//            mediaPlayer.setDataSource(urlpart1 + urlpart2 + urlpart3);
-//            mediaPlayer.prepareAsync();
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
 
-           String play_url = intent.getStringExtra("chapterurl");
-        Log.d("print", "init: "+play_url);
-//        String play_url = "http://www.mow99.com/store/album/200023/179034915.mp3";//需要播放的URl文件
+        //        String urlpart1 = intent.getStringExtra("urlpart1");
+        //        String urlpart2 = intent.getStringExtra("urlpart2");
+        //        String urlpart3 = intent.getStringExtra("urlpart3");
+        //        Log.d("print", "init: "+urlpart1+"     "+urlpart2+"    "+urlpart3);
+        //        mediaPlayer = new MediaPlayer();
+        //        mediaPlayer.setOnPreparedListener(this);
+        //        try {
+        //            mediaPlayer.setDataSource(urlpart1 + urlpart2 + urlpart3);
+        //            mediaPlayer.prepareAsync();
+        //
+        //        } catch (IOException e) {
+        //            e.printStackTrace();
+        //        }
+
+        String play_url = intent.getStringExtra("chapterurl");
+        Log.d("print", "init: " + play_url);
+        //        String play_url = "http://www.mow99.com/store/album/200023/179034915.mp3";//需要播放的URl文件
         initService(play_url);//初始化服务，开始播放音频文件
-    }
 
+    }
 
 
     /**

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ru.noties.scrollable.ScrollableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ru.noties.scrollable.ScrollableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     app:scrollable_autoMaxScrollViewId="@+id/fg_head_ll"
     xmlns:app="http://schemas.android.com/apk/res-auto"
