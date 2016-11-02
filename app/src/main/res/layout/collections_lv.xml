@@ -42,8 +42,13 @@
 
     </RelativeLayout>
 
-    <ListView
+   <!-- <ListView
         android:id="@+id/collect_lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />-->
+
+    <com.yanzhenjie.recyclerview.swipe.SwipeMenuRecyclerView
+        android:id="@+id/collect_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
