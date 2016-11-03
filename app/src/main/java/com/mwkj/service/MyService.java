@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 
 import com.mwkj.entity.ArtWorksEntity;
 
@@ -29,7 +30,8 @@ public class MyService extends Service implements MediaPlayer.OnCompletionListen
     private BroadcastReceiver broadcastReceiver;
 
     private int index = -1;//播放的歌曲下标
-    List<String> playList ;
+    List<String> playList;
+    private List<ArtWorksEntity.ChaptersBean> chapters;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -40,23 +42,23 @@ public class MyService extends Service implements MediaPlayer.OnCompletionListen
         broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                switch (intent.getAction()){
-                    case "action.qf.notification.play":
+                switch (intent.getAction()) {
+                    case "action.qf.intent.btnPlayer":
                         //暂停/播放
-                        if(mediaPlayer.isPlaying()){
+                        if (mediaPlayer.isPlaying()) {
                             mediaPlayer.pause();
                         } else {
-                            if(index == -1){
-                                playPosition(0);
-                            } else {
+//                            if (index == -1) {
+//                                playPosition(0);
+//                            } else {
                                 mediaPlayer.start();
-                            }
+//                            }
                         }
                         break;
-                    case "action.qf.notification.above":
+                    case "action.qf.intent.above":
                         above();
                         break;
-                    case "action.qf.notification.next":
+                    case "action.qf.intent.next":
                         next();
                         break;
                     case "action.qf.notification.remove":
@@ -73,19 +75,27 @@ public class MyService extends Service implements MediaPlayer.OnCompletionListen
         };
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction("action.qf.intent.touch");
+        intentFilter.addAction("action.qf.intent.btnPlayer");
+        intentFilter.addAction("action.qf.intent.above");
+        intentFilter.addAction("action.qf.intent.next");
+
         localBroadcastManager.registerReceiver(broadcastReceiver, intentFilter);
     }
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         playList = new ArrayList<>();
-        Bundle bundle = intent.getBundleExtra("playList");
-        List<ArtWorksEntity.ChaptersBean> chapters = (List<ArtWorksEntity.ChaptersBean>) bundle.getSerializable("chapters");
+        Bundle bundle = intent.getBundleExtra("bundle");
+        int getPosition =  intent.getIntExtra("position",-1);
+        chapters = (List<ArtWorksEntity.ChaptersBean>) bundle.getSerializable("chapters");
         for (ArtWorksEntity.ChaptersBean chapter : chapters) {
             playList.add(chapter.getChapterLocation());
         }
+        Log.d("log", "onStartCommand: "+"服务收到数据" +playList.size()+">>>>>"+getPosition);
+        index = getPosition;
+        play();
         return super.onStartCommand(intent, flags, startId);
     }
-
 
 
     @Nullable
@@ -94,37 +104,43 @@ public class MyService extends Service implements MediaPlayer.OnCompletionListen
         return new MyBind();
     }
 
-       @Override    //播放完成的监听
-     public void onCompletion(MediaPlayer mediaPlayer) {
+    @Override    //播放完成的监听
+    public void onCompletion(MediaPlayer mediaPlayer) {
 
     }
 
     //播放歌曲
-    public void playPosition(int position){
-        if(index != position){
+    public void playPosition(int position) {
+        if (index != position) {
             index = position;
             play();
-        }else {
+        } else {
             mediaPlayer.start();
             timer();
         }
     }
+
     //暂停
-    public void pausePlayer(){
+    public void pausePlayer() {
         mediaPlayer.pause();
     }
 
     //开始播放歌曲
-    public void play(){
+    public void play() {
         mediaPlayer.reset();//重置播放器
         try {
             mediaPlayer.setDataSource(playList.get(index));
             mediaPlayer.prepareAsync();
-//            mediaPlayer.prepare();//进入就绪状态
+            //            mediaPlayer.prepare();//进入就绪状态
             mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                 @Override
                 public void onPrepared(MediaPlayer mediaPlayer) {
                     mediaPlayer.start();
+                    Intent intent = new Intent("action.qf.intent.playPosition");
+                    intent.putExtra("playPosition",index);
+                    intent.putExtra("ChapterBean",chapters.get(index));
+
+                    localBroadcastManager.sendBroadcast(intent);
                     timer();
                 }
             });
@@ -142,16 +158,18 @@ public class MyService extends Service implements MediaPlayer.OnCompletionListen
             e.printStackTrace();
         }
     }
+
     /**
      * 定时器
      */
     private Timer timer = null;
-    public void timer(){
+
+    public void timer() {
         timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                if(mediaPlayer.isPlaying()){
+                if (mediaPlayer.isPlaying()) {
                     Intent intent = new Intent("action.qf.intent.progress");
                     intent.putExtra("progress", mediaPlayer.getCurrentPosition());
                     intent.putExtra("max", mediaPlayer.getDuration());
@@ -163,34 +181,35 @@ public class MyService extends Service implements MediaPlayer.OnCompletionListen
             }
         }, 0, 1000);
     }
+
     public class MyBind extends Binder {
         /**
          * 返回Service对象
+         *
          * @return
          */
-        public MyService getService(){
+        public MyService getService() {
             return MyService.this;
         }
     }
 
     //上一曲
-    public void above(){
-        if(index == -1){
+    public void above() {
+        if (index == -1) {
             return;
         }
-        if(--index == -1){
+        if (--index == -1) {
             index = playList.size() - 1;
         }
         play();
-
     }
 
     //下一曲
-    public void next(){
-        if(index == -1){
+    public void next() {
+        if (index == -1) {
             return;
         }
-        if(++index == playList.size()){
+        if (++index == playList.size()) {
             index = 0;
         }
         play();

@@ -1,8 +1,12 @@
 package com.mwkj.activity;
 
+import android.app.Service;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,6 +24,7 @@ import com.google.gson.Gson;
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 import com.mwkj.adapter.WorksInfoAdapter;
 import com.mwkj.entity.ArtWorksEntity;
+import com.mwkj.service.MyService;
 import com.mwkj.util.Constant;
 import com.mwkj.widget.GlideCircleTransform;
 import com.mwkj.widget.RecycleViewDivider;
@@ -45,8 +50,6 @@ public class ArtWorksActivity extends BaseActivity implements DownUtil.OnDownLis
     ImageView infoArtistHeader;
     @Bind(R.id.expand_tv_works)
     ExpandableTextView expandableText;
-    //    @Bind(R.id.work_list_num)
-//    TextView artListNum;
     @Bind(R.id.work_funs_num)
     TextView artFunsNum;
     @Bind(R.id.wrok_info_rv)
@@ -69,8 +72,6 @@ public class ArtWorksActivity extends BaseActivity implements DownUtil.OnDownLis
     TextView tvLl2Download3;
     @Bind(R.id.ll_works3)
     LinearLayout llWorks3;
-//    @Bind(R.id.srl_wrokinfo)
-//    SwipeRefreshLayout srlWrokinfo;
 
     private int albumid = -1;//作品id,默认-1
     private int chapternum, fansnum;//作品章节数、播放次数
@@ -93,6 +94,9 @@ public class ArtWorksActivity extends BaseActivity implements DownUtil.OnDownLis
     private ArtWorksEntity workentity; //实体类
     private List<ArtWorksEntity.ChaptersBean> chapters;
     private List<ArtWorksEntity.ChaptersBean> chapters1;
+        //服务
+    private MyService myService;
+    private Intent intent;
 
     @Override
     protected int getContentId() {
@@ -102,6 +106,7 @@ public class ArtWorksActivity extends BaseActivity implements DownUtil.OnDownLis
     @Override
     protected void init() {
         Intent in = getIntent();
+        intent = new Intent(this,MyService.class);
 
         albumid = in.getIntExtra("albumid", -1);
         chapternum = in.getIntExtra("chapternum", -1);
@@ -142,11 +147,6 @@ public class ArtWorksActivity extends BaseActivity implements DownUtil.OnDownLis
         wrokInfoRv.setLayoutManager(new LinearLayoutManager(this));
         worksInfoAdapter = new WorksInfoAdapter(this);
         wrokInfoRv.setAdapter(worksInfoAdapter);
-//        wrokInfoRv.addItemDecoration(new RecycleViewDivider(this,LinearLayoutManager.HORIZONTAL));
-
-//        wrokInfoRv.addItemDecoration(new RecycleViewDivider(this,
-//                LinearLayoutManager.HORIZONTAL,
-//                R.drawable.works_item_divider));
 
         wrokInfoRv.addItemDecoration(new RecycleViewDivider(this,
                 LinearLayoutManager.HORIZONTAL,
@@ -158,7 +158,6 @@ public class ArtWorksActivity extends BaseActivity implements DownUtil.OnDownLis
             @Override
             public void onRefresh() {
                 Log.d("print", "------>开始刷新，加载数据");
-
                 //页数++，重新加载
                 pageSize += 20;
                 loadDatas();
@@ -184,14 +183,29 @@ public class ArtWorksActivity extends BaseActivity implements DownUtil.OnDownLis
                 }.start();
             }
         });
+
+
+
+
+    }
+    //打开服务并发送数据
+    private void beginService(int position) {
+        Bundle  bundle = new Bundle();
+        bundle.putSerializable("chapters", (Serializable) chapters1);
+        //传递实体类集合
+        intent.putExtra("bundle",bundle);
+        //传递点击的下标
+        intent.putExtra("position",position);
+
+        startService(intent);
+        bindService(intent,serviceConnection, Service.BIND_AUTO_CREATE);
+
     }
 
     @Override
     protected void loadDatas() {
         String downurl = String.format(Constant.ARTIST_WORK_INFO, albumid, pageSize);
-//        Log.d("print", "loadDatas: downurl= " + downurl);
         new DownUtil().setOnDownListener(this).downJSON(downurl);
-
     }
 
     @Override
@@ -217,28 +231,11 @@ public class ArtWorksActivity extends BaseActivity implements DownUtil.OnDownLis
                     //点击事件
                     Intent intent = new Intent(ArtWorksActivity.this, PlayActivity.class);
                     intent.putExtra("playtitle", ArtWorksActivity.this.chapters.get(position).getChapterName());
-                    intent.putExtra("position",chapters.get(position).getChapterIdx()-1);
-                    Bundle  bundle = new Bundle();
-                    bundle.putSerializable("chapters", (Serializable) chapters1);
-                    intent.putExtra("bundle",bundle);
-                    intent.putExtra("playartist",artistName);
-                    intent.putExtra("playurl",chapters.get(position).getChapterLocation());
-//                    String chapterurl = chapters.get(position).getChapterLocation();
 
-                    String chapterurl = chapters.get(position).getChapterLocation();
-//
-//                    String preurl = chapterurl.substring(0,chapterurl.lastIndexOf("/")+1);
-//                    String laststring = chapterurl.substring(chapterurl.lastIndexOf("/")+1);
-////                    String urlnum = laststring.split(".")[0];
-//                    String pointmp3 = laststring.substring(laststring.indexOf("."));
-//                    String urlnum = laststring.substring(0,laststring.indexOf("."));
-//
-////                    Log.d("print", "onItemClickListener: preurl "+preurl + " pointmp3 "+pointmp3 + " laststring "+laststring +" urlnum "+urlnum);
-//                    intent.putExtra("urlpart1",preurl);
-//                    intent.putExtra("urlpart2",urlnum);
-//                    intent.putExtra("urlpart3",pointmp3);
-                    intent.putExtra("chapterurl",chapterurl);
+                    //启动播放界面
                     startActivity(intent);
+                   //把数据发送给服务
+                    beginService(position);
 
                 }
 
@@ -317,6 +314,16 @@ public class ArtWorksActivity extends BaseActivity implements DownUtil.OnDownLis
                 break;
         }
     }
+    //获得服务
+    private ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            MyService.MyBind myBind = (MyService.MyBind) iBinder;
+            myService = myBind.getService();
+        }
 
-
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+        }
+    };
 }

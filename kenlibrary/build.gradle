@@ -36,4 +36,5 @@ dependencies {
     compile 'com.youth.banner:banner:1.4.1'
     compile 'com.zhy:base-rvadapter:3.0.3'
     compile 'ru.noties:scrollable:1.2.0'
+    compile 'com.yanzhenjie:recyclerview-swipe:1.0.2' //可侧滑的Recycler
 }
